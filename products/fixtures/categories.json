@@ -1,0 +1,9 @@
+[{"pk": 1, "model": "products.category", "fields": {"name": "ladieswear", "friendly_name": "Ladies Wear"}}, 
+{"pk": 2, "model": "products.category", "fields": {"name": "boyshudi", "friendly_name": "Boys Hudi"}}, 
+{"pk": 3, "model": "products.category", "fields": {"name": "kidswear", "friendly_name": "Kids Wear"}}, 
+{"pk": 4, "model": "products.category", "fields": {"name": "deals", "friendly_name": "Deals"}}, 
+{"pk": 5, "model": "products.category", "fields": {"name": "glasses", "friendly_name": "Glasses"}}, 
+{"pk": 6, "model": "products.category", "fields": {"name": "jwellery", "friendly_name": "Jwellery"}}, 
+{"pk": 7, "model": "products.category", "fields": {"name": "headscarves", "friendly_name": "Head Scarves"}}, 
+{"pk": 8, "model": "products.category", "fields": {"name": "facecoverings", "friendly_name": "Face Coverings"}}, 
+{"pk": 9, "model": "products.category", "fields": {"name": "shirts", "friendly_name": "Shirts"}}]
