@@ -67,7 +67,7 @@ html {
 .border-black {
     border: 1px solid black !important;
 }
-.overlay {
+.overlay-p{
     height: 100%;
     width: 100%;
     top: 0;
@@ -131,7 +131,7 @@ a{
 	font-family: poppins;
 	letter-spacing: 0.5px;
 }
-.overlay-p{
+.overlay_for_product_slider{
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -162,10 +162,10 @@ a{
 	background-color: #f15fa3;
 	transition: all ease 0.3s;
 }
-.overlay{
+.overlay_for_product_slider{
 	visibility: hidden;
 }
-.slide-img:hover .overlay{
+.slide-img:hover .overlay_for_product_slider{
 	visibility: visible;
 	animation:fade 0.5s;
 }
