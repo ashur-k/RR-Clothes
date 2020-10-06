@@ -7,7 +7,7 @@ html {
 }
 
 .hero-section{
-    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+    background: url('/media/170813-fraser-genderless-clothing-hero_w16zkj.jpg') no-repeat center top;
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
@@ -210,6 +210,9 @@ a{
 
 }
 
+.custom{
+    float: right !important;
+}
 
 @keyframes fade{
 	0%{
