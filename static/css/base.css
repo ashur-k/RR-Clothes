@@ -67,15 +67,6 @@ html {
 .border-black {
     border: 1px solid black !important;
 }
-.overlay-p{
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: white;
-    z-index: -1;
-}
 
 /* explore-new-trend-section-css/ index.html from line 31 */
 /* this code is from https://www.goingtointernet.com/2020/08/responsive-e-commerce-product-slider.html */
