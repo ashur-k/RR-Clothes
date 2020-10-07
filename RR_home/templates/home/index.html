@@ -21,13 +21,13 @@
         <div class="col-md-6 col-lg-6 col-11 mx-auto my-auto search-box">
             <h1 class="display-1 logo-font text-white text-center mb-5">
                         R-Ryan Cloth
-                    </h1>
-            <div class="input-group form-contianer mt-5">
-                <input type="text" name="search" class="form-control search-input" placeholder="serach" autofocus autocomplete="off">
-                <button class="btn btn-danger">Search 
-                
-                </button>
-            </div>
+            </h1>
+            <form method="GET" action="{% url 'all_products' %}">
+                <div class="input-group form-contianer mt-5">
+                    <input type="text" name="search" class="form-control search-input" placeholder="search" autofocus autocomplete="off">
+                    <button class="btn btn-danger">Search</button>
+                </div>
+            </form>
         </div>
     </div>
 </section>

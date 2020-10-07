@@ -36,7 +36,7 @@ class ProductSize(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)    
-    sku = models.CharField(max_length=254, null=True, blank=True)
+    
     name = models.CharField(max_length=254)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -58,6 +58,7 @@ class ProductColour(models.Model):
 class ProductDetail(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
     size = models.ForeignKey('ProductSize', null=True, blank=True, on_delete=models.SET_NULL)
-    product_unit = models.ForeignKey('ProductUnit', null=True, blank=True, on_delete=models.SET_NULL)    
+    product_unit = models.ForeignKey('ProductUnit', null=True, blank=True, on_delete=models.SET_NULL)
+    product_colour = models.ForeignKey('ProductColour', null=True, blank=True, on_delete=models.SET_NULL)
     initial_quantity = models.BigIntegerField(default=20)
     initial_date = datetime.datetime.now()

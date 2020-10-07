@@ -7,8 +7,7 @@ from .models import Product, Category, ProductUnit, ProductSize, ProductDetail, 
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'id',
-        'sku',
+    
         'name',
         'category',
         'price',
@@ -16,8 +15,8 @@ class ProductAdmin(admin.ModelAdmin):
         'image',
     )
 
-    ordering = ('sku',)
-    
+
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
@@ -44,12 +43,13 @@ class ProductSizeAdmin(admin.ModelAdmin):
 
 class ProductDetailAdmin(admin.ModelAdmin):
     list_display = (
-        'id',
         'product',
         'size',
         'product_unit',
+        'product_colour',
         'initial_quantity',
         'initial_date',
+        
 
     )
 
