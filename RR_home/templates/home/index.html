@@ -46,91 +46,28 @@
              debitis praesentium, aliquam quod sint possimus libero error!</p>
 
         <ul id="autoWidth" class="cs-hidden">
+        {% for items in products_slider %}
             <li class="item-a">
                 <div class="box">            
                 <div class="slide-img">
-                    <img class="model" src="media/slider-1.jpg" alt="My image">
+                    <img src="{{ items.image.url }}" alt="" style="height: 200px">
                     <div class="overlay_for_product_slider">
                         <a href="" class="buy-btn">Buy Now</a>
                     </div>
                 </div>
                 <div class="detail-box">
                     <div class="type">
-                        <a href="">Rabbed Cardigan</a>
-                        <span>New Arrivals</span>                    
+                        <a href="">{{ items.title }}</a>
+                        <span>{{ items.category }}</span>                    
                     </div>
-                    <a href="" class="price">$23</a>
+                    <a href="" class="price">{{ items.price }}</a>
                 </div>                
             </div>
             </li>
-             <li class="item-b">
-                <div class="box">            
-                <div class="slide-img">
-                    <img class="model" src="media/slider-2.jpg" alt="My image">
-                    <div class="overlay_for_product_slider">
-                        <a href="" class="buy-btn">Buy Now</a>
-                    </div>
-                </div>
-                <div class="detail-box">
-                    <div class="type">
-                        <a href="">Rabbed Cardigan</a>
-                        <span>New Arrivals</span>                    
-                    </div>
-                    <a href="" class="price">$23</a>
-                </div>                
-            </div>
-            </li>
-             <li class="item-c">
-                <div class="box">            
-                <div class="slide-img">
-                    <img class="model" src="media/slider-3.jpg" alt="My image">
-                    <div class="overlay_for_product_slider">
-                        <a href="" class="buy-btn">Buy Now</a>
-                    </div>
-                </div>
-                <div class="detail-box">
-                    <div class="type">
-                        <a href="">Rabbed Cardigan</a>
-                        <span>New Arrivals</span>                    
-                    </div>
-                    <a href="" class="price">$23</a>
-                </div>                
-            </div>
-            </li>
-             <li class="item-d">
-                <div class="box">            
-                <div class="slide-img">
-                    <img class="model" src="media/slider-4.jpg" alt="My image">
-                    <div class="overlay_for_product_slider">
-                        <a href="" class="buy-btn">Buy Now</a>
-                    </div>
-                </div>
-                <div class="detail-box">
-                    <div class="type">
-                        <a href="">Rabbed Cardigan</a>
-                        <span>New Arrivals</span>                    
-                    </div>
-                    <a href="" class="price">$23</a>
-                </div>                
-            </div>
-            </li>
-             <li class="item-e">
-                <div class="box">            
-                <div class="slide-img">
-                    <img class="model" src="media/slider-5.jpg" alt="My image">
-                    <div class="overlay_for_product_slider">
-                        <a href="" class="buy-btn">Buy Now</a>
-                    </div>
-                </div>
-                <div class="detail-box">
-                    <div class="type">
-                        <a href="">Rabbed Cardigan</a>
-                        <span>New Arrivals</span>                    
-                    </div>
-                    <a href="" class="price">$23</a>
-                </div>                
-            </div>
-            </li>        
+        {% endfor %}
+            
+           
+                     
         </ul>
     </div>
     </div>
@@ -232,31 +169,20 @@
 <section id="image-gallery" class="p-4 mt-4 text-center">
     <div class="container image-gallery border-top border-bottom border-dark text-center">
         <div class="row">
-            <div class="col-sm-8">
-                <div class="product">
-                    <div class="row">
-                        <div class="col-sm-1 p-1">
-                            <div class="product-small-img">
-                                <img class="model img-thumbnail" src="media/sm-img-gallery-1.jpg" onclick="changeImg(this)" alt="My image">
-                                <img class="model img-thumbnail" src="media/sm-img-gallery-2.jpg" onclick="changeImg(this)" alt="My image">
-                                <img class="model img-thumbnail" src="media/sm-img-gallery-3.jpg" onclick="changeImg(this)" alt="My image">
-                                <img class="model img-thumbnail" src="media/sm-img-gallery-4.jpg" onclick="changeImg(this)" alt="My image">
-                                <img class="model img-thumbnail" src="media/sm-img-gallery-5.jpg" onclick="changeImg(this)" alt="My image">
-                            </div>
-                        </div>
-                        <div class="col-sm-6 p-1 col-centered">                             
-                            <div class="img-container p-1">
-                                <img id="full-image" class="img-fluid" src="media/L-img-1-gallery.jpg">  
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-sm-8">                
+                <ul id="imageGallery">
+                {% for items in products_latest %}
+                    <li data-thumb="{{ items.image.url }}" data-src="{{ items.image.url }}">
+                        <img src="{{ items.image.url }}" height="200px"/>
+                    </li>
+                {% endfor %}
+                </ul>
             </div>
             
             <div class="col-sm-4">
                 <div class="row" style="max-width: 300px;">
                     <div class="col-sm-12 mt-2 col-centered">
-                        <h3>LOREM IPSUM</h3>
+                        <h3>Our Latest Products</h3>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Quam ex incidunt dolores vitae odit odio harum dolorem delectus sint ab?</p>
                     </div>
@@ -278,14 +204,28 @@
   <!--This code is from http://sachinchoolur.github.io/lightslider/examples.html-->
     <script type="text/javascript" src="{% static 'js/lightslider.js' %}"></script>
     <script>
-      $(document).ready(function() {
-    $('#autoWidth').lightSlider({
-        autoWidth:true,
-        loop:true,
-        onSliderLoad: function() {
-            $('#autoWidth').removeClass('cS-hidden');
-        } 
-    });  
+    $(document).ready(function() {
+        $('#autoWidth').lightSlider({
+            autoWidth:true,
+            loop:true,
+            onSliderLoad: function() {
+                $('#autoWidth').removeClass('cS-hidden');
+            } 
+        });
+        $('#imageGallery').lightSlider({
+            gallery:true,
+            item:1,
+            loop:true,
+            thumbItem:9,
+            slideMargin:0,
+            enableDrag: false,
+            currentPagerPosition:'left',
+            onSliderLoad: function(el) {
+                el.lightGallery({
+                    selector: '#imageGallery .lslide'
+                });
+            }   
+        });  
   });
   
         console.log('working')
