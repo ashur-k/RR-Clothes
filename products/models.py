@@ -73,6 +73,9 @@ class Color(models.Model):
     name = models.CharField(max_length=20)
     code = models.CharField(max_length=10, blank=True, null='True')
 
+    class Meta:
+        verbose_name_plural = 'Colors'
+
     def __str__(self):
         return self.name
 
@@ -87,6 +90,9 @@ class Size(models.Model):
     name = models.CharField(max_length=20)
     code = models.CharField(max_length=10, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = 'Sizes'
+
     def __str__(self):
         return self.name
 
@@ -99,6 +105,9 @@ class Variants(models.Model):
     image_id = models.IntegerField(blank=True, null=True, default=0)
     quantity = models.IntegerField(default=1)
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    class Meta:
+        verbose_name_plural = 'Variants'
 
     def __str__(self):
         return self.title
