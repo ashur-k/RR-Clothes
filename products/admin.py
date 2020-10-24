@@ -11,8 +11,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'status']
+    list_display = ['title', 'category', 'status', 'image_tag',]
     list_filter = ['category']
+    readonly_fields = ('image_tag',)
 
 
 admin.site.register(Category, CategoryAdmin)
