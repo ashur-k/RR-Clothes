@@ -17,3 +17,27 @@ class Category(models.Model):
 
     def get_friendly_name(self):
         return self.friendly_name
+
+
+class Product(models.Model):
+    STATUS = (
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+    title = models.CharField(max_length=30)
+    description = models.CharField(max_length=255)
+    image = models.ImageField(blank=True, upload_to='meida/')
+    price = models.FloatField()
+    quantity = models.IntegerField()
+    detail = RichTextUploadingField()
+    status = models.CharField(max_length=10, choices=STATUS)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'Products'
+
+    def __str__(self):
+        return self.title
