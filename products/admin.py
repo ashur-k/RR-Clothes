@@ -27,11 +27,11 @@ class ProductVariantsInline(admin.TabularInline):
 
 @admin_thumbnails.thumbnail('image')
 class ImagesAdmin(admin.ModelAdmin):
-    list_display = ('image', 'title', 'image_thumbnail')
+    list_display = ('product', 'image', 'title', 'image_thumbnail')
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'status', 'image_tag', ]
+    list_display = ['title', 'category', 'status', 'image']
     list_filter = ['category']
     readonly_fields = ('image_tag',)
     inlines = [ProductImageInline, ProductVariantsInline]

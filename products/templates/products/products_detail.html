@@ -1,5 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_css %}
+    <link type="text/css" rel="stylesheet" href="{% static '' %}css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">    
+    <link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
+
+{% endblock %}
+{% block extra_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+{% endblock %}
+{% load static %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -15,7 +31,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center mt-3">
-           <h2>Product Detail</h2>
+           <h2>{{ item.title }} Details</h2>
             <hr class=" mb-1">
         </div>
     </div>
@@ -24,18 +40,35 @@
             <div class="row mt-1 mb-2"></div>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                     {% if product.image_url %}
-                        <img class="card-img-top" height="500" src="{{ product.image_url }}" alt="Card image cap">
-                    {% else %}
-                        <img class="card-img-top" src="" alt="no img">
-                    {% endif %}   
+                   <div id="product-main-view">
+							<div class="product-view">					
+                                <div class="product-view">
+                                    <img src="{{ item.image.url }}" alt="" style="height: 400px">
+                                </div>
+							</div>
+                            {% for rs in images %}
+							<div class="product-view">
+								<img src="{{rs.image.url}}" alt="" height="400px">
+							</div>
+                            {% endfor %}							
+						</div>
+						<div id="product-view">
+							<div class="product-view">
+								<img src="{{item.image.url}}" alt="">
+							</div>
+                             {% for rs in images %}
+							<div class="product-view">
+								<img src="{{rs.image.url}}" alt="" >
+							</div>
+                            {% endfor %}						
+						</div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                      <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mb-0">{{ product.name }}</p>
-                    <p class="lead mb-0 text-left font-weight-bold">${{ product.price }} {{ product.category.name }}</p>
-                    {% if product.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                    <p class="mb-0">{{ item.name }}</p>
+                    <p class="lead mb-0 text-left font-weight-bold">${{ item.price }} {{ item.category.name }}</p>
+                    {% if item.rating %}
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ item.rating }} / 5</small>
                     {% else %}
                         <small class="text-muted">No Rating</small>
                     {% endif %}
@@ -43,8 +76,8 @@
                         <div class="form-group">
                         <label for="sel1">Available sizes</label>
                         <select class="form-control" id="sel1">
-                            {% for detail in product_detail %}
-                            <option>{{detail.size}}</option>
+                            {% for detail in item_detail %}
+                            <option></option>
                             {% endfor %}
                         </select>
                         <br>
@@ -60,4 +93,11 @@
     </div>
 </div>
 
+{% block postloadjs %}
+    <script src="{% static '' %}js/bootstrap.min.js"></script>
+	<script src="{% static '' %}js/slick.min.js"></script>
+	<script src="{% static '' %}js/nouislider.min.js"></script>
+	<script src="{% static '' %}js/jquery.zoom.min.js"></script>
+	<script src="{% static '' %}js/main.js"></script>
+{% endblock %}
 {% endblock %}

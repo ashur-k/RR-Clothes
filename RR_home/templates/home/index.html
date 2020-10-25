@@ -46,21 +46,21 @@
              debitis praesentium, aliquam quod sint possimus libero error!</p>
 
         <ul id="autoWidth" class="cs-hidden">
-        {% for items in products_slider %}
+        {% for item in products_slider %}
             <li class="item-a">
                 <div class="box">            
                 <div class="slide-img">
-                    <img src="{{ items.image.url }}" alt="" style="height: 200px">
+                    <img src="{{ item.image.url }}" alt="" style="height: 200px">
                     <div class="overlay_for_product_slider">
                         <a href="" class="buy-btn">Buy Now</a>
                     </div>
                 </div>
                 <div class="detail-box">
                     <div class="type">
-                        <a href="">{{ items.title }}</a>
-                        <span>{{ items.category }}</span>                    
+                        <a href="">{{ item.title }}</a>
+                        <span>{{ item.category }}</span>                    
                     </div>
-                    <a href="" class="price">{{ items.price }}</a>
+                    <a href="" class="price">{{ item.price }}</a>
                 </div>                
             </div>
             </li>

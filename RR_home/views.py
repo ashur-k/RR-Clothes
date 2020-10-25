@@ -6,7 +6,7 @@ from products.models import Product
 def index(request):
     """ Index page view """
     products_slider = Product.objects.all().order_by('id')[:6]
-    products_latest = Product.objects.all().order_by('id')[:4]
+    products_latest = Product.objects.all()
     context = {
         'products_slider': products_slider,
         'products_latest': products_latest,
