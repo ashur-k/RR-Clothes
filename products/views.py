@@ -66,13 +66,17 @@ def product_detail(request, product_id):
     }
 
     if product.variant != "None":  # Product have variants
-        variants = Variants.objects.filter(product_id=product_id)
-        colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id )
-        sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
-        variant = Variants.objects.get(id=variants[0].id)
-
-        for rs in sizes:
-            print(rs.size.name)
+        if request.method == 'POST':  # if we select color
+            variant_id = request.POST.get('variantid')
+            variant = Variants.objects.get(id=variant_id)
+            colors = Variants.objects.filter(product_id=product_id, size_id=variant.size_id)
+            sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
+            query += variant.title + ' Size:' + str(variant.size) + ' Color: ' + str(variant.color)
+        else:
+            variants = Variants.objects.filter(product_id=product_id)
+            colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id )
+            sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
+            variant = Variants.objects.get(id=variants[0].id)
 
         context.update({
             'sizes': sizes,
@@ -94,7 +98,7 @@ def ajaxcolor(request):
             'productid': productid,
             'colors': colors,
         }
-        data = {'rendered_table': render_to_string('color_list.html', context=context)}
+        data = {'rendered_table': render_to_string('products/color_list.html', context=context)}
         return JsonResponse(data)
     return JsonResponse(data)
 
