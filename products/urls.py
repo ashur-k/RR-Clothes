@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.all_products, name='all_products'),
+    path('search_auto/', views.search_auto, name='search_auto'),
     path('<product_id>', views.product_detail, name='product_detail'),
     path('ajaxcolor/', views.ajaxcolor, name='ajaxcolor'),
 ]

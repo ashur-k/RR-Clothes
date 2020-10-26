@@ -1,10 +1,12 @@
-from django.shortcuts import HttpResponse
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+import json
 from django.contrib import messages
-from django.db.models import Q
-from products.models import Product, Images, Variants
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
+
+from products.models import Product, Images, Variants
+
+
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 
 # Create your views here.
@@ -18,7 +20,7 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria.")
+                messages.error(request, "No search criteria.")
                 return redirect(reverse('RR_home'))
 
             queries = Q(title__icontains=query) | Q(detail__icontains=query)
@@ -32,16 +34,52 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
+def search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        products = Product.objects.filter(title__icontains=q)
+        print(products.count())
+
+        results = []
+        for rs in products:
+            product_json = {}
+            product_json = rs.title + " > " + rs.category.title
+            results.append(product_json)
+            print(rs.title)
+        print(results)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+
 def product_detail(request, product_id):
     """ A view to show product details """
+    query = request.GET.get('q')
     product = Product.objects.get(pk=product_id)
     images = Images.objects.filter(product_id=product_id)
 
     context = {
         'product': product,
-        'images': images
+        'images': images,
     }
 
+    if product.variant != "None":  # Product have variants
+        variants = Variants.objects.filter(product_id=product_id)
+        colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id )
+        sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
+        variant = Variants.objects.get(id=variants[0].id)
+
+        for rs in sizes:
+            print(rs.size.name)
+
+        context.update({
+            'sizes': sizes,
+            'colors': colors,
+            'variant': variant,
+            'query': query,
+                        })
     return render(request, 'products/products_detail.html', context)
 
 

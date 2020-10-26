@@ -31,7 +31,7 @@ class ImagesAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'variant', 'category', 'status', 'image_tag']
+    list_display = ['id', 'title', 'variant', 'category', 'status', 'image_tag']
     list_filter = ['category']
     readonly_fields = ('image_tag',)
     inlines = [ProductImageInline, ProductVariantsInline]
