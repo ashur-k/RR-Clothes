@@ -31,7 +31,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center mt-3">
-           <h2>{{ item.title }} Details</h2>
+           <h2>{{ product.title }} Details</h2>
             <hr class=" mb-1">
         </div>
     </div>
@@ -41,34 +41,37 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                    <div id="product-main-view">
-							<div class="product-view">					
+
+                        <div class="product-view">				
                                 <div class="product-view">
-                                    <img src="{{ item.image.url }}" alt="" style="height: 400px">
+                                    <img src="{{ product.image.url }}" alt="" style="height: 400px">
                                 </div>
-							</div>
+                            </div>
                             {% for rs in images %}
-							<div class="product-view">
-								<img src="{{rs.image.url}}" alt="" height="400px">
-							</div>
+                            <div class="product-view">
+                                <img src="{{rs.image.url}}" alt="">
+                            </div>
                             {% endfor %}							
-						</div>
-						<div id="product-view">
-							<div class="product-view">
-								<img src="{{item.image.url}}" alt="">
-							</div>
-                             {% for rs in images %}
-							<div class="product-view">
-								<img src="{{rs.image.url}}" alt="" >
-							</div>
-                            {% endfor %}						
-						</div>
+                        </div>
+
+                    <div id="product-view">
+                        <div class="product-view">
+                            <img src="{{product.image.url}}" alt="">
+                        </div>
+                            {% for rs in images %}
+                        <div class="product-view">
+                            <img src="{{rs.image.url}}" alt="">
+                        </div>
+                        {% endfor %}						
+                    </div>
+
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                     <div class="product-details-container mb-5 mt-md-5">
-                    <p class="mb-0">{{ item.name }}</p>
-                    <p class="lead mb-0 text-left font-weight-bold">${{ item.price }} {{ item.category.name }}</p>
-                    {% if item.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ item.rating }} / 5</small>
+                <div class="product-details-container mb-5 mt-md-5">
+                    <p class="mb-0">{{ product.name }}</p>
+                    <p class="lead mb-0 text-left font-weight-bold">${{ product.price }} {{ product.category.name }}</p>
+                    {% if product.rating %}
+                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                     {% else %}
                         <small class="text-muted">No Rating</small>
                     {% endif %}

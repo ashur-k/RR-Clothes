@@ -12,3 +12,5 @@ def index(request):
         'products_latest': products_latest,
     }
     return render(request, 'home/index.html', context)
+
+
