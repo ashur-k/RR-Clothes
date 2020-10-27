@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'RR_home',
     'products',
     'ckeditor',
+    'shopping_bag',
 ]
 
 MIDDLEWARE = [
