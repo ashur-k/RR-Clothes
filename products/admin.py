@@ -20,7 +20,7 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductVariantsInline(admin.TabularInline):
     model = Variants
-    readonly_fields = ('image_tag',)
+    readonly_fields = ('image_tag', 'product_id', 'id')
     extra = 1
     show_change_link = True
 
@@ -38,7 +38,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class ColorAdmin(admin.ModelAdmin):
-    list_display = ['name', 'code', 'color_tag']
+    list_display = ['id', 'name', 'code', 'color_tag']
 
 
 class SizeAdmin(admin.ModelAdmin):

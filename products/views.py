@@ -1,6 +1,6 @@
 import json
 from django.contrib import messages
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.template.loader import render_to_string
 from django.db.models.functions import Lower
 from products.models import Product, Images, Variants, Category
@@ -58,7 +58,6 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
-
 def search_auto(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
@@ -84,11 +83,19 @@ def product_detail(request, product_id):
     query = request.GET.get('q')
     product = Product.objects.get(pk=product_id)
     images = Images.objects.filter(product_id=product_id)
+    no_variant_id = None
 
+    no_variants = Variants.objects.filter(product_id=product_id)
+    for items in no_variants:
+        no_variant_id = items.id
+
+    print(no_variant_id)
     context = {
         'product': product,
         'images': images,
+        'no_variant_id': no_variant_id
     }
+
 
     if product.variant != "None":  # Product have variants
         if request.method == 'POST':  # if we select color
