@@ -38,6 +38,7 @@ class Product(models.Model):
     image = models.ImageField(blank=True, upload_to='meida/')
     price = models.FloatField()
     quantity = models.IntegerField()
+    has_variant = models.BooleanField(default=False, null=True, blank=True)
     variant = models.CharField(max_length=10, choices=VARIANTS, default='None')
     detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
