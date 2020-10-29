@@ -96,7 +96,6 @@ def product_detail(request, product_id):
         'no_variant_id': no_variant_id
     }
 
-
     if product.variant != "None":  # Product have variants
         if request.method == 'POST':  # if we select color
             variant_id = request.POST.get('variantid')
