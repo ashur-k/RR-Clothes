@@ -109,6 +109,7 @@ def product_detail(request, product_id):
             sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
             variant = Variants.objects.get(id=variants[0].id)
 
+
         context.update({
             'sizes': sizes,
             'colors': colors,
