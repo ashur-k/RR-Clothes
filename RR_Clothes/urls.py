@@ -20,15 +20,20 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    # Adminsite Urls
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+
+    # Project Urls
     path('', include('RR_home.urls')),
     path('products/', include('products.urls')),
     path('shopping_bag/', include('shopping_bag.urls')),
     path('checkout/', include('checkout.urls')),
     path('user_profiles/', include('user_profiles.urls')),
 
-    # other
+    # Allauth urls
+    path('accounts/', include('allauth.urls')),
+
+    # Other Urls
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

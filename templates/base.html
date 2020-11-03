@@ -61,7 +61,7 @@
                                 {% if request.user.is_superuser %}
                                     <a href="" class="dropdown-item">Product Management</a>
                                 {% endif %}
-                                <a href="" class="dropdown-item">My Profile</a>
+                                <a href="{% url 'user_profiles' %}" class="dropdown-item">My Profile</a>
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                             {% else %}
                                 <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
@@ -90,6 +90,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    
                     {% include 'includes/mobile-top-header.html' %}
                     {% include 'includes/main-nav.html' %}
                 </nav>
@@ -102,7 +103,7 @@
                         Free Delivery on Orders over ${{ free_delivery_threshold }}
                     </h4>
                 </div>
-        </div>    
+        </div> 
     </header>
 
     {% if messages %}
@@ -113,6 +114,7 @@
     {% endblock %}
 
     {% block content %}
+    
     {% endblock %}
 
     {% block postloadjs %}
