@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 
-from products.models import Product
+from products.models import Product, Variants
 
 
 # Create your models here.
@@ -48,9 +48,7 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
-    product_size = models.CharField (max_length=8, null=True, blank=True)
-    product_color = models.CharField (max_length=8, null=True, blank=True)
-    product_size_color = models.CharField (max_length=8, null=True, blank=True)
+    variant = models.ForeignKey(Variants, on_delete=models.SET_NULL, blank=True, null=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 

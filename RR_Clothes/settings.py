@@ -44,9 +44,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'RR_home',
     'products',
-    'ckeditor',
     'shopping_bag',
     'checkout',
+
+    # other
+    'ckeditor',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +63,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'RR_Clothes.urls'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -79,6 +83,10 @@ TEMPLATES = [
                 # required to access bag contents across the entire site
                 'shopping_bag.contexts.bag_contents'
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
