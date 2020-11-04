@@ -2,8 +2,7 @@
 {% load static %}
 {% load bag_tools %}
 {% block extra_css %}
- <!--This code is from http://sachinchoolur.github.io/lightslider/examples.html-->
-    <link rel="stylesheet" href="{% static 'css/lightslider.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -22,7 +21,7 @@
     <div class="row">
         <div class="col">
             <hr>
-            <h2 class="logo-font mb-4">Shopping Bag</h2>
+            <h2 class="logo-font mb-4">Checkout</h2>
             <hr>
         </div>
     </div>
@@ -146,6 +145,9 @@
 </div>
 
 {% endblock %}
-{% block extra_js %}
-
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
