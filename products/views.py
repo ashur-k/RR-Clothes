@@ -89,7 +89,6 @@ def product_detail(request, product_id):
     for items in no_variants:
         no_variant_id = items.id
 
-    print(no_variant_id)
     context = {
         'product': product,
         'images': images,

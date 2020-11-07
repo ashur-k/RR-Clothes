@@ -4,6 +4,7 @@ from products.models import Product, Variants
 
 # Create your views here.
 def view_bag(request):
+    # print(request.session.get('bag')
     return render(request, 'shopping_bag/shopping_bag.html')
 
 
@@ -19,6 +20,5 @@ def add_to_bag(request, item_id, variant_id):
         bag[variant_id] = quantity
 
     request.session['bag'] = bag
-    print(variant_id)
 
     return redirect(redirect_url)

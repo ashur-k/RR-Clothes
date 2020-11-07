@@ -31,7 +31,7 @@ class ImagesAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'has_variant', 'variant', 'category', 'status', 'image_tag']
+    list_display = ['id', 'title', 'price', 'has_variant', 'variant', 'category', 'status', 'image_tag']
     list_filter = ['category']
     readonly_fields = ('image_tag',)
     inlines = [ProductImageInline, ProductVariantsInline]
@@ -47,6 +47,7 @@ class SizeAdmin(admin.ModelAdmin):
 
 class VariantsAdmin(admin.ModelAdmin):
     list_display = [
+        'id',
         'title',
         'product',
         'color',

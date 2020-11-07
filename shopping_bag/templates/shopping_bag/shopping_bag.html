@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_tools %}
 {% block extra_css %}
  <!--This code is from http://sachinchoolur.github.io/lightslider/examples.html-->
     <link rel="stylesheet" href="{% static 'css/lightslider.css' %}">
@@ -36,20 +37,37 @@
                             {% for item in bag_items %}
                                 <tr>
                                     <td class="p-3 w-25">
+                                    {% if item.product.title %}
+                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}">
+                                    {% else %}
                                         <img class="img-fluid rounded" src="{{ item.variant.image }}">
+                                    {% endif %}
                                     </td>
                                     <td class="py-3">
+                                        {% if item.product.title %}
+                                        <p class="my-0"><strong>{{ item.product.title }}</strong></p>
+                                        <p class="my-0 small text-muted">Product-id:{{ item.product.id }} </p>
+                                        {% else %}
                                         <p class="my-0"><strong>{{ item.variant.title }}</strong></p>
-                                        <p class="my-0 small text-muted">SKU: </p>
+                                        <p class="my-0 small text-muted">SKU:{{ item.variant.id }} </p>
+                                        {% endif %}
                                     </td>
                                     <td class="py-3">
+                                    {% if item.product.price %}
+                                        <p class="my-0">${{ item.product.price }}</p>
+                                    {% else %}
                                         <p class="my-0">${{ item.variant.price }}</p>
+                                    {% endif %}
                                     </td>
                                     <td class="py-3 w-25">
                                         <p class="my-0">{{ item.quantity }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">${{ item.variant.price }}</p>
+                                    {% if item.product.price %}
+                                        <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                    {% else %}
+                                        <p class="my-0">${{ item.variant.price | calc_subtotal:item.quantity }}</p>
+                                    {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
