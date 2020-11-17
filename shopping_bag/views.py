@@ -5,6 +5,7 @@ from products.models import Product, Variants
 # Create your views here.
 def view_bag(request):
     # print(request.session.get('bag')
+
     return render(request, 'shopping_bag/shopping_bag.html')
 
 

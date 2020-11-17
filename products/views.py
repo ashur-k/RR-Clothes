@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.db.models.functions import Lower
 from products.models import Product, Images, Variants, Category
 from django.db.models import Q
-
+from .forms import ProductForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 
@@ -133,3 +133,11 @@ def ajaxcolor(request):
         return JsonResponse(data)
     return JsonResponse(data)
 
+
+def add_product(request):
+    form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+    return render(request, template, context)
