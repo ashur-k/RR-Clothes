@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.db.models.functions import Lower
 from products.models import Product, Images, Variants, Category
 from django.db.models import Q
-from .forms import ProductForm
+from .forms import ProductForm, ProductVariantForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 
@@ -124,6 +124,8 @@ def ajaxcolor(request):
         size_id = request.POST.get('size')
         productid = request.POST.get('productid')
         colors = Variants.objects.filter(product_id=productid, size_id=size_id)
+        for c in colors:
+            print(c)
         context = {
             'size_id': size_id,
             'productid': productid,
@@ -135,9 +137,63 @@ def ajaxcolor(request):
 
 
 def add_product(request):
+
+    if request.method == 'POST':
+        has_variant = request.POST.get('has_variant')
+        #return HttpResponse(has_variant)
+        if has_variant == 'true':
+            form = ProductForm(request.POST, request.FILES)
+            if form.is_valid():
+                product = form.save()
+                print(product.id)
+                return redirect('add_variant', product_id=product.id)
+                variant = Variants.objects.filter(product_id=product.id)
+                form = ProductVariantForm
+                context = {
+                    'form': form,
+                }
+                template = 'products/add_product_variant.html'
+                return render(request, template, context)
+
+        return HttpResponse("<h1>" + has_variant + "</h1>")
+        form = ProductForm(request.POST, request.FILES)
+        #if form.is_valid():
+
+            #form.save()
+            #messages.success(request, 'Successfully added product')
+            #return redirect(reverse('add_product'))
+        #else:
+            #messages.error(request, 'Failed to add product. Plesae ensure the form is valid')
+    else:
+        form = ProductVariantForm()
     form = ProductForm()
     template = 'products/add_product.html'
     context = {
         'form': form,
     }
+    return render(request, template, context)
+
+
+def add_variant(request, product_id):
+
+    if request.method == 'POST':
+        form_data = {
+            'title': request.POST['title'],
+            'color': request.POST['color'],
+            'size': request.POST['size'],
+            'quantity': request.POST['quantity'],
+            'price': request.POST['price'],
+        }
+        variant_form = ProductVariantForm(form_data)
+        if variant_form.is_valid():
+            variant = variant_form.save(commit=False)
+            product = get_object_or_404(Product, id=product_id)
+            variant.product = product
+            variant_form.save()
+
+    form = ProductVariantForm
+    context = {
+        'form': form,
+    }
+    template = 'products/add_product_variant.html'
     return render(request, template, context)

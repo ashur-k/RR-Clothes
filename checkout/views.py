@@ -64,7 +64,7 @@ def checkout(request):
                 try:
                     variant = get_object_or_404(Variants, pk=item_id)
                     product_pk = variant.product_id
-                    product = get_object_or_404(Product, pk=product_pk)
+                    product_id = get_object_or_404(Product, pk=product_pk)
                     order_line_item = OrderLineItem(
                         product=product,
                         order=order,
