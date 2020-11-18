@@ -35,7 +35,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=255)
-    image = models.ImageField(blank=True, upload_to='meida/')
+    image = models.ImageField(blank=False, upload_to='meida/')
     price = models.FloatField()
     quantity = models.IntegerField()
     has_variant = models.BooleanField(default=False, null=True, blank=True)

@@ -137,26 +137,33 @@ def ajaxcolor(request):
 
 
 def add_product(request):
+    product_id = None
 
     if request.method == 'POST':
         has_variant = request.POST.get('has_variant')
-        #return HttpResponse(has_variant)
-        if has_variant == 'true':
-            form = ProductForm(request.POST, request.FILES)
-            if form.is_valid():
-                product = form.save()
-                print(product.id)
-                return redirect('add_variant', product_id=product.id)
-                variant = Variants.objects.filter(product_id=product.id)
-                form = ProductVariantForm
-                context = {
-                    'form': form,
-                }
-                template = 'products/add_product_variant.html'
-                return render(request, template, context)
-
-        return HttpResponse("<h1>" + has_variant + "</h1>")
         form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            if has_variant == 'true':
+                return redirect('add_variant', product_id=product.id)
+            else:
+                variant_form = ProductVariantForm(request.POST or None)
+
+                variant = variant_form.save(commit=False)
+
+                product = get_object_or_404(Product, id=product.id)
+                variant.title = variant_form.cleaned_data['title']
+                variant.product = product
+                #variant.color = variant_form.cleaned_data['red']
+                #variant.size = variant_form.cleaned_data['small']
+                #variant.image_id = variant_form.cleaned_data[]
+                #variant.quantity = variant_form.cleaned_data[23]
+                #variant.price = variant_form.cleaned_data[32]
+
+                variant_form.save()
+                #return HttpResponse(product_id)
+
+        #form = ProductForm(request.POST, request.FILES)
         #if form.is_valid():
 
             #form.save()
