@@ -8,6 +8,9 @@ urlpatterns = [
     path('ajaxcolor/', views.ajaxcolor, name='ajaxcolor'),
     path('add/', views.add_product, name='add_product'),
     path('add_variant/<int:product_id>/', views.add_variant, name='add_variant'),
-    path('edit_product_variant/<int:product_id>/', views.edit_product_variant, name='edit_product_variant'),
-    path('edit_variant/<int:variant_id>/', views.edit_variant, name='edit_variant'),
+    path('product_management/<int:product_id>/', views.product_management, name='product_management'),
+    path('edit_product/<int:product_id>/', views.edit_product, name='edit_product'),
+    path('edit_variant/<int:product_id>/<int:variant_id>/', views.edit_variant, name='edit_variant'),
+    path('delete_product/<int:product_id>/', views.delete_product, name='delete_product'),
+    path('delete_variant/<int:variant_id>/', views.delete_variant, name='delete_variant'),
 ]

@@ -35,11 +35,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{product.id}}</th>
                         <td><img class="rounded mx-auto d-block" height="100" src="{{ product.image.url }}" alt="Card image cap"></td>
                         <td>{{product.title}}</td>
                         <td>
-                            <a class="btn btn-large btn-dark m-2" href="">Edit</a><a class="btn btn-large btn-danger m-2" href="">Delete</a>
+                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_product' product.id %}">Edit</a>
+                            <a class="btn btn-large btn-danger m-2" href="{% url 'delete_product' product.id %}">Delete</a>
                         </td>
                     </tr>
 
@@ -64,11 +65,12 @@
                 <tbody>
                 {% for v in variants %}
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{v.id}}</th>
                         <td><img class="rounded mx-auto d-block" height="100" src="{{ product.image.url }}" alt="Card image cap"></td>
                         <td>{{v.title}}</td>
                         <td>
-                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_variant' v.id %}">Edit</a><a class="btn btn-large btn-danger m-2" href="">Delete</a>
+                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_variant' product.id v.id %}">Edit</a>
+                            <a class="btn btn-large btn-danger m-2" href="{% url 'delete_variant' v.id %}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
