@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container mt-5">
+        <div class="row mt-2">
+            <div class="col mt-2">
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <hr>
+            <h2 class="logo-font mb-4">Product Management - Edit Product-Variant</h2>
+            <h5>Edit Product</h5>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+         <div class="col-12 col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Id</th>
+                        <th scope="col">Product Image</th>
+                        <th scope="col">Product Title</th>
+                        <th scope="col">Functions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><img class="rounded mx-auto d-block" height="100" src="{{ product.image.url }}" alt="Card image cap"></td>
+                        <td>{{product.title}}</td>
+                        <td>
+                            <a class="btn btn-large btn-dark m-2" href="">Edit</a><a class="btn btn-large btn-danger m-2" href="">Delete</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+                </table>
+        </div>
+        <div class="col-12 col-md-12">
+            <hr>
+            <h5>Edit Variant</h5>
+            <hr>
+        </div>
+        <div class="col-12 col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th scope="col">Variant Id</th>
+                    <th scope="col">Variant Image</th>
+                    <th scope="col">Variant Title</th>
+                    <th scope="col">Functions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for v in variants %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><img class="rounded mx-auto d-block" height="100" src="{{ product.image.url }}" alt="Card image cap"></td>
+                        <td>{{v.title}}</td>
+                        <td>
+                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_variant' v.id %}">Edit</a><a class="btn btn-large btn-danger m-2" href="">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+               
+                    <p> </p>
+               
+        </div>   
+    </div>
+</div>
+
+{% endblock %}

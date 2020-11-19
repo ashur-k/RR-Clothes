@@ -204,3 +204,52 @@ def add_variant(request, product_id):
     }
     template = 'products/add_product_variant.html'
     return render(request, template, context)
+
+
+def edit_product_variant(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    variants = Variants.objects.filter(product_id=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Succesfully updated product")
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to updated Product.')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.title}')
+
+    template = 'products/edit_product_variant.html'
+    context = {
+        'form': form,
+        'product': product,
+        'variants': variants,
+    }
+    return render(request, template, context)
+
+
+def edit_variant(request, variant_id):
+    variant = get_object_or_404(Variants, pk=variant_id)
+    if request.method == 'POST':
+        form = ProductVariantForm(request.POST, instance=variant)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Succesfully updated product")
+            return HttpResponse("site in construction")
+            #return redirect(reverse('product_detail', args=[variant.id]))
+        else:
+            return HttpResponse("if form is not valid else block executed")
+            messages.error(request, 'Failed to updated Product.')
+    else:
+        form = ProductVariantForm(instance=variant)
+        messages.info(request, f'You are editing {variant.title}')
+
+    template = 'products/edit_variant.html'
+    form = ProductVariantForm(instance=variant)
+    context = {
+        'form': form,
+        'variant': variant,
+    }
+    return render(request, template, context)
