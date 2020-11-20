@@ -190,16 +190,44 @@ def add_variant(request, product_id):
 
 def product_management(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    variants = Variants.objects.filter(product_id=product_id)
-    template = 'products/product_management.html'
-    context = {
+    if product.has_variant == 0:
+        variant = get_object_or_404(Variants, product_id=product_id)
+        template = 'products/product_management.html'
+        context = {
         'product': product,
-        'variants': variants,
+        'variant': variant,
+        }
+        return render(request, template, context)
+
+    else:
+        variants = Variants.objects.filter(product_id=product_id)
+        template = 'products/product_management.html'
+        context = {
+            'product': product,
+            'variants': variants,
+        }
+        return render(request, template, context)
+
+
+def edit_product_with_variant(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('product_management', args=[product_id]))
+    form = ProductForm(instance=product)
+    messages.info(request, f'You are editing {product.title}')
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
     }
+
     return render(request, template, context)
 
 
-def edit_product(request, product_id):
+def edit_product_without_variant(request, product_id, variant_id):
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         has_variant = request.POST.get('has_variant')
@@ -207,19 +235,14 @@ def edit_product(request, product_id):
         if form.is_valid():
             form.save()
             if has_variant == 'false':
-                form_data = {
-                    'title': request.POST['title'],
-                    'quantity': request.POST['quantity'],
-                    'price': request.POST['price'],
-                }
-                variant_form = ProductVariantForm(form_data)
+                variant = get_object_or_404(Variants, pk=variant_id)
+                variant_form = ProductVariantForm(request.POST, instance=variant)
                 if variant_form.is_valid():
                     variant = variant_form.save(commit=False)
                     product = get_object_or_404(Product, id=product_id)
                     variant.product = product
                     variant_form.save()
-                    return HttpResponse ("Product has variant is false")
-            
+                    return redirect(reverse('product_management', args=[product_id]))
 
     form = ProductForm(instance=product)
     messages.info(request, f'You are editing {product.title}')
@@ -241,7 +264,6 @@ def edit_variant(request, product_id, variant_id):
             messages.success(request, "Succesfully updated product")
             return redirect(reverse('product_management', args=[product_id]))
         else:
-            return HttpResponse("if form is not valid else block executed")
             messages.error(request, 'Failed to updated Product.')
     else:
         form = ProductVariantForm(instance=variant)
