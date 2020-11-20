@@ -123,56 +123,61 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card bg-dark text-white">
-                    <img src="https://images.unsplash.com/photo-1584799235813-aaf50775698c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80" class="card-img" alt="...">
+                <div class="card bg-dark text-black">
+                    <img src="{{ latest_product_1.image.url }}" class="card-img" alt="...">
                     <div class="card-img-overlay">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card </p>
-                        <p class="card-text">Last updated 3 mins ago</p>
+                        <h5 class="card-title">{{ latest_product_1.title }}</h5>
+                        <p class="card-text">{{ latest_product_1.description }}</p>
+                        <p class="card-text">${{ latest_product_1.price }}</p>                                          
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
                     </div>
                 </div>
             </div>
             <div class="col sm-8 m-2">
                 <div class="row">
                     <div class="col-sm-6 mb-1">
-                        <div class="card bg-dark text-white">
-                            <img src="https://images.unsplash.com/photo-1546107174-aafb685235a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="...">
+                        <div class="card bg-dark text-black">
+                            <img src="{{ latest_product_2.image.url }}" class="card-img" alt="...">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text">Last updated 3 mins ago</p>
+                                <h5 class="card-title">{{ latest_product_2.title }}</h5>
+                                <p class="card-text">{{ latest_product_2.description }}</p>
+                                <p class="card-text">${{ latest_product_3.price }}</p>                                          
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="card bg-dark text-white">
-                            <img src="https://images.unsplash.com/photo-1577578948325-47f515220715?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="...">
+                        <div class="card bg-dark text-black">
+                            <img src="{{ latest_product_3.image.url }}" class="card-img" alt="...">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text">Last updated 3 mins ago</p>
+                                <h5 class="card-title">{{ latest_product_3.title }}</h5>
+                                <p class="card-text">{{ latest_product_3.description }}</p>
+                                <p class="card-text">${{ latest_product_3.price }}</p>                                          
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
                     </div>                
                 </div>
                 <div class="row">
                     <div class="col-sm-6 ">
-                        <div class="card bg-dark text-white">
-                            <img src="https://images.unsplash.com/photo-1591838518165-a7026f15f055?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="...">
+                        <div class="card bg-dark text-black">
+                            <img src="{{ latest_product_4.image.url }}" class=" img-fluid" height="auto" width="100%" alt="...">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text">Last updated 3 mins ago</p>
+                                <h5 class="card-title">{{ latest_product_4.title }}</h5>
+                                <p class="card-text">{{ latest_product_4.description }}</p>
+                                <p class="card-text">${{ latest_product_4.price }}</p>                                          
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="card bg-dark text-white">
-                            <img src="https://images.unsplash.com/photo-1536838960759-6e236ca6e42e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="...">
+                        <div class="card bg-dark text-black">
+                            <img src="{{ latest_product_5.image.url }}" class="card-img" alt="...">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text">Last updated 3 mins ago</p>
+                                <h5 class="card-title">{{ latest_product_5.title }}</h5>
+                                <p class="card-text">{{ latest_product_5.description }}</p>
+                                <p class="card-text">${{ latest_product_5.price }}</p>                                          
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
                     </div>
