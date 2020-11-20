@@ -4,9 +4,12 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from django.contrib.auth.models import User
 from checkout.models import Order
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
+@login_required
 def user_profiles(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     user = get_object_or_404(User, id=request.user.id)

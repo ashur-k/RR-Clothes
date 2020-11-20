@@ -26,8 +26,11 @@
     <div class="row">
         <div class="col text-center mt-3">
            <h2>{{ product.title }}</h2>
+           {% if request.user.is_superuser %}
            <p><a href="{% url 'product_management' product.id %}">Edit Product</a></p>
+           <p> <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a></p>
             <hr class=" mb-1">
+            {% endif %}
         </div>
     </div>
     <div class="row">

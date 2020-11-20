@@ -7,9 +7,11 @@ from products.models import Product, Images, Variants, Category
 from django.db.models import Q
 from .forms import ProductForm, ProductVariantForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+
 def all_products(request):
     """ A view to show all products """
 
@@ -136,7 +138,12 @@ def ajaxcolor(request):
     return JsonResponse(data)
 
 
+@login_required
 def add_product(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
         has_variant = request.POST.get('has_variant')
@@ -163,8 +170,12 @@ def add_product(request):
     return render(request, template, context)
 
 
+@login_required
 def add_variant(request, product_id):
-
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
     if request.method == 'POST':
         form_data = {
             'title': request.POST['title'],
@@ -188,7 +199,12 @@ def add_variant(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def product_management(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     if product.has_variant == 0:
         variant = get_object_or_404(Variants, product_id=product_id)
@@ -209,7 +225,12 @@ def product_management(request, product_id):
         return render(request, template, context)
 
 
+@login_required
 def edit_product_with_variant(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -227,7 +248,12 @@ def edit_product_with_variant(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def edit_product_without_variant(request, product_id, variant_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         has_variant = request.POST.get('has_variant')
@@ -255,7 +281,12 @@ def edit_product_without_variant(request, product_id, variant_id):
     return render(request, template, context)
 
 
+@login_required
 def edit_variant(request, product_id, variant_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     if request.method == 'POST':
         form = ProductVariantForm(request.POST, instance=variant)
@@ -278,16 +309,26 @@ def edit_variant(request, product_id, variant_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_product(request, product_id):
     """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('all_products'))
 
 
+@login_required
 def delete_variant(request, variant_id):
     """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return HttpResponse('Sorry only store owners can do that')
+        return redirect(reverse('home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     variant .delete()
     messages.success(request, 'variant deleted!')

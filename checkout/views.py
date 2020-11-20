@@ -64,7 +64,7 @@ def checkout(request):
                 try:
                     variant = get_object_or_404(Variants, pk=item_id)
                     product_pk = variant.product_id
-                    product_id = get_object_or_404(Product, pk=product_pk)
+                    product = get_object_or_404(Product, pk=product_pk)
                     order_line_item = OrderLineItem(
                         product=product,
                         order=order,
@@ -77,7 +77,6 @@ def checkout(request):
                     messages.error(request, (
                         "Product not exist"
                     ))
-                    print("product except block has executed product does not exist")
                     order.delete()
                     return redirect(reverse('view_bag'))
 
