@@ -152,7 +152,6 @@
         var size = $(this).data('product_size');
         var url = `/shopping_bag/remove/${itemId}/`;
         var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
-
         $.post(url, data)
          .done(function() {
              location.reload();
