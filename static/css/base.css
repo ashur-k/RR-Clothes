@@ -217,6 +217,16 @@ a{
     float: right !important;
 }
 
+/*map stuff*/
+#map{
+    overflow: visible !important;
+}
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
 @keyframes fade{
 	0%{
 		opacity: 0;

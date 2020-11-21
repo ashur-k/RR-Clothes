@@ -122,6 +122,12 @@
 <section>
     <div class="container mt-5">
         <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center">Explore Diffrent Categories</h1>
+                <p class="mt-1 p-3 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur maiores, 
+                    magni eaque fugit nam accusantium earum eos, commodi odit eveniet quibusdam impedi
+                </p><hr>
+            </div>
             <div class="col-sm-4">
                 <div class="card bg-dark text-black">
                     <img src="{{ latest_product_1.image.url }}" class="card-img" alt="...">
@@ -188,9 +194,9 @@
     </div>
 </section>
 
-<section id="image-gallery" class="p-4 mt-4 text-center">
-    <div class="container image-gallery border-top border-bottom border-dark text-center">
-        <div class="row">
+<section id="image-gallery" class="p-4 mt-4 text-center mb-4 pb-4">
+    <div class="container image-gallery border-top border-bottom border-dark text-center mb-4">
+        <div class="row" style="margin-bottom: 100px">
             <div class="col-sm-8">                
                 <ul id="imageGallery">
                 {% for image in images %}
@@ -223,11 +229,40 @@
                 </div>
             </div>
         </div>
+        
     </div>
+</section>
+
+<section class="p-4 mt-4 text-center" style="height: 100vh;"><hr>
+<div class="container">
+<h1 style="margin-bottom: 100px;">map</h1>
+    <div class="row">
+        <div class="col-12">
+            <div id="map" style="height: 50vh;"></div>
+        </div>
+    </div>
+</div>
 </section>
 
 {% endblock %}
 {% block extra_js %}
+    
+  <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 3,
+                center: {
+                    lat: 46.619261,
+                    lng: -33.134766
+                }
+            });
+        }
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGYP5F_bOWAQp1hyjCA5kNKvYUU57fvw"></script>
+      
+        
+  
   <!--This code is from http://sachinchoolur.github.io/lightslider/examples.html-->
     <script type="text/javascript" src="{% static 'js/lightslider.js' %}"></script>
     <script>
@@ -254,20 +289,7 @@
             }   
         });  
   });
-  
-        console.log('working')
   </script>
 
   <!-- Image gallery Image Change Function-->
-  <script>
-    function changeImg(smallImg) 
-    {
-        const fullImg = document.getElementById("full-image");
-        fullImg.src = smallImg.src;
-    }
-  
-    const slider_content = document.getElementById('box');
-   
-  </script>
-
 {% endblock %}

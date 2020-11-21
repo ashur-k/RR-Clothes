@@ -7,6 +7,7 @@ urlpatterns = [
     path('<int:product_id>/', views.product_detail, name='product_detail'),
     path('ajaxcolor/', views.ajaxcolor, name='ajaxcolor'),
     path('add/', views.add_product, name='add_product'),
+    path('add_category/', views.add_category, name='add_category'),
     path('add_variant/<int:product_id>/', views.add_variant, name='add_variant'),
     path('product_management/<int:product_id>/', views.product_management, name='product_management'),
     path('edit_product_with_variant/<int:product_id>/', views.edit_product_with_variant, name='edit_product_with_variant'),

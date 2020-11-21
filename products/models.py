@@ -10,6 +10,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
+    image = models.ImageField(blank=True, upload_to='meida/')
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
@@ -39,6 +40,7 @@ class Product(models.Model):
     price = models.FloatField()
     quantity = models.IntegerField()
     has_variant = models.BooleanField(default=False, null=True, blank=True)
+    new_edition = models.BooleanField(default=False, null=True, blank=True)
     variant = models.CharField(max_length=10, choices=VARIANTS, default='None')
     detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)

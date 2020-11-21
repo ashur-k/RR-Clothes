@@ -43,7 +43,7 @@
 
     <title>RR-Clothes{% block extra_title %}{% endblock %}</title>
   </head>
-  <body>
+  <body onload="initMap();" >
      <header class="container-fluid fixed-top">
         <div id="topnav" class="row bg-white pt-lg-2  d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
@@ -63,7 +63,8 @@
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
-                                    <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+                                    <a href="{% url 'add_category' %}" class="dropdown-item">Add Product Category</a>
+                                    <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
                                 {% endif %}
                                 <a href="{% url 'user_profiles' %}" class="dropdown-item">My Profile</a>
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -101,7 +102,7 @@
             </div>
             
         </div> 
-        <div id="dlivery-banner" class="row text-center">
+        <div id="delivery-banner" class="row text-center">
                 <div class="col-12 bg-black text-white" style="color:white !important">
                     <h4 class="logo-font my-1">
                         Free Delivery on Orders over ${{ free_delivery_threshold }}
@@ -123,6 +124,7 @@
 
     {% block postloadjs %}
     {% endblock %}
-    
+  
   </body>
+
 </html>
