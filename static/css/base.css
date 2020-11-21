@@ -218,9 +218,7 @@ a{
 }
 
 /*map stuff*/
-#map{
-    overflow: visible !important;
-}
+
 .btt-link,
 .update-link,
 .remove-item {

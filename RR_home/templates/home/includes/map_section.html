@@ -1,17 +1,16 @@
-<section class="p-4 mt-4 text-center" style="height: 100vh;"><hr>
-<div class="container">
-<h1 style="margin-bottom: 100px;">map</h1>
-    <div class="row">
-        <div class="col-12">
-            <div id="map" style="height: 50vh;"></div>
+<section class="" style="height: 75vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center mb-2">
+                <h1>map</h1>
+            </div>
+            <div class="col-sm-12">
+                <div id="map" style="height:50vh !important;"></div>
+            </div>
         </div>
     </div>
-</div>
 </section>
-
-
-{% block extra_js %}
-    
+{% block extra_js %}    
   <script>
         function initMap() {
             var map = new google.maps.Map(document.getElementById("map"), {

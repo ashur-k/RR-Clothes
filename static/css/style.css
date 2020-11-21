@@ -63,7 +63,7 @@ Table OF Contents
 body {
   font-family: 'Hind', sans-serif;
   color: #4A4E5A;
-  
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
