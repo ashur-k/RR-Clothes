@@ -1,0 +1,24 @@
+<form method="post" action="?q=selectvariant" id="post-color">
+    {% csrf_token %}
+    <div id="appendHere">
+        <input type="hidden" name="size" id="size" value="{{ size_id }}">
+        <ul class="color-option" >
+            <li><span class="text-uppercase">Size:</span></li>
+            {% for rs in sizes %}
+                <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} 
+                name="variantid" 
+                id="variantid" 
+                value="{{ rs.id }}" 
+                onchange="this.form.submit();">
+
+                <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+                    <a style=" color: #204d74;  width: 90px">
+                        ${{ rs.size }}<br> {{ rs.price }}
+                    </a>
+                </li>
+                
+                                                                        
+            {% endfor %}
+        </ul>
+    </div>
+</form>

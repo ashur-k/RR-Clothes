@@ -9,12 +9,18 @@ html {
     height: 100%;
 }
 
+#hero-section{
+    
+}
+
 .hero-section{
     background: url('/media/170813-fraser-genderless-clothing-hero_w16zkj.jpg') no-repeat center top;
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Lato';
+    
+    
 }
 
 .search-box{
@@ -225,6 +231,20 @@ a{
     cursor: pointer;
 }
 
+/* Django messages --- Toasts*/
+.message-container{
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 9999999999;
+}
+.custom-toast{
+    overflow: visible;
+}
+.toast-capper{
+    height: 2px;
+}
+
 @keyframes fade{
 	0%{
 		opacity: 0;
@@ -316,6 +336,6 @@ a{
     }
 
     .header-container {
-        padding-top: 164px;
+        padding-top: 0px;
     }
 }

@@ -24,232 +24,118 @@
 {% block content %}
 <div class="container-fluid mt-4">
     <div class="row">
-        <div class="col text-center mt-3">
+        <div class="col-12 text-center mt-3">
            <h2>{{ product.title }}</h2>
            {% if request.user.is_superuser %}
-           <p><a href="{% url 'product_management' product.id %}">Edit Product</a></p>
-           <p> <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a></p>
-            <hr class=" mb-1">
+                <p><a href="{% url 'product_management' product.id %}">Edit Product</a></p>
+                <p> <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a></p>
+                <hr class=" mb-1">
             {% endif %}
         </div>
     </div>
     <div class="row">
         <div class="product-container col-10 offset-1">
-            <div class="row mt-1 mb-2"></div>
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                    <div id="product-main-view">
-
-                            <div class="product-view">				
-                                    <div class="product-view">
-                                        <img src="{{ product.image.url }}" alt="" style="height: 400px">
-                                    </div>
-                                </div>
-                                {% for rs in images %}
-                                <div class="product-view">
-                                    <img src="{{rs.image.url}}" alt="">
-                                </div>
-                                {% endfor %}							
+            <div class="row">
+                <div class="col-6 col-md-6 col-lg-4 offset-lg-2">
+                    {% include 'products/Product_detail_includes/product_images.html' %}
+                </div>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product-details-container mb-5 mt-md-5">
+                                <p class="lead mb-2 text-left">Category: {{ product.category.name }}</p>
+                                <p class="lead mb-2 text-left">Product: {{ product.title }}</p>
+                                <p class="lead mb-2 text-left">
+                                    Price: ${{ product.price }}                     
+                                </p>
+                                <p class="mt-3">Description: {{ product.description }}</p>    
+                                <script>
+                                    $(document).on('change', '#post-form',function(e){
+                                        e.preventDefault();
+                                        $.ajax({
+                                            type:'POST',
+                                            url:'{% url "ajaxcolor" %}',
+                                            data:{
+                                                productid:$('#productid').val(),
+                                                size:$('#size').val(),
+                                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                                                action: 'post'
+                                            },
+                                            data_type : 'html',
+                                            success: function (data) {
+                                                console.log("success");
+                                                $('#appendHere').html(data.rendered_table);
+                                            },
+                                            error: function (data) {
+                                                alert("Got an error dude " + data);
+                                            }
+                                        });
+                                    });
+                                </script>
                             </div>
-
-                        <div id="product-view">
-                            <div class="product-view">
-                                <img src="{{product.image.url}}" alt="">
-                            </div>
-                                {% for rs in images %}
-                            <div class="product-view">
-                                <img src="{{rs.image.url}}" alt="">
-                            </div>
-                            {% endfor %}						
                         </div>
-
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                    <div class="product-details-container mb-5 mt-md-5">
-                        <p class="mb-0">{{ product.name }}</p>
-                        <p class="lead mb-0 text-left font-weight-bold">
-                            ${{ product.price }} 
-                            {{ product.category.name }}
-                        
-                        </p>
-                        <script>
-                            $(document).on('change', '#post-form',function(e){
-                                e.preventDefault();
-                                $.ajax({
-                                    type:'POST',
-                                    url:'{% url "ajaxcolor" %}',
-                                    data:{
-                                        productid:$('#productid').val(),
-                                        size:$('#size').val(),
-                                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-                                        action: 'post'
-                                    },
-                                    data_type : 'html',
-                                    success: function (data) {
-                                        console.log("success");
-                                        $('#appendHere').html(data.rendered_table);
-                                    },
-                                    error: function (data) {
-                                        alert("Got an error dude " + data);
-                                    }
-                                });
-                            });
-                        </script>
-
-                        {% if product.variant == 'Size-Color' %}
-                            <div class="product-options" >
-                                <div class="size-option">
-                                    <form method="POST" id="post-form">
-                                        <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
-                                        <span class="text-uppercase">Size :</span>
-                                        {% csrf_token %}
-                                        <select name="size" id="size">
-                                            {% for rs in sizes %}
-                                                <option 
-                                                    {% if variant.size_id == rs.size_id %} 
-                                                        selected 
-                                                    {% endif %} 
-                                                    value="{{ rs.size_id }}">
-                                                        {{ rs.size.name }}
-                                                </option>
-                                            {% endfor %}
-                                        </select>
-                                    </form>
-                                </div>
-
-                                <form method="post" action="?q=selectvariant" id="post-color">
-                                    {% csrf_token %}
-                                    <div id="appendHere">
-                                        <input type="hidden" name="size" id="size" value="{{ size_id }}">
-                                        <ul class="color-option" >
-                                            <li><span class="text-uppercase">Color:</span></li>
-                                            {% for rs in colors %}
-                                                <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
-                                                <li  {% if variant.id == rs.id %} class="active" {% endif %}>
-                                                    <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
-                                                        {{ rs.price }} {{ rs.color }} {{ rs.id }} {{ variant.id }}
-                                                    </a>
-                                                    <img src="{{ rs.image }}" style="height: 70px">
-                                                    
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </form>
-                            </div>
-                           
-                        {% elif product.variant == 'Size' %}
-                        <h1>Size  working</h1>
-                            <form method="post" action="?q=selectvariant" id="post-color">
-                                                {% csrf_token %}
-                                                <div id="appendHere">
-                                                    <input type="hidden" name="size" id="size" value="{{ size_id }}">
-                                                    <ul class="color-option" >
-                                                        <li><span class="text-uppercase">Size:</span></li>
-                                                        {% for rs in sizes %}
-                                                            <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} 
-                                                            name="variantid" 
-                                                            id="variantid" 
-                                                            value="{{ rs.id }}" 
-                                                            onchange="this.form.submit();">
-
-                                                            <li  {% if variant.id == rs.id %} class="active" {% endif %}>
-                                                                <a style=" color: #204d74;  width: 90px">
-                                                                    ${{ rs.size }}<br> {{ rs.price }}
-                                                                </a>
-                                                            </li>
-                                                            
-                                                                                                                    
-                                                        {% endfor %}
-                                                    </ul>
-                                                </div>
-                                            </form>
-                                            <br><br>
-                        {% elif product.variant == 'Color' %}
-                          <h1>Color working</h1>
-                        <form method="post" action="?q=selectvariant" id="post-color">
-                                {% csrf_token %}
-                                <div id="appendHere">
-                                    <input type="hidden" name="size" id="size" value="{{ size_id }}">
-                                    <ul class="color-option" >
-                                        <li><span class="text-uppercase">Color:</span></li>
-                                        {% for rs in colors %}
-                                            <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
-                                            <li  {% if variant.id == rs.id %} class="active" {% endif %}>
-                                                <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
-                                                    {{ rs.price }} {{ rs.color }}
-                                                </a>
-                                                <img src="{{ rs.image }}" style="height: 70px">
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            <input form="trial" type="hidden" name="price" value="{{ rs.price }}">
-                        </form>
+                        <div class="col-12">    
+                            {% if product.variant == 'Size-Color' %}
+                                {% include 'products/Product_detail_includes/product_sizes_colors_detail.html' %}                        
+                            {% elif product.variant == 'Size' %}
+                                {% include 'products/Product_detail_includes/product_sizes_detail.html' %}
+                            {% elif product.variant == 'Color' %}
+                                {% include 'products/Product_detail_includes/product_colors_detail.html' %}
+                            {% endif %}  
                         </div>
-                        {% endif %}    
-
-                        {% if no_variants %} 
-                         {% for items in no_variants %}
-                            <h1>{{items.id}}</h1>     
-                                   {% endfor %}  
-                        {% endif %}
-                   
-                    
-                    </div>
-                    <div class="col-12 col-md-12 col-lg-12">
-                        <p class="mt-3">{{ product.description }}</p>                      
-                        {% if  product.variant == 'None'   %}                          
-                            <form id="trial" name="trial" class="form" action="{% url 'add_to_bag' product.id no_variant_id %}" method="POST">                            
-                        {% else %}
-                           <form class="form" action="{% url 'add_to_bag' product.id variant.id %}" method="POST">
-                        {% endif %}            
+                        <div class="col-12">                                      
+                            {% if  product.variant == 'None'   %}                          
+                                <form id="trial" name="trial" class="form" action="{% url 'add_to_bag' variant_id_value %}" method="POST">                            
+                            {% else %}
+                                <form class="form" action="{% url 'add_to_bag' variant.id %}" method="POST">
+                            {% endif %}            
                                 {% csrf_token %}
-                                <div class="form-row">
-                                    <div class="col-12">
-                                        <p class="mt-3"><strong>Quantity:</strong></p>
-                                        <div class="form-group w-50">
-                                            <div class="input-group">
-                                                {% if product.variant != 'None' %}
-                                                    <input type="hidden" name="product_size" value="{{ product.variant }}">
-                                                    <input type="hidden" name="variant_id" value="{{ variant.id }}">
+                                    <div class="form-row">
+                                        <div class="col-12">
+                                            <p class="mt-3"><strong>Quantity:</strong></p>
+                                            <div class="form-group w-50">
+                                                <div class="input-group">
+                                                    {% if product.variant != 'None' %}
+                                                        <input type="hidden" name="product_size" value="{{ product.variant }}">
+                                                        <input type="hidden" name="variant_id" value="{{ variant.id }}">
+                                                        <input class="form-control qty_input" type="number" 
+                                                        name="quantity" value="1" min="1" max="99" data-item_id="{{ variant.id }}" 
+                                                        id="id_qty_{{ variant.id }}">
+                                                    {% else %}
                                                     <input class="form-control qty_input" type="number" 
-                                                    name="quantity" value="1" min="1" max="99" data-item_id="{{ variant.id }}" 
-                                                    id="id_qty_{{ variant.id }}">
-                                                {% else %}
-                                                <input class="form-control qty_input" type="number" 
-                                                name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" 
-                                                id="id_qty_{{ product.id }}">
-                                                {% endif %}
-                                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                                    name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" 
+                                                    id="id_qty_{{ product.id }}">
+                                                    {% endif %}
+                                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <a href="" class="btn btn-outline-black rounded-0 mt-5"><span class="icon">
-                                                <i class="fas fa-chevron-left"></i>
-                                            </span>
-                                            <span class="text-uppercase">Keep Shopping</span>
-                                        </a>
-                                        <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
-                                    </div>
-
+                                        <div class="col-12">
+                                            <a href="" class="btn btn-outline-black rounded-0 mt-5"><span class="icon">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </span>
+                                                <span class="text-uppercase">Keep Shopping</span>
+                                            </a>
+                                            <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
                                         </div>
-                            </form>
-            </div>  
+
+                                    </div>
+                                        </form>
+                        </div>                        
+                    </div>                        
                 </div>
-            </div>
-                      
-    </div>
-</div>
+            </div>            
+        </div>
+    </div>                      
 </div>
 
 {% block postloadjs %}
-    
-	<script src="{% static '' %}js/slick.min.js"></script>
-	<script src="{% static '' %}js/nouislider.min.js"></script>
-	<script src="{% static '' %}js/jquery.zoom.min.js"></script>
-	<script src="{% static '' %}js/main.js"></script>
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/lightslider.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/nouislider.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.zoom.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 {% endblock %}
+
 {% endblock %}

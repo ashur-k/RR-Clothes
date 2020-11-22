@@ -85,16 +85,22 @@ def product_detail(request, product_id):
     query = request.GET.get('q')
     product = Product.objects.get(pk=product_id)
     images = Images.objects.filter(product_id=product_id)
-    no_variant_id = None
 
+    # I am giving variant ID from server side to product detail template
+    # to feed variant id to form when item is only product
+    variant_id_value = None
     no_variants = Variants.objects.filter(product_id=product_id)
+
+    # products which have no variant will always have
+    # one variant by default and we are getting its id
+    # saving in variant_id_value
     for items in no_variants:
-        no_variant_id = items.id
+        variant_id_value = items.id
 
     context = {
         'product': product,
         'images': images,
-        'no_variant_id': no_variant_id
+        'variant_id_value': variant_id_value
     }
 
     if product.variant != "None":  # Product have variants

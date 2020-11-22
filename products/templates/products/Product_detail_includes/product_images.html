@@ -1,0 +1,22 @@
+    <div id="product-main-view">
+        <div class="product-view">				
+            <div class="product-view">
+                <img src="{{ product.image.url }}" alt="" style="height: 400px">
+            </div>
+        </div>
+        {% for rs in images %}
+        <div class="product-view">
+            <img src="{{rs.image.url}}" alt="">
+        </div>
+        {% endfor %}							
+    </div>
+    <div id="product-view">
+        <div class="product-view">
+            <img src="{{product.image.url}}" alt="">
+        </div>
+            {% for rs in images %}
+        <div class="product-view">
+            <img src="{{rs.image.url}}" alt="">
+        </div>
+        {% endfor %}						
+    </div>

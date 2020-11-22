@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse
 from products.models import Product, Variants
+from django.contrib import messages
 
 
 # Create your views here.
@@ -9,17 +10,23 @@ def view_bag(request):
     return render(request, 'shopping_bag/shopping_bag.html')
 
 
-def add_to_bag(request, item_id, variant_id):
+def add_to_bag(request, item_id):
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
+    variant = Variants.objects.get(pk=item_id)
 
-    if variant_id in list(bag.keys()):
-        bag[variant_id] += quantity
+    if item_id in list(bag.keys()):
+        bag[item_id] += quantity
+        print(variant.title)
+        messages.success(request, f'Added {variant.title} to your bag.')
     else:
-        bag[variant_id] = quantity
-
+        bag[item_id] = quantity
+        print(variant.title)
+        print('tesiting if code block is executing')
+        messages.success(request, f'Added {variant.title} to your bag.')
+        print(variant.title)
     request.session['bag'] = bag
 
     return redirect(redirect_url)
