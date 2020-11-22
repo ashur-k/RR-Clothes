@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
-from products.models import Product, Images
+from products.models import Product, Images, Category
 from random import choice
 
 
@@ -7,12 +7,12 @@ from random import choice
 def index(request):
     """ Index page view """
     new_editions = Product.objects.filter(new_edition=True)
-    products_slider = Product.objects.all().order_by('id')[:4]
+    categories = Category.objects.all().order_by('id')[:6]
+    products_slider = Product.objects.all().order_by('id')[:6]
     products_latest = Product.objects.all().order_by('id')[:5]
 
-    print(new_editions.count())
 
-    # Adding product ids to list to use for
+    '''# Adding product ids to list to use for
     # displaying each product on home page template.
     product_ids = []
     for product in products_latest:
@@ -22,7 +22,7 @@ def index(request):
     latest_product_3 = get_object_or_404(Product, id=product_ids[2])
     latest_product_4 = get_object_or_404(Product, id=product_ids[3])
     latest_product_5 = get_object_or_404(Product, id=product_ids[4])
-
+    '''
     # Getting random id to display random products on home page with its
     # images getting them from images model
     random_pks = Product.objects.values_list('pk', flat=True)
@@ -36,10 +36,6 @@ def index(request):
         'products_latest': products_latest,
         'product': random_product,
         'images': images,
-        'latest_product_1': latest_product_1,
-        'latest_product_2': latest_product_2,
-        'latest_product_3': latest_product_3,
-        'latest_product_4': latest_product_4,
-        'latest_product_5': latest_product_5,
+        'categories': categories,
     }
     return render(request, 'home/index.html', context)

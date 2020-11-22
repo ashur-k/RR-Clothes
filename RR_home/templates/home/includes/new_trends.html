@@ -1,6 +1,6 @@
 <section id="explore-new-trend-section" class="slider mt-5">
-    <div class="container">
-        <div class="row">
+    <div class="container center-styling"> 
+        <div class="row center-styling-row justify-content-center">
             <div class="col-sm-12">
                 <h1 class="text-center">Explore New Trends</h1>
                 <p class="mt-1 p-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur maiores, 
@@ -19,7 +19,7 @@
                             <div class="slide-img">
                                 <img src="{{ item.image.url }}" alt="" style="height: 200px">
                                 <div class="overlay_for_product_slider">
-                                    <a href="" class="buy-btn">Buy Now</a>
+                                    <a href="{% url 'product_detail' item.id %}" class="buy-btn">Buy Now</a>
                                 </div>
                             </div>
                             <div class="detail-box">
