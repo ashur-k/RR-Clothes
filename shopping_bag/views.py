@@ -19,14 +19,11 @@ def add_to_bag(request, item_id):
 
     if item_id in list(bag.keys()):
         bag[item_id] += quantity
-        print(variant.title)
         messages.success(request, f'Added {variant.title} to your bag.')
     else:
         bag[item_id] = quantity
-        print(variant.title)
-        print('tesiting if code block is executing')
         messages.success(request, f'Added {variant.title} to your bag.')
-        print(variant.title)
+
     request.session['bag'] = bag
 
     return redirect(redirect_url)
