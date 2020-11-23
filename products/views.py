@@ -264,13 +264,15 @@ def product_management(request, product_id):
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
+    images = Images.objects.filter(product_id=product_id)
     if product.has_variant == 0:
         variant = get_object_or_404(Variants, product_id=product_id)
         template = 'products/product_management.html'
         context = {
-        'product': product,
-        'variant': variant,
-        }
+            'product': product,
+            'variant': variant,
+            'images': images,
+            }
         return render(request, template, context)
 
     else:
@@ -279,6 +281,7 @@ def product_management(request, product_id):
         context = {
             'product': product,
             'variants': variants,
+            'images': images,
         }
         return render(request, template, context)
 

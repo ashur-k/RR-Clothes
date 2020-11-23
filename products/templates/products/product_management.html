@@ -14,12 +14,11 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-12">
+        <!-- Product Management Section -->
+         <div class="col-12 col-md-12">
             <h2 class="mb-4">Product Management</h2><hr>
             <a class="btn btn-large btn-dark m-2" href="">Add New Product</a>
         </div>
-    </div>
-    <div class="row">
          <div class="col-12 col-md-12">
             <table class="table table-bordered">
                 <thead>
@@ -49,6 +48,46 @@
                 </tbody>
                 </table>
         </div>
+    </div>
+    <div class="row">
+         <div class="col-12 col-md-12">
+            <h2 class="mb-4">Image Management</h2><hr>
+            <a class="btn btn-large btn-dark m-2" href="">Add New Image</a>
+        </div>
+        <!-- Images Management  Section -->
+        <div class="col-12 col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Image Id</th>
+                        <th scope="col">Product Images</th>
+                        <th scope="col">Image Title</th>
+                        <th scope="col">Functions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for image in images %}
+                    <tr>
+                        <th scope="row">{{ image.id }}</th>
+                        <td><img class="rounded mx-auto d-block" height="100" src="{{ image.image.url }}" alt="Card image cap"></td>
+                        <td>{{product.title}}</td>
+                        <td>
+                            {% if product.has_variant == 1 %}
+                                <a class="btn btn-large btn-dark m-2" href="">Edit</a>
+                            {% else %}
+                           
+                            <a class="btn btn-large btn-dark m-2" href="">Edit</a>
+                            {% endif %}
+                            <a class="btn btn-large btn-danger m-2" href="">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Variant Management Section -->
          {% if product.has_variant == 1 %}
         <div class="col-12 col-md-12">
             <hr>
