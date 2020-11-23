@@ -51,40 +51,42 @@
     </div>
     <div class="row">
          <div class="col-12 col-md-12">
-            <h2 class="mb-4">Image Management</h2><hr>
-            <a class="btn btn-large btn-dark m-2" href="">Add New Image</a>
+            <h2 class="mb-4">Image Management</h2><hr>            
         </div>
         <!-- Images Management  Section -->
         <div class="col-12 col-md-12">
+            <div class="col-12 col-md-6 pl-4">
+            <h5>Add new product image:</h5><hr>
+            <form method="POST" action="" class="form mb-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ image_form | crispy }}
+                   <button class="btn btn-dark" type="submit">Add Image</button>                
+            </form>
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Image Id</th>
-                        <th scope="col">Product Images</th>
+                        <th scope="col">Image Id</th>                        
                         <th scope="col">Image Title</th>
+                        <th scope="col">Product Images</th>
                         <th scope="col">Functions</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for image in images %}
                     <tr>
-                        <th scope="row">{{ image.id }}</th>
-                        <td><img class="rounded mx-auto d-block" height="100" src="{{ image.image.url }}" alt="Card image cap"></td>
+                        <th scope="row">{{ image.id }}</th>                        
                         <td>{{product.title}}</td>
+                        <td><img class="rounded mx-auto d-block" height="100" src="{{ image.image.url }}" alt="Card image cap"></td>
                         <td>
-                            {% if product.has_variant == 1 %}
-                                <a class="btn btn-large btn-dark m-2" href="">Edit</a>
-                            {% else %}
-                           
-                            <a class="btn btn-large btn-dark m-2" href="">Edit</a>
-                            {% endif %}
-                            <a class="btn btn-large btn-danger m-2" href="">Delete</a>
+                            <a class="btn btn-large btn-danger m-2" href="{% url 'delete_image' image.id %}">Delete Image</a>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
-                </table>
+            </table>
         </div>
+        
     </div>
     <div class="row">
         <!-- Variant Management Section -->
@@ -93,7 +95,7 @@
             <hr>
             <h3>Variant Management</h3>
             <hr>
-            <a class="btn btn-large btn-dark m-2" href="">Add New Variant</a>
+            <a class="btn btn-dark m-2" href="{% url 'add_variant' product.id %}">Add Variant</a>
         </div>
         <div class="col-12 col-md-12">
             <table class="table table-bordered">
@@ -109,9 +111,9 @@
                     {% elif product.variant == "Size-Color" %}
                         <th scope="col">Variant Size-Color</th>
                     {% endif %}
-                    
-                    <th scope="col">Variant Quantity</th>
                     <th scope="col">Variant Price</th>
+                    <th scope="col">Variant Quantity</th>
+                    
                     <th scope="col">Functions</th>
                     </tr>
                 </thead>
@@ -128,7 +130,7 @@
                             {% elif product.variant == "Size-Color" %}
                                 <td>{{ v.size }}-{{ v.color }}</td>
                             {% endif %}
-                            <td>{{v.price}}</td>
+                            <td>${{v.price}}</td>
                             <td>{{v.quantity}}</td>
                         <td>
                             <a class="btn btn-large btn-dark m-2" href="{% url 'edit_variant' product.id v.id %}">Edit</a>

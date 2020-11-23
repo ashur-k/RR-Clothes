@@ -1,5 +1,7 @@
 from django import forms
-from .models import Category, Product, Variants
+from .models import Category, Product, Variants, Images
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 
 
 class CategoryForm(forms.ModelForm):
@@ -44,3 +46,10 @@ class ProductSizeForm(forms.ModelForm):
     class Meta:
         model = Variants
         fields = ['title', 'size', 'quantity', 'price']
+
+
+class ProductImageForm(forms.ModelForm):
+
+    class Meta:
+        model = Images
+        fields = ['title', 'image',]

@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.db.models.functions import Lower
 from products.models import Product, Images, Variants, Category
 from django.db.models import Q
-from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm
+from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm, ProductImageForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 
@@ -217,6 +217,8 @@ def add_variant(request, product_id):
                 variant = variant_form.save(commit=False)
                 variant.product = product
                 variant_form.save()
+                messages.success(request, 'Variant added successfully')
+
         elif product.variant == "Size":
             form_data = {
                 'title': request.POST['title'],
@@ -229,6 +231,7 @@ def add_variant(request, product_id):
                 variant = variant_form.save(commit=False)
                 variant.product = product
                 variant_form.save()
+                messages.success(request, 'Variant added successfully')
         else:
             form_data = {
                 'title': request.POST['title'],
@@ -242,9 +245,9 @@ def add_variant(request, product_id):
                 variant = variant_form.save(commit=False)
                 variant.product = product
                 variant_form.save()
+                messages.success(request, 'Variant added successfully')
 
     if product.variant == "Color":
-        print(product.variant)
         form = ProductColorForm
     elif product.variant == "Size":
         form = ProductSizeForm
@@ -263,8 +266,19 @@ def product_management(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
+
     product = get_object_or_404(Product, pk=product_id)
     images = Images.objects.filter(product_id=product_id)
+    image_form = ProductImageForm
+
+    if request.method == 'POST':
+        image_form = ProductImageForm(request.POST, request.FILES)
+        if image_form.is_valid():
+            image = image_form.save(commit=False)
+            image.product = product
+            image_form.save()
+            messages.success(request, 'Image added successfully')
+
     if product.has_variant == 0:
         variant = get_object_or_404(Variants, product_id=product_id)
         template = 'products/product_management.html'
@@ -272,6 +286,7 @@ def product_management(request, product_id):
             'product': product,
             'variant': variant,
             'images': images,
+            'image_form': image_form,
             }
         return render(request, template, context)
 
@@ -282,6 +297,7 @@ def product_management(request, product_id):
             'product': product,
             'variants': variants,
             'images': images,
+            'image_form': image_form,
         }
         return render(request, template, context)
 
@@ -296,6 +312,7 @@ def edit_product_with_variant(request, product_id):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Product successfully added')
             return redirect(reverse('product_management', args=[product_id]))
     form = ProductForm(instance=product)
     messages.info(request, f'You are editing {product.title}')
@@ -327,6 +344,7 @@ def edit_product_without_variant(request, product_id, variant_id):
                     product = get_object_or_404(Product, id=product_id)
                     variant.product = product
                     variant_form.save()
+                    messages.success(request, f'You have succesfully edited Product. {product.title}')
                     return redirect(reverse('product_management', args=[product_id]))
 
     form = ProductForm(instance=product)
@@ -346,20 +364,28 @@ def edit_variant(request, product_id, variant_id):
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
+    product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductVariantForm(request.POST, instance=variant)
         if form.is_valid():
             form.save()
-            messages.success(request, "Succesfully updated product")
+            messages.success(request, "Variant updated succesfully.")
             return redirect(reverse('product_management', args=[product_id]))
         else:
             messages.error(request, 'Failed to updated Product.')
     else:
-        form = ProductVariantForm(instance=variant)
-        messages.info(request, f'You are editing {variant.title}')
+        if product.variant == "Color":
+            form = ProductColorForm(instance=variant)
+            messages.info(request, f'You are editing {variant.title}')
+        elif product.variant == "Size":
+            form = ProductSizeForm(instance=variant)
+            messages.info(request, f'You are editing {variant.title}')
+        elif product.variant == "Size-Color":
+            form = ProductVariantForm(instance=variant)
+            messages.info(request, f'You are editing {variant.title}')
 
     template = 'products/edit_variant.html'
-    form = ProductVariantForm(instance=variant)
+    #form = ProductVariantForm(instance=variant)
     context = {
         'form': form,
         'variant': variant,
@@ -375,8 +401,8 @@ def delete_product(request, product_id):
         return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
-    messages.success(request, 'Product deleted!')
-    return redirect(reverse('all_products'))
+    messages.success(request, 'Product deleted successfully!')
+    return redirect(reverse('product_management', args=[product_id]))
 
 
 @login_required
@@ -386,6 +412,18 @@ def delete_variant(request, variant_id):
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
-    variant .delete()
-    messages.success(request, 'variant deleted!')
-    return redirect(reverse('all_products'))
+    variant.delete()
+    messages.success(request, 'Variant deleted successfully!')
+    return redirect(reverse('product_management', args=[variant.product_id]))
+
+
+@login_required
+def delete_image(request, image_id):
+    """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return redirect(reverse('RR_home'))
+    image = get_object_or_404(Images, pk=image_id)
+    image.delete()
+    messages.success(request, 'Image deleted successfully!')
+    return redirect(reverse('product_management', args=[image.product_id]))
