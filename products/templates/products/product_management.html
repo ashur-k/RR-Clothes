@@ -12,14 +12,11 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12">
-            <hr>
-            <h2 class="logo-font mb-4">Product Management - Edit Product-Variant</h2>
-            <h5>Edit Product</h5>
-            <hr>
+            <h2 class="mb-4">Product Management</h2><hr>
+            <a class="btn btn-large btn-dark m-2" href="">Add New Product</a>
         </div>
     </div>
     <div class="row">
@@ -55,25 +52,45 @@
          {% if product.has_variant == 1 %}
         <div class="col-12 col-md-12">
             <hr>
-            <h5>Edit Variant</h5>
+            <h3>Variant Management</h3>
             <hr>
+            <a class="btn btn-large btn-dark m-2" href="">Add New Variant</a>
         </div>
         <div class="col-12 col-md-12">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                     <th scope="col">Variant Id</th>
-                    <th scope="col">Variant Image</th>
-                    <th scope="col">Variant Title</th>
+                    <th scope="col">Variant Name</th>
+                    
+                    {% if product.variant == "Size" %}
+                        <th scope="col">Variant Size</th>
+                    {% elif product.variant == "Color" %}
+                        <th scope="col">Variant Color</th>
+                    {% elif product.variant == "Size-Color" %}
+                        <th scope="col">Variant Size-Color</th>
+                    {% endif %}
+                    
+                    <th scope="col">Variant Quantity</th>
+                    <th scope="col">Variant Price</th>
                     <th scope="col">Functions</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for v in variants %}
                     <tr>
-                        <th scope="row">{{v.id}}</th>
-                        <td><img class="rounded mx-auto d-block" height="100" src="{{ product.image.url }}" alt="Card image cap"></td>
-                        <td>{{v.title}}</td>
+                        
+                            <th scope="row">{{v.id}}</th>
+                            <td>{{v.title}}</td>
+                            {% if product.variant == "Size" %}
+                                <td>{{ v.size }}</td>
+                            {% elif product.variant == "Color" %}
+                                <td>{{ v.color }}</td>
+                            {% elif product.variant == "Size-Color" %}
+                                <td>{{ v.size }}-{{ v.color }}</td>
+                            {% endif %}
+                            <td>{{v.price}}</td>
+                            <td>{{v.quantity}}</td>
                         <td>
                             <a class="btn btn-large btn-dark m-2" href="{% url 'edit_variant' product.id v.id %}">Edit</a>
                             <a class="btn btn-large btn-danger m-2" href="{% url 'delete_variant' v.id %}">Delete</a>

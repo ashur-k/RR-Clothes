@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.db.models.functions import Lower
 from products.models import Product, Images, Variants, Category
 from django.db.models import Q
-from .forms import ProductForm, ProductVariantForm, CategoryForm
+from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 
@@ -149,8 +149,7 @@ def ajaxcolor(request):
 def add_category(request):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
 
     if request.method == 'POST':
         category_form = CategoryForm(request.POST, request.FILES)
@@ -171,8 +170,7 @@ def add_category(request):
 def add_product(request):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
 
     if request.method == 'POST':
         has_variant = request.POST.get('has_variant')
@@ -203,24 +201,56 @@ def add_product(request):
 def add_variant(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
-    if request.method == 'POST':
-        form_data = {
-            'title': request.POST['title'],
-            'color': request.POST['color'],
-            'size': request.POST['size'],
-            'quantity': request.POST['quantity'],
-            'price': request.POST['price'],
-        }
-        variant_form = ProductVariantForm(form_data)
-        if variant_form.is_valid():
-            variant = variant_form.save(commit=False)
-            product = get_object_or_404(Product, id=product_id)
-            variant.product = product
-            variant_form.save()
+        return redirect(reverse('RR_home'))
+    product = get_object_or_404(Product, id=product_id)
 
-    form = ProductVariantForm
+    if request.method == 'POST':
+        if product.variant == "Color":
+            form_data = {
+                'title': request.POST['title'],
+                'color': request.POST['color'],
+                'quantity': request.POST['quantity'],
+                'price': request.POST['price'],
+            }
+            variant_form = ProductColorForm(form_data)
+            if variant_form.is_valid():
+                variant = variant_form.save(commit=False)
+                variant.product = product
+                variant_form.save()
+        elif product.variant == "Size":
+            form_data = {
+                'title': request.POST['title'],
+                'size': request.POST['size'],
+                'quantity': request.POST['quantity'],
+                'price': request.POST['price'],
+            }
+            variant_form = ProductSizeForm(form_data)
+            if variant_form.is_valid():
+                variant = variant_form.save(commit=False)
+                variant.product = product
+                variant_form.save()
+        else:
+            form_data = {
+                'title': request.POST['title'],
+                'color': request.POST['color'],
+                'size': request.POST['size'],
+                'quantity': request.POST['quantity'],
+                'price': request.POST['price'],
+            }
+            variant_form = ProductVariantForm(form_data)
+            if variant_form.is_valid():
+                variant = variant_form.save(commit=False)
+                variant.product = product
+                variant_form.save()
+
+    if product.variant == "Color":
+        print(product.variant)
+        form = ProductColorForm
+    elif product.variant == "Size":
+        form = ProductSizeForm
+    else:
+        form = ProductVariantForm
+
     context = {
         'form': form,
     }
@@ -232,8 +262,7 @@ def add_variant(request, product_id):
 def product_management(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
     if product.has_variant == 0:
         variant = get_object_or_404(Variants, product_id=product_id)
@@ -258,8 +287,7 @@ def product_management(request, product_id):
 def edit_product_with_variant(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -281,8 +309,7 @@ def edit_product_with_variant(request, product_id):
 def edit_product_without_variant(request, product_id, variant_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         has_variant = request.POST.get('has_variant')
@@ -314,8 +341,7 @@ def edit_product_without_variant(request, product_id, variant_id):
 def edit_variant(request, product_id, variant_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     if request.method == 'POST':
         form = ProductVariantForm(request.POST, instance=variant)
@@ -343,8 +369,7 @@ def delete_product(request, product_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted!')
@@ -356,8 +381,7 @@ def delete_variant(request, variant_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
-        return HttpResponse('Sorry only store owners can do that')
-        return redirect(reverse('home'))
+        return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     variant .delete()
     messages.success(request, 'variant deleted!')

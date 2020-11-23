@@ -27,8 +27,12 @@
         <div class="col-12 text-center mt-3">
            <h2>{{ product.title }}</h2>
            {% if request.user.is_superuser %}
-                <p><a href="{% url 'product_management' product.id %}">Edit Product</a></p>
-                <p> <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a></p>
+                {% if product.has_variant == 1 %}
+                <p><a class="btn btn-dark btn-sm" href="{% url 'product_management' product.id %}">Product/Variant Management</a></p>
+                {% else %}
+                <p><a class="btn btn-dark btn-sm" href="{% url 'product_management' product.id %}">Product Management</a></p>
+                {% endif %}
+                <p> <a class="btn btn-danger btn-sm" href="{% url 'delete_product' product.id %}">Delete</a></p>
                 <hr class=" mb-1">
             {% endif %}
         </div>
@@ -37,7 +41,7 @@
         <div class="product-container col-10 offset-1">
             <div class="row">
                 <div class="col-6 col-md-6 col-lg-4 offset-lg-2">
-                    {% include 'products/Product_detail_includes/product_images.html' %}
+                    {% include 'products/product_detail_includes/product_images.html' %}
                 </div>
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="row">
@@ -76,11 +80,11 @@
                         </div>
                         <div class="col-12">    
                             {% if product.variant == 'Size-Color' %}
-                                {% include 'products/Product_detail_includes/product_sizes_colors_detail.html' %}                        
+                                {% include 'products/product_detail_includes/product_sizes_colors_detail.html' %}                        
                             {% elif product.variant == 'Size' %}
-                                {% include 'products/Product_detail_includes/product_sizes_detail.html' %}
+                                {% include 'products/product_detail_includes/product_sizes_detail.html' %}
                             {% elif product.variant == 'Color' %}
-                                {% include 'products/Product_detail_includes/product_colors_detail.html' %}
+                                {% include 'products/product_detail_includes/product_colors_detail.html' %}
                             {% endif %}  
                         </div>
                         <div class="col-12">                                      

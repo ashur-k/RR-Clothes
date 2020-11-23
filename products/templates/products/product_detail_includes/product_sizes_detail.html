@@ -15,10 +15,12 @@
                     <a style=" color: #204d74;  width: 90px">
                         ${{ rs.size }}<br> {{ rs.price }}
                     </a>
-                </li>
-                
-                                                                        
+                </li>                                                       
             {% endfor %}
         </ul>
     </div>
+    <br>
+     {% if request.user.is_superuser %}
+                <a class="btn btn-dark btn-sm" href="{% url 'add_variant' product.id %}">Add Variant</a>
+        {% endif %}
 </form>
