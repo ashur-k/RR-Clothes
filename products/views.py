@@ -20,6 +20,7 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
+    product = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -41,6 +42,11 @@ def all_products(request):
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
+
+        if 'product' in request.GET:
+            categories = request.GET['product'].split(',')
+            products = products.filter(category__name__in=categories)
+            products = products.filter(new_edition=True)
 
         if 'q' in request.GET:
             query = request.GET['q']

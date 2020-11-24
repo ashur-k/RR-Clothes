@@ -1,3 +1,12 @@
+<style>
+.category-card:hover{
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 7.5);
+    /* for other browsers */
+    -moz-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 7.5); 
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 7.5);
+}
+</style>
+
 <section>
     <div class="container mt-3">
         <div class="row">
@@ -8,18 +17,64 @@
                 </p>
                 <hr>
             </div>
-            {% for category in categories %}
-            <div class="col-sm-4 mt-4">
-                <div class="card bg-dark text-black">
-                    <img src="{{ category.image.url }}" class="card-img" alt="...">
+            <div class="col-sm-4  m-1">
+                <div class="category-card card bg-dark text-black">
+                    <img src="{{ category_1.image.url }}" class="card-img" alt="...">
                     <div class="card-img-overlay">
-                        <h5 class="card-title">{{ category.name }}</h5>                                         
-                        <a href="" class="btn btn-sm btn-primary">View Collection</a>
+                        <h5 class="card-title">{{ category_1.name }}</h5>
+                        <p class="card-text">{{ latest_product_1.description }}</p>
+                        <p class="card-text">${{ latest_product_1.price }}</p>                                          
+                        <a href="" class="btn btn-sm btn-primary">Product details</a>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-            
+            <div class="col sm-8">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="category-card card bg-dark text-black  m-1">
+                            <img src="{{ category_2.image.url }}" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title">{{ category_2.name }}</h5>
+                                <p class="card-text">{{ latest_product_2.description }}</p>
+                                <p class="card-text">${{ latest_product_3.price }}</p>                                          
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="category-card card bg-dark text-black  m-1">
+                            <img src="{{ category_3.image.url }}" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title">{{ category_3.name }}</h5>
+                                                                        
+                                <a href="" class="btn btn-sm btn-primary">Product details</a>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="category-card card bg-dark text-black  m-1">
+                            <img src="{{ category_4.image.url }}" class=" img-fluid" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title">{{ category_4.title }}</h5>
+                                                                       
+                                <a href="" class="btn btn-sm btn-primary">Product details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="category-card card bg-dark text-black  m-1">
+                            <img src="{{ category_5.image.url }}" class="card-img" alt="...">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title">{{ category_5.name }}</h5>
+                                                                      
+                                <a href="" class="btn btn-sm btn-primary">Product details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
         </div>
     </div>
 </section>

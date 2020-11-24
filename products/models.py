@@ -41,6 +41,7 @@ class Product(models.Model):
     quantity = models.IntegerField()
     has_variant = models.BooleanField(default=False, null=True, blank=True)
     new_edition = models.BooleanField(default=False, null=True, blank=True)
+    discount_30_percent = models.BooleanField(default=False, null=True, blank=True)
     variant = models.CharField(max_length=10, choices=VARIANTS, default='None')
     detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS)
@@ -114,6 +115,11 @@ class Variants(models.Model):
 
     def __str__(self):
         return self.title
+
+    def percent_30_discount(self):
+        if self.product.discount_30_percent == 1:
+            discount_price = self.price * 30 / 100
+            return discount_price
 
     def image(self):
         img = Images.objects.get(id=self.image_id)

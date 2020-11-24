@@ -33,6 +33,11 @@
                         <img src="{{ rs.image }}" style="height: 70px">
                         
                     </li>
+                    {% if product.discount_30_percent == 1  %}
+                    <li>
+                        <p>Product price is {{ rs.percent_30_discount }}</p>
+                    </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
             {% if request.user.is_superuser %}

@@ -574,7 +574,7 @@ textarea.input {
 }
 
 .menu-nav .menu-list>li>a:hover, .menu-nav .menu-list>li>a:focus, .menu-nav .menu-list>li.dropdown.open>a {
-  color: #F8694A;
+  color: #000;
 }
 
 /*----------------------------*\
@@ -1290,8 +1290,8 @@ textarea.input {
 
 #product-view .product-view.slick-slide.slick-current {
   opacity: 1;
-  -webkit-box-shadow: 0px 0px 0px 2px #F8694A inset;
-  box-shadow: 0px 0px 0px 2px #F8694A inset;
+  -webkit-box-shadow: 0px 0px 0px 2px #000 inset;
+  box-shadow: 0px 0px 0px 2px #000 inset;
 }
 
 #product-view .product-view {
@@ -1345,8 +1345,8 @@ textarea.input {
 }
 
 .size-option>li.active a {
-  color: #F8694A;
-  border-color: #F8694A;
+  color: #000;
+  border-color: #000;
 }
 
 .color-option>li {

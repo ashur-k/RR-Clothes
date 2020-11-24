@@ -12,8 +12,15 @@
                     </a>
                     <img src="{{ rs.image }}" style="height: 70px">
                 </li>
+                <li>
+                {% if product.discount_30_percent == 1  %}
+                </li>
+                    <p></p>
+                </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
+    
     <input form="trial" type="hidden" name="price" value="{{ rs.price }}">
 </form>

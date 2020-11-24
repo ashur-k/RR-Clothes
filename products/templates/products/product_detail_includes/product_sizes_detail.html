@@ -13,9 +13,14 @@
 
                 <li  {% if variant.id == rs.id %} class="active" {% endif %}>
                     <a style=" color: #204d74;  width: 90px">
-                        ${{ rs.size }}<br> {{ rs.price }}
+                        ${{ rs.size }}<br> {{ rs.price }} 30% discount {{ rs.percent_30_discount }}
                     </a>
-                </li>                                                       
+                </li>   
+                    {% if product.discount_30_percent == 1  %}
+                    <li>
+                        <p>30% {{ rs.percent_30_discount }}</p>
+                    </li>
+                    {% endif %}                                                    
             {% endfor %}
         </ul>
     </div>
