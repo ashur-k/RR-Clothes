@@ -87,9 +87,17 @@
                                 {% include 'products/product_detail_includes/product_colors_detail.html' %}
                             {% endif %}  
                         </div>
+                                    
+                                                                               
                         <div class="col-12">                                      
-                            {% if  product.variant == 'None'   %}                          
-                                <form id="trial" name="trial" class="form" action="{% url 'add_to_bag' variant_id_value %}" method="POST">                            
+                            {% if  product.variant == 'None'   %}
+                                   {% if variant_id_value %}
+                                    <form id="trial" name="trial" class="form" action="{% url 'add_to_bag' variant_id_value %}" method="POST"> 
+                                   {% else %}
+                                   <form id="trial" name="trial" class="form" action="{% url 'product_detail' product.id %}" method="POST"> 
+                                    {% endif %}  
+                                    <p></p>
+                                                    
                             {% else %}
                                 <form class="form" action="{% url 'add_to_bag' variant.id %}" method="POST">
                             {% endif %}            
@@ -119,6 +127,7 @@
                                                 <span class="icon"><i class="fas fa-chevron-left"></i></span>
                                                 <span class="text-uppercase">Keep Shopping</span>
                                             </a>
+                                            
                                             <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
                                         </div>
                                     </div>

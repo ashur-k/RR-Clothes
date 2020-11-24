@@ -90,7 +90,7 @@ def search_auto(request):
 def product_detail(request, product_id):
     """ A view to show product details """
     query = request.GET.get('q')
-    product = Product.objects.get(pk=product_id)
+    product = get_object_or_404(Product, id=product_id)
     images = Images.objects.filter(product_id=product_id)
 
     # I am giving variant ID from server side to product detail template
@@ -104,25 +104,43 @@ def product_detail(request, product_id):
     for items in no_variants:
         variant_id_value = items.id
 
+    if request.method == 'POST':
+        variant_id_value = None
+        messages.error(request, 'Please request store owner to update product informaiton')
+
+    if variant_id_value is None:
+        if product.has_variant is True or product.variant != 'None':
+            pass
+        else:
+            form_data = {
+                'title': product.title,
+                'quantity': product.quantity,
+                'price': product.price,
+                }
+            variant_form = ProductVariantForm(form_data)
+            variant = variant_form.save(commit=False)
+            variant.product = product
+            variant_form.save()
+            variant_id_value = variant.id
+
     context = {
         'product': product,
         'images': images,
         'variant_id_value': variant_id_value
-    }
-
-    if product.variant != "None":  # Product have variants
-        if request.method == 'POST':  # if we select color
-            variant_id = request.POST.get('variantid')
-            variant = Variants.objects.get(id=variant_id)
-            colors = Variants.objects.filter(product_id=product_id, size_id=variant.size_id)
-            sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
-            query += variant.title + ' Size:' + str(variant.size) + ' Color: ' + str(variant.color)
-        else:
-            variants = Variants.objects.filter(product_id=product_id)
-            colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id )
-            sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
-            variant = Variants.objects.get(id=variants[0].id)
-
+        }
+    
+    if request.method == 'POST':  # if we select color
+        variant_id = request.POST.get('variantid')
+        variant = Variants.objects.get(id=variant_id)
+        colors = Variants.objects.filter(product_id=product_id, size_id=variant.size_id)
+        sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
+        query += variant.title + ' Size:' + str(variant.size) + ' Color: ' + str(variant.color)
+    else:
+        variants = Variants.objects.filter(product_id=product_id)
+        colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id)
+        sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
+        variant = Variants.objects.get(id=variants[0].id)
+    
 
         context.update({
             'sizes': sizes,

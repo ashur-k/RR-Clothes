@@ -15,7 +15,10 @@ def add_to_bag(request, item_id):
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
-    variant = get_object_or_404(Variants, pk=item_id)
+
+    if item_id == None:
+        HttpResponse('variant is none')
+    variant = get_object_or_404(Variants, pk=item_id)  
 
     if item_id in list(bag.keys()):
         bag[item_id] += quantity
