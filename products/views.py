@@ -48,6 +48,11 @@ def all_products(request):
             products = products.filter(category__name__in=categories)
             products = products.filter(new_edition=True)
 
+        if 'discount_30_percent' in request.GET:
+            categories = request.GET['discount_30_percent'].split(',')
+            products = products.filter(category__name__in=categories)
+            products = products.filter(discount_30_percent=True)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -56,6 +61,7 @@ def all_products(request):
 
             queries = Q(title__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
+            messages.success(request, f'{products.count()} results found.')
     current_sorting = f'{sort}_{direction}'
     context = {
         'products': products,
