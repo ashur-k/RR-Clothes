@@ -1,6 +1,6 @@
 import admin_thumbnails
 from django.contrib import admin
-from .models import Category, Product, Images, Color, Size, Variants
+from .models import Category, Product, Images, Color, Size, Variants, Comment
 
 
 # Register your models here.
@@ -58,9 +58,14 @@ class VariantsAdmin(admin.ModelAdmin):
         ]
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['product', 'user', 'subject', 'rate']
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Images, ImagesAdmin)
 admin.site.register(Color, ColorAdmin)
 admin.site.register(Size, SizeAdmin)
 admin.site.register(Variants, VariantsAdmin)
+admin.site.register(Comment, CommentAdmin)

@@ -1,6 +1,8 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import User
+from django.db.models import Avg
 
 
 # Create your models here.
@@ -38,6 +40,7 @@ class Product(models.Model):
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=False, upload_to='meida/')
     price = models.FloatField()
+    rate = models.IntegerField(default=1)
     quantity = models.IntegerField()
     has_variant = models.BooleanField(default=False, null=True, blank=True)
     new_edition = models.BooleanField(default=False, null=True, blank=True)
@@ -59,6 +62,20 @@ class Product(models.Model):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
 
     image_tag.short_description = 'Image'
+
+    def product_reviews(self):
+        reviews = Comment.objects.filter(product=self)
+        return reviews
+
+    def averagereviews(self):
+        reviews = Comment.objects.filter(product=self).aggregate(average=Avg('rate'))
+        avg = 0
+        if reviews["average"] is not None:
+            avg = float(reviews["average"])
+        print('here in product models')
+        print(avg)
+        print('there in product models')
+        return avg
 
 
 class Images(models.Model):
@@ -135,3 +152,22 @@ class Variants(models.Model):
             return mark_safe('<img src="{}" height="50"/>'.format(img.image.url))
         else:
             return ""
+
+
+class Comment(models.Model):
+    STATUS = (
+        ('New', 'New'),
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=50, blank=True)
+    comment = models.CharField(max_length=250, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    rate = models.IntegerField(default=1)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject

@@ -24,6 +24,9 @@ def all_products(request):
 
     if request.GET:
         if 'sort' in request.GET:
+            print('here')
+            print(request.GET['sort'])
+            print('and there')
             sortkey = request.GET['sort']
             sort = sortkey
             if sortkey == 'name':
@@ -97,6 +100,7 @@ def product_detail(request, product_id):
     """ A view to show product details """
     query = request.GET.get('q')
     product = get_object_or_404(Product, id=product_id)
+    print(product.averagereviews())
     images = Images.objects.filter(product_id=product_id)
 
     # I am giving variant ID from server side to product detail template
@@ -134,7 +138,7 @@ def product_detail(request, product_id):
         'images': images,
         'variant_id_value': variant_id_value
         }
-    
+
     if request.method == 'POST':  # if we select color
         variant_id = request.POST.get('variantid')
         variant = Variants.objects.get(id=variant_id)
@@ -146,7 +150,6 @@ def product_detail(request, product_id):
         colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id)
         sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
         variant = Variants.objects.get(id=variants[0].id)
-    
 
         context.update({
             'sizes': sizes,
