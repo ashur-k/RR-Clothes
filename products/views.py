@@ -16,6 +16,7 @@ def all_products(request):
     """ A view to show all products """
 
     products = Product.objects.all()
+
     query = None
     categories = None
     sort = None
@@ -24,16 +25,17 @@ def all_products(request):
 
     if request.GET:
         if 'sort' in request.GET:
-            print('here')
-            print(request.GET['sort'])
-            print('and there')
             sortkey = request.GET['sort']
             sort = sortkey
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
+
             if sortkey == 'category':
                 sortkey = 'category__name'
+
+            if sortkey == 'rating':
+                pass
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
@@ -100,7 +102,6 @@ def product_detail(request, product_id):
     """ A view to show product details """
     query = request.GET.get('q')
     product = get_object_or_404(Product, id=product_id)
-    print(product.averagereviews())
     images = Images.objects.filter(product_id=product_id)
 
     # I am giving variant ID from server side to product detail template
@@ -464,7 +465,6 @@ def delete_image(request, image_id):
 
 def add_comment(request, product_id):
 
-    product = Product.objects.get(pk=product_id)
     current_user = request.user
     # return HttpResponse(url)
     if request.method == 'POST':  # check post
@@ -479,6 +479,12 @@ def add_comment(request, product_id):
             current_user = request.user
             data.user_id = current_user.id
             data.save()  # save data to table
+            
+            # Once comments are save using avg calculate
+            # function to update product rating
+            new_rating = Product.objects.get(id=product_id)
+            new_rating.rate = new_rating.averagereviews()  # change field
+            new_rating.save()  # this will update only
             messages.success(request, "Your review has ben sent.")
 
     return redirect(reverse('product_detail', args=[product_id]))

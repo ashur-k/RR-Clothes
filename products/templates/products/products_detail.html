@@ -49,15 +49,28 @@
                             <div class="product-details-container mb-5 mt-md-5">
                                 <p class="lead mb-2 text-left">Category: {{ product.category.name }}</p>
                                 <p class="lead mb-2 text-left">Product: {{ product.title }}</p>
-                                <div class="product-rating">
-                                    <i class="fa fa-star{% if product.averagereviews < 1%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.averagereviews < 2%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.averagereviews < 3%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.averagereviews < 4%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.averagereviews < 5%}-o empty{% endif%}"></i>
-                                    {{ product.avaregereview |stringformat:".2f"}}
-                                </div>
-                                <a href="#tab1"> {{ product.countreview}}  Review(s) / Add Review</a>
+                                {% if product.category %}
+                                            <p class="small mt-1 mb-0">
+                                                <a class="text-muted" href="{% url 'all_products' %}?category={{ product.category.name }}">
+                                                    <i class="fas fa-tag mr-1"></i>category: {{ product.category.friendly_name }}
+                                                </a>
+                                            </p>
+                                            {% endif %}
+                                            {% if product.averagereviews %}                                                
+                                                    <div class="product-rating">
+                                                        <small class="text-muted">
+                                                            <i class="fa fa-star{% if product.averagereviews < 1%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.averagereviews < 2%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.averagereviews < 3%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.averagereviews < 4%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.averagereviews < 5%}-o empty{% endif%}"></i>
+                                                        </small>
+                                                        {{ product.avaregereview |stringformat:".2f"}}
+                                                    </div>
+                                            {% else %}
+                                                <small class="text-muted">No Rating</small>
+                                            {% endif %}
+                                <a href="#tab1"> {{ product.countreview }}  Review(s) / Add Review</a>
                                 <p class="lead mb-2 text-left">
                                     Price: ${{ product.price }}                     
                                 </p>
@@ -148,17 +161,15 @@
                 <div class="col-12">
                     <div class="product-tab">
                         <ul class="tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab1">Details</a></li>
-                            <li><a data-toggle="tab" href="#tab2">Reviews ({{ product.countreview}} )</a></li>
+                            <li class="active">
+                                <a data-toggle="tab" href="#tab1">Reviews ( {{ product.counterview }} )</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab2">Details</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
-                            <div id="tab1" class="tab-pane fade in active">
-                                <p>
-                                    {{ product.detail | safe }}
-                                </p>
-                            </div>
-                            <div id="tab2" class="tab-pane fade in">
-
+                            <div id="tab1" class="tab-pane fade in">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="product-reviews">
@@ -187,13 +198,6 @@
                                     
                                     <div class="col-md-6">
                                         <h4 class="text-uppercase">Write Your Review</h4>
-                                        {% if messages %}
-                                            {% for message in messages %}
-                                                <div class="alert alert-{{message.tags}}" role="alert">
-                                                    {{ message }}
-                                                </div>
-                                            {% endfor %}
-                                        {% endif %}
                                         <form class="review-form" action="{% url 'add_comment' product.id %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-group">
@@ -222,6 +226,11 @@
                                         </form>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="tab2" class="tab-pane fade in active">
+                                <p>
+                                    {{ product.detail | safe }}
+                                </p>
                             </div>
                         </div>
                     </div>

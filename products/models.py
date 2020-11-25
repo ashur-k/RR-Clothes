@@ -2,7 +2,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
-from django.db.models import Avg
+from django.db.models import Avg, Count
 
 
 # Create your models here.
@@ -73,6 +73,13 @@ class Product(models.Model):
         if reviews["average"] is not None:
             avg = float(reviews["average"])
         return avg
+
+    def counterview(self):
+        reviews = Comment.objects.filter(product=self).aggregate(count=Count('id'))
+        cnt = 0
+        if reviews["count"] is not None:
+            cnt = int(reviews["count"])
+        return cnt
 
 
 class Images(models.Model):
