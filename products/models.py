@@ -72,9 +72,6 @@ class Product(models.Model):
         avg = 0
         if reviews["average"] is not None:
             avg = float(reviews["average"])
-        print('here in product models')
-        print(avg)
-        print('there in product models')
         return avg
 
 

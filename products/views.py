@@ -3,9 +3,9 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.template.loader import render_to_string
 from django.db.models.functions import Lower
-from products.models import Product, Images, Variants, Category
+from products.models import Product, Images, Variants, Category, Comment
 from django.db.models import Q
-from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm, ProductImageForm
+from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm, ProductImageForm, CommentForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 
@@ -460,3 +460,25 @@ def delete_image(request, image_id):
     image.delete()
     messages.success(request, 'Image deleted successfully!')
     return redirect(reverse('product_management', args=[image.product_id]))
+
+
+def add_comment(request, product_id):
+
+    product = Product.objects.get(pk=product_id)
+    current_user = request.user
+    # return HttpResponse(url)
+    if request.method == 'POST':  # check post
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            data = Comment()  # create relation with model
+            data.subject = form.cleaned_data['subject']
+            data.comment = form.cleaned_data['comment']
+            data.rate = form.cleaned_data['rate']
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.product_id = product_id
+            current_user = request.user
+            data.user_id = current_user.id
+            data.save()  # save data to table
+            messages.success(request, "Your review has ben sent.")
+
+    return redirect(reverse('product_detail', args=[product_id]))

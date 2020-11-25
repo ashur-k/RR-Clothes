@@ -194,7 +194,7 @@
                                                 </div>
                                             {% endfor %}
                                         {% endif %}
-                                        <form class="review-form" action="" method="">
+                                        <form class="review-form" action="{% url 'add_comment' product.id %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-group">
                                                 <input name="subject" class="input" type="text" placeholder="Your subject" />
@@ -217,7 +217,7 @@
                                             {% if user.id is not None %}
                                                 <button class="primary-btn">Submit</button>
                                             {% else %}
-                                                You must be logged in to post a review
+                                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                                             {% endif %}
                                         </form>
                                     </div>
