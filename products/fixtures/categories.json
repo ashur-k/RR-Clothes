@@ -1,9 +1,154 @@
-[{"pk": 1, "model": "products.category", "fields": {"name": "ladieswear", "friendly_name": "Ladies Wear"}}, 
-{"pk": 2, "model": "products.category", "fields": {"name": "boyshudi", "friendly_name": "Boys Hudi"}}, 
-{"pk": 3, "model": "products.category", "fields": {"name": "kidswear", "friendly_name": "Kids Wear"}}, 
-{"pk": 4, "model": "products.category", "fields": {"name": "deals", "friendly_name": "Deals"}}, 
-{"pk": 5, "model": "products.category", "fields": {"name": "glasses", "friendly_name": "Glasses"}}, 
-{"pk": 6, "model": "products.category", "fields": {"name": "jwellery", "friendly_name": "Jwellery"}}, 
-{"pk": 7, "model": "products.category", "fields": {"name": "headscarves", "friendly_name": "Head Scarves"}}, 
-{"pk": 8, "model": "products.category", "fields": {"name": "facecoverings", "friendly_name": "Face Coverings"}}, 
-{"pk": 9, "model": "products.category", "fields": {"name": "shirts", "friendly_name": "Shirts"}}]
+[
+   {
+      "pk":1,
+      "model":"products.category",
+      "fields":{
+         "name":"girls_hudi",
+         "friendly_name":"Girls Hudis"
+      }
+   },
+   {
+      "pk":2,
+      "model":"products.category",
+      "fields":{
+         "name":"girls_shirts",
+         "friendly_name":"Girls Shirt"
+      }
+   },
+   {
+      "pk":3,
+      "model":"products.category",
+      "fields":{
+         "name":"girls_dresses",
+         "friendly_name":"Girls Dresses"
+      }
+   },
+   {
+      "pk":4,
+      "model":"products.category",
+      "fields":{
+         "name":"girls_coats_&_jackets",
+         "friendly_name":"Girls Coats & Jackets"
+      }
+   },
+   {
+      "pk":5,
+      "model":"products.category",
+      "fields":{
+         "name":"girls_tops",
+         "friendly_name":"Girls Tops"
+      }
+   },
+   {
+      "pk":6,
+      "model":"products.category",
+      "fields":{
+         "name":"girls_damage_jeans",
+         "friendly_name":"Girls Damage Jeans"
+      }
+   },
+   {
+      "pk":7,
+      "model":"products.category",
+      "fields":{
+         "name":"girls_jeans",
+         "friendly_name":"Girls Jeans"
+      }
+   },
+   {
+      "pk":8,
+      "model":"products.category",
+      "fields":{
+         "name":"boys_hudi",
+         "friendly_name":"Boys Hudis"
+      }
+   },
+   {
+      "pk":9,
+      "model":"products.category",
+      "fields":{
+         "name":"boys_shirts",
+         "friendly_name":"Boys Shirt"
+      }
+   },
+   {
+      "pk":18,
+      "model":"products.category",
+      "fields":{
+         "name":"boys_coats_&_jackets",
+         "friendly_name":"Boys Coats & Jackets"
+      }
+   },
+   {
+      "pk":19,
+      "model":"products.category",
+      "fields":{
+         "name":"boys_tshirts",
+         "friendly_name":"Boys T-Shirts"
+      }
+   },
+   {
+      "pk":20,
+      "model":"products.category",
+      "fields":{
+         "name":"boys_damage_jeans",
+         "friendly_name":"Boys Damage Jeans"
+      }
+   },
+   {
+      "pk":21,
+      "model":"products.category",
+      "fields":{
+         "name":"boys_jeans",
+         "friendly_name":"Boys Jeans"
+      }
+   },
+   {
+      "pk":22,
+      "model":"products.category",
+      "fields":{
+         "name":"men_coats_&_jackets",
+         "friendly_name":"Men Coats & Jackets"
+      }
+   },
+   {
+      "pk":23,
+      "model":"products.category",
+      "fields":{
+         "name":"men_tshirts",
+         "friendly_name":"Men T-Shirts"
+      }
+   },
+   {
+      "pk":24,
+      "model":"products.category",
+      "fields":{
+         "name":"men_suits",
+         "friendly_name":"Men Suits"
+      }
+   },
+   {
+      "pk":25,
+      "model":"products.category",
+      "fields":{
+         "name":"men_jeans",
+         "friendly_name":"Men Jeans"
+      }
+   },
+   {
+      "pk":26,
+      "model":"products.category",
+      "fields":{
+         "name":"men_shirts",
+         "friendly_name":"Men Shirts"
+      }
+   },
+   {
+      "pk":22,
+      "model":"products.category",
+      "fields":{
+         "name":"men_sweaters_&_cardiganss",
+         "friendly_name":"Men Sweaters & Cardigans"
+      }
+   }
+]
