@@ -77,14 +77,14 @@
                                                 </a>
                                             </p>
                                             {% endif %}
-                                            {% if product.averagereviews %}                                                
+                                            {% if product.rate %}                                                
                                                     <div class="product-rating">
                                                         <small class="text-muted">
-                                                            <i class="fa fa-star{% if product.averagereviews < 1%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.averagereviews < 2%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.averagereviews < 3%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.averagereviews < 4%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.averagereviews < 5%}-o empty{% endif%}"></i>
+                                                            <i class="fa fa-star{% if product.rate < 1%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.rate < 2%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.rate < 3%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.rate < 4%}-o empty{% endif%}"></i> 
+                                                            <i class="fa fa-star{% if product.rate < 5%}-o empty{% endif%}"></i>
                                                         </small>
                                                         {{ product.avaregereview |stringformat:".2f"}}
                                                     </div>
