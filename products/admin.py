@@ -4,11 +4,12 @@ from .models import Category, Product, Images, Color, Size, Variants, Comment
 
 
 # Register your models here.
+@admin_thumbnails.thumbnail('image')
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
         'name',
-        'image',
+        'image_tag',
         'id'
     )
 
