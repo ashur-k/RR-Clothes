@@ -17,7 +17,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductImageInline(admin.TabularInline):
     model = Images
     readonly_fields = ('id',)
-    extra = 1
+    extra = 3
 
 
 class ProductVariantsInline(admin.TabularInline):
