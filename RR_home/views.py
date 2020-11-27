@@ -9,7 +9,9 @@ def index(request):
 
     new_editions = Product.objects.filter(new_edition=True)
     categories = Category.objects.all().order_by('id')[:5]
-    products_slider = Product.objects.all().order_by('id')[:6]
+
+    # product slider for new trends
+    products_slider = Product.objects.all().order_by('id')[:40]
     products_latest = Product.objects.all().order_by('id')[:5]
 
     # Adding product ids to list to use for
@@ -17,9 +19,9 @@ def index(request):
     category_ids = []
     for category in categories:
         category_ids.append(category.id)
-    category_1 = get_object_or_404(Category, id=category_ids[0])
-    category_2 = get_object_or_404(Category, id=category_ids[1])
-    category_3 = get_object_or_404(Category, id=category_ids[2])
+    category_1 = get_object_or_404(Category, id=13)
+    category_2 = get_object_or_404(Category, id=25)
+    category_3 = get_object_or_404(Category, id=8)
     category_4 = get_object_or_404(Category, id=category_ids[3])
     category_5 = get_object_or_404(Category, id=category_ids[4])
 

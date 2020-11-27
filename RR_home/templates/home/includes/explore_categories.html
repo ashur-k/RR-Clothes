@@ -7,8 +7,8 @@
 }
 </style>
 
-<section>
-    <div class="container mt-3">
+<section style="padding: 100px;">
+    <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="text-center">Explore Different Categories</h1>
@@ -19,31 +19,28 @@
             </div>
             <div class="col-sm-4  m-1">
                 <div class="category-card card bg-dark text-black">
-                    <img src="{{ category_1.image.url }}" class="card-img" alt="...">
+                    <img src="{{ category_4.image.url }}" class="card-img" alt="..." height="830px">
                     <div class="card-img-overlay">
-                        <h5 class="card-title">{{ category_1.name }}</h5>
-                        <p class="card-text">{{ latest_product_1.description }}</p>
-                        <p class="card-text">${{ latest_product_1.price }}</p>                                          
+                        <h5 class="card-title">{{ category_4.name }}</h5>                                       
                         <a href="" class="btn btn-sm btn-primary">Product details</a>
                     </div>
                 </div>
             </div>
-            <div class="col sm-8">
+            <div class="col sm-8" style="padding: 20px;">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="category-card card bg-dark text-black  m-1">
-                            <img src="{{ category_2.image.url }}" class="card-img" alt="...">
+                            <img src="{{ category_2.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
                                 <h5 class="card-title">{{ category_2.name }}</h5>
-                                <p class="card-text">{{ latest_product_2.description }}</p>
-                                <p class="card-text">${{ latest_product_3.price }}</p>                                          
+                                                                        
                                 <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="category-card card bg-dark text-black  m-1">
-                            <img src="{{ category_3.image.url }}" class="card-img" alt="...">
+                            <img src="{{ category_3.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
                                 <h5 class="card-title">{{ category_3.name }}</h5>
                                                                         
@@ -55,20 +52,18 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="category-card card bg-dark text-black  m-1">
-                            <img src="{{ category_4.image.url }}" class=" img-fluid" alt="...">
+                            <img src="{{ category_1.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_4.title }}</h5>
-                                                                       
+                                <h5 class="card-title">{{ category_1.name }}</h5>                                                                      
                                 <a href="" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="category-card card bg-dark text-black  m-1">
-                            <img src="{{ category_5.image.url }}" class="card-img" alt="...">
+                            <img src="{{ category_5.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_5.name }}</h5>
-                                                                      
+                                <h5 class="card-title">{{ category_5.name }}</h5>                                                                      
                                 <a href="" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
