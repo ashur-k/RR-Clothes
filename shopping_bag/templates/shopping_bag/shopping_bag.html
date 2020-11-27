@@ -33,21 +33,22 @@
                                     <th scope="col">Subtotal</th>
                                 </tr>
                             </thead>
-
+                            <style>
+                            </style>
                             {% for item in bag_items %}
                                 <tr>
                                     <td class="p-3 w-25">
-                                    {% if item.product.title %}
-                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}">
+                                    {% if item.variant.product.image.url %}
+                                        <img class="img-thumbnail rounded" src="{{ item.variant.product.image.url }}" style="">
                                     {% else %}
-                                        <img class="img-fluid rounded" src="{{ item.variant.image }}">
+                                        <p>No image</p>
                                     {% endif %}
                                     </td>
+
                                     <td class="py-3">
-                                        {% if item.product.title %}
+                                        {% if item.product.title %}                                        
                                         <p class="my-0"><strong>{{ item.product.title }}</strong></p>
-                                        <p class="my-0 small text-muted">Product-id:{{ item.product.id }} </p>
-                                        
+                                        <p class="my-0 small text-muted">Product-id:{{ item.product.id }} </p>                                     
                                         {% else %}
                                         <p class="my-0"><strong>{{ item.variant.title }}</strong></p>
                                             {% if item.variant.color  %}
@@ -56,8 +57,7 @@
                                             {% if item.variant.size  %}
                                                 <p class="my-0"><strong>Size: {{ item.variant.size }}</strong></p>
                                             {% endif %}
-                                        <p class="my-0 small text-muted">SKU:{{ item.variant.id }} </p>
-                                        
+                                                <p class="my-0 small text-muted">{{ item.variant.id }} </p>                                       
                                      
                                         {% endif %}
                                     </td>

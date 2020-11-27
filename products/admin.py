@@ -30,7 +30,7 @@ class ProductVariantsInline(admin.TabularInline):
 
 @admin_thumbnails.thumbnail('image')
 class ImagesAdmin(admin.ModelAdmin):
-    list_display = ('product', 'image', 'title', 'image_thumbnail')
+    list_display = ('product', 'image', 'title', 'image_thumbnail', 'id')
 
 
 class ProductAdmin(admin.ModelAdmin):

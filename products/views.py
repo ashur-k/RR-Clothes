@@ -245,6 +245,7 @@ def add_variant(request, product_id):
                 'color': request.POST['color'],
                 'quantity': request.POST['quantity'],
                 'price': request.POST['price'],
+                'image_id': request.POST['image_id'],
             }
             variant_form = ProductColorForm(form_data)
             if variant_form.is_valid():
@@ -252,6 +253,7 @@ def add_variant(request, product_id):
                 variant.product = product
                 variant_form.save()
                 messages.success(request, 'Variant added successfully')
+                return redirect(reverse('product_management', args=[product_id]))
 
         elif product.variant == "Size":
             form_data = {
@@ -266,6 +268,7 @@ def add_variant(request, product_id):
                 variant.product = product
                 variant_form.save()
                 messages.success(request, 'Variant added successfully')
+                return redirect(reverse('product_management', args=[product_id]))
         else:
             form_data = {
                 'title': request.POST['title'],
@@ -280,6 +283,7 @@ def add_variant(request, product_id):
                 variant.product = product
                 variant_form.save()
                 messages.success(request, 'Variant added successfully')
+                return redirect(reverse('product_management', args=[product_id]))
 
     if product.variant == "Color":
         form = ProductColorForm
@@ -400,7 +404,13 @@ def edit_variant(request, product_id, variant_id):
     variant = get_object_or_404(Variants, pk=variant_id)
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
-        form = ProductVariantForm(request.POST, instance=variant)
+        if product.variant == "Color":
+            form = ProductColorForm(request.POST, instance=variant)
+        elif product.variant == "Size":
+            form = ProductSizeForm(request.POST, instance=variant)
+        elif product.variant == "Size-Color":
+            form = ProductVariantForm(instance=variant)
+
         if form.is_valid():
             form.save()
             messages.success(request, "Variant updated succesfully.")

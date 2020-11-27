@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">{{product.id}}{{variant.id}}</th>
+                        <th scope="row">{{product.id}}</th>
                         <td><img class="rounded mx-auto d-block" height="100" src="{{ product.image.url }}" alt="Card image cap"></td>
                         <td>{{product.title}}</td>
                         <td>
@@ -54,9 +54,9 @@
             <h2 class="mb-4">Image Management</h2><hr>            
         </div>
         <!-- Images Management  Section -->
-        <div class="col-12 col-md-12">
-            <div class="col-12 col-md-6 pl-4">
-            <h5>Add new product image:</h5><hr>
+        <div class="col-12 col-md-12 ">
+            <div class="col-12 col-md-6 pl-4 pt-2 bg-light mb-4">
+            <h5 class="bg-dark p-2" style="color:#fff;">Add new product image:</h5><hr>
             <form method="POST" action="" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ image_form | crispy }}
@@ -76,7 +76,7 @@
                 {% for image in images %}
                     <tr>
                         <th scope="row">{{ image.id }}</th>                        
-                        <td>{{product.title}}</td>
+                        <td>{{image.title}}</td>
                         <td><img class="rounded mx-auto d-block" height="100" src="{{ image.image.url }}" alt="Card image cap"></td>
                         <td>
                             <a class="btn btn-large btn-danger m-2" href="{% url 'delete_image' image.id %}">Delete Image</a>
@@ -88,6 +88,7 @@
         </div>
         
     </div>
+    {% if product.has_variant == 1 %}
     <div class="row">
         <!-- Variant Management Section -->
         
@@ -103,7 +104,7 @@
                     <tr>
                     <th scope="col">Variant Id</th>
                     <th scope="col">Variant Name</th>
-                    
+                    <th scope="col">Variant Image Id</th>
                     {% if product.variant == "Size" %}
                         <th scope="col">Variant Size</th>
                     {% elif product.variant == "Color" %}
@@ -123,6 +124,13 @@
                         
                             <th scope="row">{{v.id}}</th>
                             <td>{{v.title}}</td>
+                            {% if v.image_id %}
+                            <td>{{v.image_id}}</td>
+                            {% else %}
+                            <td>
+                            <small>Please give an image id to variant, <br> to dispaly image with varaint.</small>
+                            </td>
+                            {% endif %}
                             {% if product.variant == "Size" %}
                                 <td>{{ v.size }}</td>
                             {% elif product.variant == "Color" %}
@@ -143,6 +151,7 @@
         </div>
      
     </div>
+    {% endif %}
 </div>
 
 {% endblock %}
