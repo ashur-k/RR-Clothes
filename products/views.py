@@ -3,9 +3,9 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.template.loader import render_to_string
 from django.db.models.functions import Lower
-from products.models import Product, Images, Variants, Category, Comment
+from products.models import Product, Images, Variants, Category, Comment, Color, Size
 from django.db.models import Q
-from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm, ProductImageForm, CommentForm
+from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm, ProductImageForm, CommentForm, AddColorForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 
@@ -481,12 +481,11 @@ def add_comment(request, product_id):
             data.subject = form.cleaned_data['subject']
             data.comment = form.cleaned_data['comment']
             data.rate = form.cleaned_data['rate']
-            data.ip = request.META.get('REMOTE_ADDR')
             data.product_id = product_id
             current_user = request.user
             data.user_id = current_user.id
             data.save()  # save data to table
-            
+
             # Once comments are save using avg calculate
             # function to update product rating
             new_rating = Product.objects.get(id=product_id)
@@ -495,3 +494,43 @@ def add_comment(request, product_id):
             messages.success(request, "Your review has ben sent.")
 
     return redirect(reverse('product_detail', args=[product_id]))
+
+
+def add_color(request):
+    #return HttpResponse("succefully updated coleor")
+    product_id = request.POST.get('product_id')
+    variant_id = request.POST.get('variant_id')
+    print(product_id)
+    print(variant_id)
+    form_data = {
+                'name': request.POST['name'],
+                'code': request.POST['code'],
+            }
+    color_form = AddColorForm(form_data)
+    if color_form.is_valid():
+        color_form.save()
+        messages.success(request, "Succesfully added color.")
+        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
+    else:
+        messages.error(request, "Adding color failed contact size admin.")
+        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
+    # return HttpResponse(url)
+    # if request.method == 'POST':  # check post
+    #form = AddColorForm(request.POST)
+    #if form.is_valid():
+        #data = Color()
+        #data.subject = form.cleaned_data['name']
+        #data.comment = form.cleaned_data['code']
+        #data.save()  # save data to table
+        #return HttpResponse("succefully updated coleor")
+        #messages.success(request, "Your review has ben sent.")
+        #
+
+
+def add_size(request):
+    return HttpResponse("add Size")
+    # return HttpResponse(url)
+    if request.method == 'POST':  # check post
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()  # save data to table

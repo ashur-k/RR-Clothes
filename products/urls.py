@@ -17,4 +17,6 @@ urlpatterns = [
     path('delete_variant/<int:variant_id>/', views.delete_variant, name='delete_variant'),
     path('delete_image/<int:image_id>/', views.delete_image, name='delete_image'),
     path('add_comment/<int:product_id>/', views.add_comment, name='add_comment'),
+    path('add_color/', views.add_color, name='add_new_color'),
+    path('add_size/', views.add_size, name='add_new_size'),
 ]

@@ -30,7 +30,39 @@
                         <button class="btn btn-black rounded-0" type="submit">Update Variant</button>
                     </div>
                 </form>
-                <a href="">Add new color</a>
+                <button type="button" class="btn btn-primary m-2 p-1" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add new Color</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add New Color</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="ashur" name="ashur" action="{% url 'add_new_color' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Color Name</label>
+                                <input name="name" class="input" type="text" placeholder="Add color name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Color Code</label>
+                                <input name="code" class="input" type="text" placeholder="Hash color code #ffffff" />
+                                <input name="product_id" class="input" type="hidden" value="{{variant.product.id}}" />
+                                <input name="variant_id" class="input" type="hidden" value="{{variant.id}}" />
+                            </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button form="ashur" type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 <a href="">Add new Size name</a>
             </div>            
         </div>

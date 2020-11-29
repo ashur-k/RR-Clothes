@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category, Product, Variants, Images, Comment
+from .models import Category, Product, Variants, Images, Comment, Color, Size
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 from django.forms import ModelForm
@@ -60,3 +60,15 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ['subject', 'comment', 'rate']
+
+
+class AddColorForm(ModelForm):
+    class Meta:
+        model = Color
+        fields = ['name', 'code']
+
+
+class AddSizeForm(ModelForm):
+    class Meta:
+        model = Size
+        fields = ['name', 'code']
