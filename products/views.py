@@ -5,7 +5,9 @@ from django.template.loader import render_to_string
 from django.db.models.functions import Lower
 from products.models import Product, Images, Variants, Category, Comment, Color, Size
 from django.db.models import Q
-from .forms import ProductForm, ProductVariantForm, CategoryForm, ProductColorForm, ProductSizeForm, ProductImageForm, CommentForm, AddColorForm
+from .forms import ProductImageForm, CommentForm, AddColorForm, AddSizeForm
+from .forms import ProductForm, ProductVariantForm, CategoryForm
+from .forms import ProductColorForm, ProductSizeForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 
@@ -400,6 +402,9 @@ def edit_variant(request, product_id, variant_id):
         return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     product = get_object_or_404(Product, pk=product_id)
+    colors = Color.objects.all()
+    sizes = Size.objects.all()
+
     if request.method == 'POST':
         if product.variant == "Color":
             form = ProductColorForm(request.POST, instance=variant)
@@ -424,12 +429,17 @@ def edit_variant(request, product_id, variant_id):
         elif product.variant == "Size-Color":
             form = ProductVariantForm(instance=variant)
             messages.info(request, f'You are editing {variant.title}')
+        else:
+            messages.error(request, 'Failed to updated Product.')
 
     template = 'products/edit_variant.html'
-    #form = ProductVariantForm(instance=variant)
+
     context = {
         'form': form,
         'variant': variant,
+        'product': product,
+        'colors': colors,
+        'sizes': sizes,
     }
     return render(request, template, context)
 
@@ -496,12 +506,14 @@ def add_comment(request, product_id):
     return redirect(reverse('product_detail', args=[product_id]))
 
 
+@login_required
 def add_color(request):
-    #return HttpResponse("succefully updated coleor")
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return redirect(reverse('RR_home'))
     product_id = request.POST.get('product_id')
     variant_id = request.POST.get('variant_id')
-    print(product_id)
-    print(variant_id)
+
     form_data = {
                 'name': request.POST['name'],
                 'code': request.POST['code'],
@@ -512,25 +524,54 @@ def add_color(request):
         messages.success(request, "Succesfully added color.")
         return redirect(reverse('edit_variant', args=[product_id, variant_id]))
     else:
-        messages.error(request, "Adding color failed contact size admin.")
+        messages.error(request, "Adding color failed invalid form data.")
         return redirect(reverse('edit_variant', args=[product_id, variant_id]))
-    # return HttpResponse(url)
-    # if request.method == 'POST':  # check post
-    #form = AddColorForm(request.POST)
-    #if form.is_valid():
-        #data = Color()
-        #data.subject = form.cleaned_data['name']
-        #data.comment = form.cleaned_data['code']
-        #data.save()  # save data to table
-        #return HttpResponse("succefully updated coleor")
-        #messages.success(request, "Your review has ben sent.")
-        #
 
 
+@login_required
 def add_size(request):
-    return HttpResponse("add Size")
-    # return HttpResponse(url)
-    if request.method == 'POST':  # check post
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            form.save()  # save data to table
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return redirect(reverse('RR_home'))
+
+    product_id = request.POST.get('product_id')
+    variant_id = request.POST.get('variant_id')
+
+    form_data = {
+                'name': request.POST['name'],
+                'code': request.POST['code'],
+            }
+    size_form = AddSizeForm(form_data)
+    if size_form.is_valid():
+        size_form.save()
+        messages.success(request, "Succesfully added size.")
+        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
+    else:
+        messages.error(request, "Adding size failed invalid form data.")
+        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
+
+
+@login_required
+def delete_color(request, product_id, variant_id, color_id):
+    """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return redirect(reverse('RR_home'))
+
+    color = get_object_or_404(Color, pk=color_id)
+    color.delete()
+    messages.success(request, 'Color deleted successfully!')
+    return redirect(reverse('edit_variant', args=[product_id, variant_id]))
+
+
+@login_required
+def delete_size(request, product_id, variant_id, size_id):
+    """ Delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return redirect(reverse('RR_home'))
+
+    size = get_object_or_404(Size, pk=size_id)
+    size.delete()
+    messages.success(request, 'Size deleted successfully!')
+    return redirect(reverse('edit_variant', args=[product_id, variant_id]))
