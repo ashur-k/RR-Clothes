@@ -575,3 +575,67 @@ def delete_size(request, product_id, variant_id, size_id):
     size.delete()
     messages.success(request, 'Size deleted successfully!')
     return redirect(reverse('edit_variant', args=[product_id, variant_id]))
+
+
+def color_management(request):
+    colors = Color.objects.all()
+    template = 'products/color_management.html'
+
+    context = {
+        'colors': colors,
+        }
+
+    return render(request, template, context)
+
+
+def ajax_add_color(request):
+
+    color = request.GET.get('name', None)
+    code = request.GET.get('code', None)
+
+    color_obj = Color.objects.create(
+        name=color,
+        code=code,
+    )
+
+    color = {
+        'id': color_obj.id,
+        'color': color_obj.name,
+        'code': color_obj.code,
+        }
+
+    data = {
+        'color': color
+    }
+    return JsonResponse(data)
+
+
+def ajax_edit_color(request):
+    color_id = request.GET.get('id', None)
+    color = request.GET.get('name', None)
+    code = request.GET.get('code', None)
+
+    color_obj = Color.objects.get(id=color_id)
+    color_obj.name = color
+    color_obj.code = code
+    color_obj.save()
+
+    color = {
+        'id': color_obj.id,
+        'name': color_obj.name,
+        'code': color_obj.code,
+        }
+
+    data = {
+        'color': color
+    }
+    return JsonResponse(data)
+
+
+def ajax_delete_color(request):
+    color_id = request.GET.get('id', None)
+    Color.objects.get(id=color_id).delete()
+    data = {
+        'deleted': True
+    }
+    return JsonResponse(data)
