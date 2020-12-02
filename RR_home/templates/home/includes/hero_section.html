@@ -4,26 +4,53 @@
             <h1 class="display-1 logo-font text-white text-center mb-5">
                 R-Ryan Cloth
             </h1>
-             <script>
-                $(function() {
-                    $("#q").autocomplete({
-                        source: "{% url 'search_auto' %}",
-                        select: function (event, ui) { //item selected
-                            AutoCompleteSelectHandler(event, ui)
-                        },
-                        minLength: 2,
-                    });
-                });
-                function AutoCompleteSelectHandler(event, ui)
-                {
-                    var selectedObj = ui.item;
-                    console.log("selectedObj")
-                }
-            </script>
+            <style>
+                .hero-input[type="text"]
+                    {
+                        background: transparent;
+                        border: 1px solid black;
+                        height: 60px;
+                       
+                    }
+                    .hero-input::placeholder {
+                        color: #000;
+                        font-size: 24px;
+                        background-color:rgba(0,0,0,0.1);
+                        height: 30px;
+                        padding-left: 3px !important;
+                        border-radius: 5px;
+                    }
+                    .hero-input::placeholder:hover {
+                        color: transparent;               
+                    }
+                    .hero-section-button{
+                      
+                        background: transparent;
+                        width: 250px;
+                        height: 60px;
+                        margin-left: 5px;
+                        border-radius: 5px;
+                        border: 1px solid black;
+                        color: #000;
+                                            }
+                    .hero-section-button:hover{
+                        background-color: black;
+                        color: #fff;
+                    }
+                    .hero-input:focus {
+                        
+                        font-size: 24px;
+                        color: #000;
+                    }
+                    .hero-input:focus:hover{
+                        background-color:rgba(0,0,0,0.1);
+                    }
+                    
+            </style>
             <form method="GET" action="{% url 'all_products' %}">
                 <div class="input-group form-contianer mt-5">
-                    <input type="text" id="q" name="q" class="form-control search-input" placeholder="search" autofocus autocomplete="off">
-                    <button class="btn btn-danger">Search</button>
+                    <input type="text" id="q" name="q" class="form-control search-input hero-input p-2" placeholder="search" autofocus autocomplete="off">
+                    <button class="btn bg-black hero-section-button">Search</button>
                 </div>
             </form>
         </div>

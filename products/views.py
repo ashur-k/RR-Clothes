@@ -80,26 +80,6 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
-def search_auto(request):
-    if request.is_ajax():
-        q = request.GET.get('term', '')
-        products = Product.objects.filter(title__icontains=q)
-        print(products.count())
-
-        results = []
-        for rs in products:
-            product_json = {}
-            product_json = rs.title + " > " + rs.category.title
-            results.append(product_json)
-            print(rs.title)
-        print(results)
-        data = json.dumps(results)
-    else:
-        data = 'fail'
-    mimetype = 'application/json'
-    return HttpResponse(data, mimetype)
-
-
 def product_detail(request, product_id):
     """ A view to show product details """
     query = request.GET.get('q')
