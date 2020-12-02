@@ -13,15 +13,19 @@
 
                 <li  {% if variant.id == rs.id %} class="active" {% endif %}>
                     <a style=" color: #204d74;  width: 90px">
-                        {{ rs.size }}<br> ${{ rs.price }}
+                        {{ rs.size }}  ${{ rs.price }}
                     </a>
-                </li>   
-                    {% if product.discount_30_percent == 1  %}
-                    <li>
-                        <p>30% {{ rs.percent_30_discount }}</p>
-                    </li>
-                    {% endif %}                                                    
+                </li>                                                                    
             {% endfor %}
+            {% if product.discount_30_percent == 1  %}
+            <br><br>            
+            <li>      
+                <p class="lead mb-2 text-left">
+                    30% Discount<strong>Product price: ${{ variant.percent_30_discount|floatformat:2 }}</strong>                  
+                </p>    
+            </li>  
+                      
+            {% endif %}
         </ul>
     </div>
 </form>

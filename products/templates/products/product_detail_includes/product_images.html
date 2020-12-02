@@ -1,22 +1,22 @@
 <div id="product-main-view">
     <div class="product-view">				
         <div class="product-view">
-            <img src="{{ product.image.url }}" alt="" style="height: 400px">
+            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}" alt="" >
         </div>
     </div>
     {% for rs in images %}
     <div class="product-view">
-        <img src="{{rs.image.url}}" alt="">
+        <img class="img-thumbnail" src="{{rs.image.url}}" alt="">
     </div>
     {% endfor %}							
 </div>
 <div id="product-view">
-    <div class="product-view">
-        <img src="{{product.image.url}}" alt="">
+    <div class="product-view img-fluid">
+        <img src="{{product.image.url}}" alt="Responsive image" >
     </div>
     {% for rs in images %}
     <div class="product-view">
-        <img src="{{rs.image.url}}" alt="">
+        <img class="img-thumbnail" src="{{rs.image.url}}" alt="img-thumbnail">
     </div>
     {% endfor %}						
 </div>

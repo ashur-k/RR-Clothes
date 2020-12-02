@@ -22,10 +22,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-1">
     <div class="row">
-        <div class="col-12 text-center mt-3">
-           <h2>{{ product.title }}</h2>
+        <div class="col-12 text-center mt-1">
+           <h2>Product Detail</h2>
            {% if request.user.is_superuser %}
                 {% if product.has_variant == 1 %}
                 <p><a class="btn btn-dark btn-sm" href="{% url 'product_management' product.id %}">Product/Variant Management</a></p>
@@ -46,34 +46,40 @@
                 <div class="col-12 col-md-6 col-lg-6">
                     <div class="row">
                         <div class="col-12">
-                            <div class="product-details-container mb-5 mt-md-5">
-                                <p class="lead mb-2 text-left">Category: {{ product.category.name }}</p>
-                                <p class="lead mb-2 text-left">Product: {{ product.title }}</p>
+                            <div class="product-details-container mb-1">
+                                <p class="lead mb-2 text-left">{{ product.title }}</p>
                                 {% if product.category %}
-                                            <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'all_products' %}?category={{ product.category.name }}">
-                                                    <i class="fas fa-tag mr-1"></i>category: {{ product.category.friendly_name }}
-                                                </a>
-                                            </p>
-                                            {% endif %}
-                                            {% if product.rate %}                                          
-                                                    <div class="product-rating" style="color: gold;">
-                                                        <small class="text-muted" style="color: gold;">
-                                                            <i class="fa fa-star{% if product.rate < 1%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.rate < 2%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.rate < 3%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.rate < 4%}-o empty{% endif%}"></i> 
-                                                            <i class="fa fa-star{% if product.rate < 5%}-o empty{% endif%}"></i>
-                                                        </small>
-                                                        {{ product.avaregereview |stringformat:".2f"}}
-                                                    </div>
-                                            {% else %}
-                                                <small class="text-muted">No Rating</small>
-                                            {% endif %}
+                                    <p class="small mt-1 mb-0">
+                                        <a class="text-muted" href="{% url 'all_products' %}?category={{ product.category.name }}">
+                                            <i class="fas fa-tag mr-1"></i>category: {{ product.category.friendly_name }}
+                                        </a>
+                                    </p>
+                                {% endif %}
+                                {% if product.rate %}                                          
+                                        <div class="product-rating" style="color: gold;">
+                                            <small class="text-muted" style="color: gold;">
+                                                <i class="fa fa-star{% if product.rate < 1%}-o empty{% endif%}"></i> 
+                                                <i class="fa fa-star{% if product.rate < 2%}-o empty{% endif%}"></i> 
+                                                <i class="fa fa-star{% if product.rate < 3%}-o empty{% endif%}"></i> 
+                                                <i class="fa fa-star{% if product.rate < 4%}-o empty{% endif%}"></i> 
+                                                <i class="fa fa-star{% if product.rate < 5%}-o empty{% endif%}"></i>
+                                            </small>
+                                            {{ product.avaregereview |stringformat:".2f"}}
+                                        </div>
+                                {% else %}
+                                    <small class="text-muted">No Rating</small>
+                                {% endif %}
                                 <a href="#tab1"> {{ product.countreview }}  Review(s) / Add Review</a>
+                                {% if product.variant == 'None'  %}
                                 <p class="lead mb-2 text-left">
                                     Price: ${{ product.price }}                     
                                 </p>
+                                {% if product.percent_30_discount %}
+                                    <p class="lead mb-2 text-left">
+                                        30% Discount<strong>Product price: ${{ product.percent_30_discount|floatformat:2 }}</strong>                  
+                                    </p>  
+                                {% endif %}
+                                {% endif %}
                                 <p class="mt-3">Description: {{ product.description }}</p>    
                                 <script>
                                     $(document).on('change', '#post-form',function(e){

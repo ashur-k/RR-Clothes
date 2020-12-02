@@ -1,13 +1,12 @@
 <form method="post" action="?q=selectvariant" id="post-color">
 {% csrf_token %}
-
-    <h1>tesing this block</h1>
     <div id="appendHere">
         <input type="hidden" name="size" id="size" value="{{ size_id }}">
         <ul class="color-option" >
                 <li><span class="text-uppercase">Color:</span></li>
                 {% if colors %}
                     {% for rs in colors %}
+                    <li>
                              <input type="radio" 
                             {% if variant.id == rs.id %} 
                                 checked {% endif %} 
@@ -16,7 +15,7 @@
                                 value="{{ rs.id }}" 
                                 onchange="this.form.submit();">
                         <!--Input close here-->
-
+</li>
                         <li  
                             {% if variant.id == rs.id %} 
                             class="active" {% endif %}>
@@ -25,11 +24,17 @@
                             </a>
                             <img src="{{ rs.image }}" style="height: 70px">
                         </li>
-                    <li>       
+                          
                     {% endfor %}
-                {%else%}
-                <p>something went wrong</p>
-            {% endif %}
+                    {%else%}
+                    <p>something went wrong</p>
+                    
+                    {% endif %}
+                    {% if product.discount_30_percent == 1  %}              
+                       <p class="lead mb-2 text-left">
+                           30% Discount<strong>Product price: ${{ variant.percent_30_discount|floatformat:2 }}</strong>                  
+                        </p>                 
+                {% endif %}
 
         </ul>
     </div>

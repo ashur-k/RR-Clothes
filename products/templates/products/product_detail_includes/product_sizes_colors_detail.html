@@ -28,17 +28,18 @@
                     <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
                     <li  {% if variant.id == rs.id %} class="active" {% endif %}>
                         <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
-                            {{ rs.price }} {{ rs.color }} {{ rs.id }} {{ variant.id }}
+                            {{ rs.price }} {{ rs.color }}
                         </a>
                         <img src="{{ rs.image }}" style="height: 70px">
                         
                     </li>
-                    {% if product.discount_30_percent == 1  %}
-                    <li>
-                        <p>Product price is {{ rs.percent_30_discount }}</p>
-                    </li>
-                    {% endif %}
+                    
                 {% endfor %}
+                {% if product.discount_30_percent == 1  %}              
+                       <p class="lead mb-2 text-left">
+                           30% Discount<strong>Product price: ${{ variant.percent_30_discount|floatformat:2 }}</strong>                  
+                        </p>                 
+                {% endif %}
             </ul>
         </div>
     </form>

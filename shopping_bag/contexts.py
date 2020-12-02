@@ -13,10 +13,9 @@ def bag_contents(request):
 
     for item_id, quantity in bag.items():
         variant = get_object_or_404(Variants, pk=item_id)
-                
-        if variant.product.discount_30_percent == 1:
-            variant.price = variant.percent_30_discount()            
 
+        if variant.product.discount_30_percent == 1:
+            variant.price = variant.percent_30_discount()
         total += quantity * variant.price
         product_count += quantity
         bag_items.append({
@@ -33,8 +32,7 @@ def bag_contents(request):
         free_delivery_delta = 0
 
     grand_total = delivery + total
-    
-    # if I am able to get discout price here I can subtract it from grand total
+
     context = {
         'bag_items': bag_items,
         'total': total,

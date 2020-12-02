@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 from django.db.models import Avg, Count
+from decimal import Decimal
 
 
 # Create your models here.
@@ -60,7 +61,6 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
 
@@ -83,6 +83,11 @@ class Product(models.Model):
         if reviews["count"] is not None:
             cnt = int(reviews["count"])
         return cnt
+
+    def percent_30_discount(self):
+        if self.discount_30_percent == 1:
+            discount_price = self.price * 30 / 100
+            return discount_price
 
 
 class Images(models.Model):
