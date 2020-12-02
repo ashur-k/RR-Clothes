@@ -63,9 +63,9 @@
                                     </td>
                                     <td class="py-3">
                                     {% if item.product.price %}
-                                        <p class="my-0">${{ item.product.price }}</p>
+                                        <p class="my-0">${{ item.product.price | floatformat:2 }}</p>
                                     {% else %}
-                                        <p class="my-0">${{ item.variant.price }}</p>
+                                        <p class="my-0">${{ item.variant.price| floatformat:2 }}</p>
                                     {% endif %}
                                     </td>
                                     <td class="py-3 w-25">
@@ -83,9 +83,9 @@
                                     
                                     <td class="py-3">
                                     {% if item.product.price %}
-                                        <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                        <p class="my-0">${{ item.product.price|floatformat:2 | calc_subtotal:item.quantity }}</p>
                                     {% else %}
-                                        <p class="my-0">${{ item.variant.price | calc_subtotal:item.quantity }}</p>
+                                        <p class="my-0">${{ item.variant.price|floatformat:2 | calc_subtotal:item.quantity }}</p>
                                     {% endif %}
                                     </td>
                                 </tr>

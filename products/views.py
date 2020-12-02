@@ -304,6 +304,7 @@ def product_management(request, product_id):
             'variant': variant,
             'images': images,
             'image_form': image_form,
+            'other_page': True
             }
         return render(request, template, context)
 
@@ -394,7 +395,6 @@ def edit_variant(request, product_id, variant_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Variant updated succesfully.")
-            return redirect(reverse('product_management', args=[product_id]))
         else:
             messages.error(request, 'Failed to updated variant.')
     else:
@@ -416,6 +416,7 @@ def edit_variant(request, product_id, variant_id):
         'form': form,
         'variant': variant,
         'product': product,
+        'other_page': True
     }
     return render(request, template, context)
 

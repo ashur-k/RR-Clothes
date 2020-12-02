@@ -14,6 +14,7 @@ def user_profiles(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     user = get_object_or_404(User, id=request.user.id)
 
+
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
@@ -30,7 +31,8 @@ def user_profiles(request):
         'form': form,
         'orders': orders,
         'profile': profile,
-        'user': user
+        'user': user,
+        'other_page': True
     }
     return render(request, template, context)
 
