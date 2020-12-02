@@ -295,7 +295,10 @@ a{
     overflow-y: auto;
 }
 
-
+/* product rating star*/
+.product-rating > small i {
+    color: gold;
+     }
 @keyframes fade{
 	0%{
 		opacity: 0;

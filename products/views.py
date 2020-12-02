@@ -503,77 +503,11 @@ def add_comment(request, product_id):
 
 
 @login_required
-def add_color(request):
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry only store owners can do that')
-        return redirect(reverse('RR_home'))
-    product_id = request.POST.get('product_id')
-    variant_id = request.POST.get('variant_id')
-
-    form_data = {
-                'name': request.POST['name'],
-                'code': request.POST['code'],
-            }
-    color_form = AddColorForm(form_data)
-    if color_form.is_valid():
-        color_form.save()
-        messages.success(request, "Succesfully added color.")
-        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
-    else:
-        messages.error(request, "Adding color failed invalid form data.")
-        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
-
-
-@login_required
-def add_size(request):
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry only store owners can do that')
-        return redirect(reverse('RR_home'))
-
-    product_id = request.POST.get('product_id')
-    variant_id = request.POST.get('variant_id')
-
-    form_data = {
-                'name': request.POST['name'],
-                'code': request.POST['code'],
-            }
-    size_form = AddSizeForm(form_data)
-    if size_form.is_valid():
-        size_form.save()
-        messages.success(request, "Succesfully added size.")
-        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
-    else:
-        messages.error(request, "Adding size failed invalid form data.")
-        return redirect(reverse('edit_variant', args=[product_id, variant_id]))
-
-
-@login_required
-def delete_color(request, product_id, variant_id, color_id):
-    """ Delete a product from the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry only store owners can do that')
-        return redirect(reverse('RR_home'))
-
-    color = get_object_or_404(Color, pk=color_id)
-    color.delete()
-    messages.success(request, 'Color deleted successfully!')
-    return redirect(reverse('edit_variant', args=[product_id, variant_id]))
-
-
-@login_required
-def delete_size(request, product_id, variant_id, size_id):
-    """ Delete a product from the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry only store owners can do that')
-        return redirect(reverse('RR_home'))
-
-    size = get_object_or_404(Size, pk=size_id)
-    size.delete()
-    messages.success(request, 'Size deleted successfully!')
-    return redirect(reverse('edit_variant', args=[product_id, variant_id]))
-
-
 def color_management(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return redirect(reverse('RR_home'))
+
     colors = Color.objects.all()
     template = 'products/color_management.html'
 

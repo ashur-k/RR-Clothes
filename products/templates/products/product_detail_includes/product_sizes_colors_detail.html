@@ -40,9 +40,6 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            {% if request.user.is_superuser %}
-                <a class="btn btn-dark btn-sm" href="{% url 'add_variant' product.id %}">Add Variant</a>
-            {% endif %}
         </div>
     </form>
 </div>   

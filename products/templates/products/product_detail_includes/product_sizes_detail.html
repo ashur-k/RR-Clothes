@@ -13,7 +13,7 @@
 
                 <li  {% if variant.id == rs.id %} class="active" {% endif %}>
                     <a style=" color: #204d74;  width: 90px">
-                        ${{ rs.size }}<br> {{ rs.price }} 30% discount {{ rs.percent_30_discount }}
+                        {{ rs.size }}<br> ${{ rs.price }}
                     </a>
                 </li>   
                     {% if product.discount_30_percent == 1  %}
@@ -24,8 +24,4 @@
             {% endfor %}
         </ul>
     </div>
-    <br>
-     {% if request.user.is_superuser %}
-                <a class="btn btn-dark btn-sm" href="{% url 'add_variant' product.id %}">Add Variant</a>
-        {% endif %}
 </form>
