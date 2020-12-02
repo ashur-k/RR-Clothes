@@ -28,4 +28,5 @@ urlpatterns = [
     path('size_management/', views.size_management, name='size_management'),
     path('ajax_add_size',  views.ajax_add_size, name='ajax_add_size'),
     path('ajax_edit_size',  views.ajax_edit_size, name='ajax_edit_size'),
+    path('ajax_delete_size', views.ajax_delete_size, name='ajax_delete_size'),
 ]

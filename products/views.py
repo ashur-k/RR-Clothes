@@ -625,6 +625,7 @@ def ajax_edit_color(request):
     data = {
         'color': color
     }
+    print(data)
     return JsonResponse(data)
 
 
@@ -672,6 +673,9 @@ def ajax_add_size(request):
 
 def ajax_edit_size(request):
     size_id = request.GET.get('id', None)
+    print('here')
+    print(size_id)
+    print('there')
     size = request.GET.get('name', None)
     code = request.GET.get('code', None)
 
@@ -688,5 +692,14 @@ def ajax_edit_size(request):
 
     data = {
         'size': size
+    }
+    return JsonResponse(data)
+
+
+def ajax_delete_size(request):
+    size_id = request.GET.get('id', None)
+    Size.objects.get(id=size_id).delete()
+    data = {
+        'deleted': True
     }
     return JsonResponse(data)

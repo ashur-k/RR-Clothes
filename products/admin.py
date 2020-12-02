@@ -45,7 +45,7 @@ class ColorAdmin(admin.ModelAdmin):
 
 
 class SizeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'code']
+    list_display = ['id', 'name', 'code']
 
 
 class VariantsAdmin(admin.ModelAdmin):

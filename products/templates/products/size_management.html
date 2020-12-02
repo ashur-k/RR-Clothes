@@ -40,8 +40,7 @@
                 </thead>
                 <tbody>
                 {% for size in sizes %}
-                    <tr id="size-{{size.id}}">
-                
+                    <tr id="size-{{size.id}}">                
                         <td class="sizeName sizeData" name="name">{{size.name}}</td>
                         <td class="sizeCode sizeData" name="code">{{ size.code }}</td>
                         <td align="center">
@@ -62,7 +61,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
-            <form id="editsize" action="">
+            <form id="editSize" action="">
                 <div class="modal-body">
                     <input class="form-control" id="form-size-id" type="hidden" name="sizeId"/>
                     <label for="name">Name</label>
@@ -71,7 +70,7 @@
                     <input class="form-control" id="form-size-code" type="text" name="sizeCode"/>
                 </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" >Save changes</button>
+                <button type="submit" class="btn btn-primary" onclick="editSize({{size.id}})">Save changes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             </form>
@@ -108,8 +107,8 @@ function appendToSizeTable(size) {
   $("#size> tbody:last-child").append(`
         <tr id="size-${size.size.id}">
             
-            <td class="" name="name">${size.size.size}</td>
-            '<td class="" code="code">${size.size.code}</td>
+            <td class="sizeName sizeData" name="name">${size.size.size}</td>
+            '<td class="sizeCode sizeData" code="code">${size.size.code}</td>
             '<td align="center">
                 <button class="btn btn-success form-control" onClick="editSize(${size.size.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
             </td>
@@ -124,6 +123,9 @@ $("form#editSize").submit(function() {
     var sizeIdInput = $('input[name="sizeId"]').val().trim();
     var sizeNameInput = $('input[name="sizeName"]').val().trim();
     var sizeCodeInput = $('input[name="sizeCode"]').val().trim();
+    console.log(sizeIdInput)
+    console.log(sizeNameInput)
+    console.log(sizeCodeInput)
     if (sizeIdInput && sizeNameInput && sizeCodeInput) {
         // Create Ajax Call
         $.ajax({
@@ -137,30 +139,31 @@ $("form#editSize").submit(function() {
             success: function (data) {
                 console.log(data.size)
                 if (data) {
-                  editToColorTabel(data);
+                  editToSizeTabel(data);
                 }
             }
         });
        } else {
         alert("All fields must have a valid value.");
     }
-    $('form#editsize').trigger("reset");
+    $('form#editSize').trigger("reset");
     $('#myModal').modal('hide');
     return false;
 });
 // Update Django Ajax Call
-function editColor(id) {
+function editSize(id) {
   if (id) {
-    tr_id = "#color-" + id;
+    tr_id = "#size-" + id;
     name = $(tr_id).find(".sizeName").text();
     code = $(tr_id).find(".sizeCode").text();
+    
     $('#form-size-id').val(id);
     $('#form-size-name').val(name);
     $('#form-size-code').val(code);
   }
 }
-function editToColorTabel(size){
-    $("#color #color-" + size.size.id).children(".sizeData").each(function() {
+function editToSizeTabel(size){
+    $("#size #size-" + size.size.id).children(".sizeData").each(function() {
         var attr = $(this).attr("name");
         if (attr == "name") {
           $(this).text(size.size.name);
@@ -168,6 +171,23 @@ function editToColorTabel(size){
           $(this).text(size.size.code);
         }
       });
+}
+function deleteSize(id) {
+  var action = confirm("Are you sure you want to delete this user?");
+  if (action != false) {
+    $.ajax({
+        url: '{% url "ajax_delete_size" %}',
+        data: {
+            'id': id,
+        },
+        dataType: 'json',
+        success: function (data) {
+            if (data.deleted) {
+              $("#size #size-" + id).remove();
+            }
+        }
+    });
+  }
 }
     </script>
 {% endblock %}

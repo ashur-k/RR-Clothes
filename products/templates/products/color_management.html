@@ -111,11 +111,10 @@
 function appendToColorTable(color) {
     console.log(color)
   $("#color> tbody:last-child").append(`
-        <tr id="color-${color.color.id}">
-            
-            <td class="" name="name">${color.color.color}</td>
-            '<td class="" code="code">${color.color.code}</td>
-            <td style="background-color:${color.color.code};"></td>
+        <tr id="color-${color.color.id}">            
+            <td class="colorName colorData" name="name">${color.color.color}</td>
+            '<td class="colorCode colorData" name="code">${color.color.code}</td>
+            '<td style="background-color:${color.color.code};"></td>
             '<td align="center">
                 <button class="btn btn-success form-control" onClick="editColor(${color.color.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
             </td>
@@ -193,7 +192,6 @@ function deleteColor(id) {
         }
     });
   }
-}
-    
+}    
     </script>
 {% endblock %}
