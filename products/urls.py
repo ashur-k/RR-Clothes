@@ -25,4 +25,7 @@ urlpatterns = [
     path('ajax_add_color',  views.ajax_add_color, name='ajax_add_color'),
     path('ajax_edit_color',  views.ajax_edit_color, name='ajax_edit_color'),
     path('ajax_delete_color', views.ajax_delete_color, name='ajax_delete_color'),
+    path('size_management/', views.size_management, name='size_management'),
+    path('ajax_add_size',  views.ajax_add_size, name='ajax_add_size'),
+    path('ajax_edit_size',  views.ajax_edit_size, name='ajax_edit_size'),
 ]

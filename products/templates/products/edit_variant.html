@@ -32,19 +32,5 @@
                 </form>
             </div>            
         </div>
-        <div class="row mb-4">
-                {% if product.variant == 'Color' or product.variant == 'Size-Color' %}
-                    <a type="button" class="btn btn-dark m-2 btn-lg" data-toggle="modal" data-target="#colorModal" data-whatever="@mdo">Color Management</a>
-                {% include 'products/modals_includes/add_color_modal.html' %}
-                 {% endif %}        
-                {% if product.variant == 'Size' or product.variant == 'Size-Color' %}
-                        <a type="button" class="btn btn-dark m-2 btn-lg" data-toggle="modal" data-target="#sizeModal" data-whatever="@mdo">Add new Size</a>
-                    {% include 'products/modals_includes/add_size_modal.html' %}
-                {% endif %}
-        </div>
-        
-                    
-       
-            
     </div>
 {% endblock %}

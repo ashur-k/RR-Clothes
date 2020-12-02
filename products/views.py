@@ -402,8 +402,6 @@ def edit_variant(request, product_id, variant_id):
         return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     product = get_object_or_404(Product, pk=product_id)
-    colors = Color.objects.all()
-    sizes = Size.objects.all()
 
     if request.method == 'POST':
         if product.variant == "Color":
@@ -411,14 +409,14 @@ def edit_variant(request, product_id, variant_id):
         elif product.variant == "Size":
             form = ProductSizeForm(request.POST, instance=variant)
         elif product.variant == "Size-Color":
-            form = ProductVariantForm(instance=variant)
+            form = ProductVariantForm(request.POST, instance=variant)
 
         if form.is_valid():
             form.save()
             messages.success(request, "Variant updated succesfully.")
             return redirect(reverse('product_management', args=[product_id]))
         else:
-            messages.error(request, 'Failed to updated Product.')
+            messages.error(request, 'Failed to updated variant.')
     else:
         if product.variant == "Color":
             form = ProductColorForm(instance=variant)
@@ -438,8 +436,6 @@ def edit_variant(request, product_id, variant_id):
         'form': form,
         'variant': variant,
         'product': product,
-        'colors': colors,
-        'sizes': sizes,
     }
     return render(request, template, context)
 
@@ -637,5 +633,60 @@ def ajax_delete_color(request):
     Color.objects.get(id=color_id).delete()
     data = {
         'deleted': True
+    }
+    return JsonResponse(data)
+
+
+def size_management(request):
+    sizes = Size.objects.all()
+    template = 'products/size_management.html'
+
+    context = {
+        'sizes': sizes,
+        }
+
+    return render(request, template, context)
+
+
+def ajax_add_size(request):
+
+    size = request.GET.get('name', None)
+    code = request.GET.get('code', None)
+
+    size_obj = Size.objects.create(
+        name=size,
+        code=code,
+    )
+
+    size = {
+        'id': size_obj.id,
+        'size': size_obj.name,
+        'code': size_obj.code,
+        }
+
+    data = {
+        'size': size
+    }
+    return JsonResponse(data)
+
+
+def ajax_edit_size(request):
+    size_id = request.GET.get('id', None)
+    size = request.GET.get('name', None)
+    code = request.GET.get('code', None)
+
+    size_obj = Size.objects.get(id=size_id)
+    size_obj.name = size
+    size_obj.code = code
+    size_obj.save()
+
+    size = {
+        'id': size_obj.id,
+        'name': size_obj.name,
+        'code': size_obj.code,
+        }
+
+    data = {
+        'size': size
     }
     return JsonResponse(data)
