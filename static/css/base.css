@@ -55,8 +55,12 @@ html {
 }
 
 .btn-black {
-    background: white;
-    color: black;
+    background:black ;
+    color: white;
+    
+}
+.btn-black:hover{
+    border: 1px solid white;
 }
 
 .shop-now-button:hover,
