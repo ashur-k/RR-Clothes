@@ -62,7 +62,9 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="small mb-0 text-black font-weight-bold">
-                                {{ item.product.name }}{% if item.product_size %} - Size {{ item.product.size|upper }}{% endif %}
+                                {{ item.variant.title }}
+                                {% if item.variant.size %} - Size {{ item.variant.size|upper }}{% endif %}
+                                {% if item.variant.color %} - Color {{ item.variant.color|upper }}{% endif %}
                             </p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
