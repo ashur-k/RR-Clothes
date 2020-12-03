@@ -5,71 +5,52 @@
     -moz-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 7.5); 
     -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 7.5);
 }
+.category-card-title{
+  
+    -webkit-text-stroke: 1px black;
+    -webkit-text-fill-color: rgba(0,0,0,0.9);
+}
 </style>
 
 <section style="padding: 100px;">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="text-center">Explore Different Categories</h1>
+                <h1 class="text-center">EXPLORE DIFFERENT CATEGORIES</h1>
                 <p class="mt-1 p-3 text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur maiores, 
                     magni eaque fugit nam accusantium earum eos, commodi odit eveniet quibusdam impedi
                 </p>
                 <hr>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4 mt-2">
                 <div class="category-card card bg-dark text-black">
-                    <img src="{{ category_4.image.url }}" class="card-img" alt="..." width="auto" height="830px">
+                    <img src="{{ category_1.image.url }}" class="card-img" alt="..." width="auto" height="auto" style="max-height:640px" >
                     <div class="card-img-overlay">
-                        <h5 class="card-title">{{ category_4.get_friendly_name }}</h5>                                       
-                        <a href="{% url 'all_products' %}?category={{ category_4.name }}" class="btn btn-sm btn-black">Explore Category</a>
+                        <h5 class="card-title category-card-title">{{ category_1.get_friendly_name }}</h5>                                       
+                        <a href="{% url 'all_products' %}?category={{ category_1.name }}" class="btn btn-sm btn-black">Explore Category</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8" style="padding: 20px;">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-1">
+             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mt-2">
                         <div class="category-card card bg-dark text-black">
-                            <img src="{{ category_2.image.url }}" class="card-img" alt="..." height="400px">
+                            <img src="{{ category_2.image.url }}" class="card-img" alt="..." width="auto" style="max-height:640px" >
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_2.get_friendly_name }}</h5>
+                                <h5 class="card-title category-card-title">{{ category_2.get_friendly_name }}</h5>
                                                                         
                                 <a href="{% url 'all_products' %}?category={{ category_2.name }}" class="btn btn-sm btn-black">Explore Category</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                        <div class="category-card card bg-dark text-black mt-1">
-                            <img src="{{ category_3.image.url }}" class="card-img" alt="..." height="400px">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_3.get_friendly_name }}</h5>
-                                                                        
-                                <a href="{% url 'all_products' %}?category={{ category_3.name }}" class="btn btn-sm btn-black">Explore Category</a>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-1">
-                        <div class="category-card card bg-dark text-black">
-                            <img src="{{ category_1.image.url }}" class="card-img" alt="..." height="400px">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_1.get_friendly_name }}</h5>                                                                      
-                                <a href="{% url 'all_products' %}?category={{ category_1.name }}" class="btn btn-sm btn-black">Explore Category</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-1">
-                        <div class="category-card card bg-dark text-black">
-                            <img src="{{ category_5.image.url }}" class="card-img" alt="..." height="400px">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_5.get_friendly_name }}</h5>                                                                      
-                                <a href="{% url 'all_products' %}?category={{ category_5.name }}" class="btn btn-sm btn-black">Explore Category</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>            
             </div>
-        </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mt-2">
+                <div class="category-card card bg-dark text-black mt-1">
+                    <img src="{{ category_3.image.url }}" class="card-img" alt="..." width="auto" style="max-height:640px" >
+                    <div class="card-img-overlay">
+                        <h5 class="card-title category-card-title">{{ category_3.get_friendly_name }}</h5>
+                                                                
+                        <a href="{% url 'all_products' %}?category={{ category_3.name }}" class="btn btn-sm btn-black">Explore Category</a>
+                    </div>
+                </div>
+            </div>
+           
     </div>
 </section>

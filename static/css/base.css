@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 .bg-black{
     background-color: black;
 }
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Roboto';
 }
 html {
     height: 100%;
@@ -211,17 +213,19 @@ a{
     display: flex!important;
     align-items: center !important;
     justify-content: center!important;
+    border: 15px solid #dc3545;
+
 }
 .happening-events-custom-container{
     
     max-width:  700px;
     width: 100%;
-  
+    
     height: 50vh;
     display: flex!important;
     align-items: center !important;
     justify-content: center!important;
-
+    
 }
 
 .custom{
