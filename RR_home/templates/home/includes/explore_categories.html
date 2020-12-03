@@ -22,7 +22,7 @@
                     <img src="{{ category_4.image.url }}" class="card-img" alt="..." width="auto" height="830px">
                     <div class="card-img-overlay">
                         <h5 class="card-title">{{ category_4.get_friendly_name }}</h5>                                       
-                        <a href="" class="btn btn-sm btn-black">Explore Category</a>
+                        <a href="{% url 'all_products' %}?category={{ category_4.name }}" class="btn btn-sm btn-black">Explore Category</a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             <div class="card-img-overlay">
                                 <h5 class="card-title">{{ category_2.get_friendly_name }}</h5>
                                                                         
-                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-black">Explore Category</a>
+                                <a href="{% url 'all_products' %}?category={{ category_2.name }}" class="btn btn-sm btn-black">Explore Category</a>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             <div class="card-img-overlay">
                                 <h5 class="card-title">{{ category_3.get_friendly_name }}</h5>
                                                                         
-                                <a href="" class="btn btn-sm btn-black">Explore Category</a>
+                                <a href="{% url 'all_products' %}?category={{ category_3.name }}" class="btn btn-sm btn-black">Explore Category</a>
                             </div>
                         </div>
                     </div>                
@@ -55,7 +55,7 @@
                             <img src="{{ category_1.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
                                 <h5 class="card-title">{{ category_1.get_friendly_name }}</h5>                                                                      
-                                <a href="" class="btn btn-sm btn-black">Explore Category</a>
+                                <a href="{% url 'all_products' %}?category={{ category_1.name }}" class="btn btn-sm btn-black">Explore Category</a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             <img src="{{ category_5.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
                                 <h5 class="card-title">{{ category_5.get_friendly_name }}</h5>                                                                      
-                                <a href="" class="btn btn-sm btn-black">Explore Category</a>
+                                <a href="{% url 'all_products' %}?category={{ category_5.name }}" class="btn btn-sm btn-black">Explore Category</a>
                             </div>
                         </div>
                     </div>
