@@ -19,9 +19,9 @@
             </div>
             <div class="col-sm-4  m-1">
                 <div class="category-card card bg-dark text-black">
-                    <img src="{{ category_4.image.url }}" class="card-img" alt="..." height="830px">
+                    <img src="{{ category_4.image.url }}" class="card-img" alt="..." width="auto" height="830px">
                     <div class="card-img-overlay">
-                        <h5 class="card-title">{{ category_4.name }}</h5>                                       
+                        <h5 class="card-title">{{ category_4.get_friendly_name }}</h5>                                       
                         <a href="" class="btn btn-sm btn-primary">Product details</a>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         <div class="category-card card bg-dark text-black  m-1">
                             <img src="{{ category_2.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_2.name }}</h5>
+                                <h5 class="card-title">{{ category_2.get_friendly_name }}</h5>
                                                                         
                                 <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-primary">Product details</a>
                             </div>
@@ -42,7 +42,7 @@
                         <div class="category-card card bg-dark text-black  m-1">
                             <img src="{{ category_3.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_3.name }}</h5>
+                                <h5 class="card-title">{{ category_3.get_friendly_name }}</h5>
                                                                         
                                 <a href="" class="btn btn-sm btn-primary">Product details</a>
                             </div>
@@ -54,7 +54,7 @@
                         <div class="category-card card bg-dark text-black  m-1">
                             <img src="{{ category_1.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_1.name }}</h5>                                                                      
+                                <h5 class="card-title">{{ category_1.get_friendly_name }}</h5>                                                                      
                                 <a href="" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="category-card card bg-dark text-black  m-1">
                             <img src="{{ category_5.image.url }}" class="card-img" alt="..." height="400px">
                             <div class="card-img-overlay">
-                                <h5 class="card-title">{{ category_5.name }}</h5>                                                                      
+                                <h5 class="card-title">{{ category_5.get_friendly_name }}</h5>                                                                      
                                 <a href="" class="btn btn-sm btn-primary">Product details</a>
                             </div>
                         </div>
