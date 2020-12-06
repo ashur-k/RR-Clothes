@@ -32,7 +32,7 @@ class ProductVariantForm(forms.ModelForm):
 
     class Meta:
         model = Variants
-        fields = ['title', 'color', 'size', 'quantity', 'price']
+        fields = ['title', 'color', 'size', 'image_id', 'quantity', 'price']
 
 
 class ProductColorForm(forms.ModelForm):

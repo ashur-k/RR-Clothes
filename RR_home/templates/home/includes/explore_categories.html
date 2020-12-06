@@ -8,7 +8,7 @@
 .category-card-title{
   
     -webkit-text-stroke: 1px black;
-    -webkit-text-fill-color: rgba(0,0,0,0.9);
+    -webkit-text-fill-color: rgba(255,255,255,0.9);
 }
 </style>
 
@@ -26,7 +26,9 @@
                 <div class="category-card card bg-dark text-black">
                     <img src="{{ category_1.image.url }}" class="card-img" alt="..." width="auto" height="auto" style="max-height:640px" >
                     <div class="card-img-overlay">
-                        <h5 class="card-title category-card-title">{{ category_1.get_friendly_name }}</h5>                                       
+                     
+                            <h3 class="card-title category-card-title" >{{ category_1.get_friendly_name }}</h3>
+                                                      
                         <a href="{% url 'all_products' %}?category={{ category_1.name }}" class="btn btn-sm btn-black">Explore Category</a>
                     </div>
                 </div>
@@ -35,7 +37,7 @@
                         <div class="category-card card bg-dark text-black">
                             <img src="{{ category_2.image.url }}" class="card-img" alt="..." width="auto" style="max-height:640px" >
                             <div class="card-img-overlay">
-                                <h5 class="card-title category-card-title">{{ category_2.get_friendly_name }}</h5>
+                                <h3 class="card-title category-card-title">{{ category_2.get_friendly_name }}</h3>
                                                                         
                                 <a href="{% url 'all_products' %}?category={{ category_2.name }}" class="btn btn-sm btn-black">Explore Category</a>
                             </div>
@@ -45,7 +47,7 @@
                 <div class="category-card card bg-dark text-black mt-1">
                     <img src="{{ category_3.image.url }}" class="card-img" alt="..." width="auto" style="max-height:640px" >
                     <div class="card-img-overlay">
-                        <h5 class="card-title category-card-title">{{ category_3.get_friendly_name }}</h5>
+                        <h3 class="card-title category-card-title">{{ category_3.get_friendly_name }}</h3>
                                                                 
                         <a href="{% url 'all_products' %}?category={{ category_3.name }}" class="btn btn-sm btn-black">Explore Category</a>
                     </div>

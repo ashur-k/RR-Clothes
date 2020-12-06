@@ -8,13 +8,18 @@
         </button>
     </div>
     <div class="toast-body bg-white">
-        <div class="row">
+        
+
+        {% if other_page %}
+            <div class="row">
             <div class="col">
                 {{ message }}
                 <hr class="mt-1 mb-3">
             </div>
         </div>
-        {% if grand_total and not other_page %}
+        {% endif %}
+     
+        {% if grand_total and not on_other_page %}
             <p class="logo-font bg-white text-black py-1">Your Bag ({{ product_count }})</p>
             <div class="bag-notification-wrapper">
                 {% for item in bag_items %}

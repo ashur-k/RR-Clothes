@@ -15,19 +15,35 @@
                 <ul id="autoWidth" class="cs-hidden">
                 {% for item in products_slider %}
                     <li class="item-a">
-                        <div class="box">            
+                        <div class="box  blah">            
                             <div class="slide-img">
-                                <img src="{{ item.image.url }}" alt="" style="" >
+                                <style>
+                                    .blah{
+                                        background: #000;
+                                        
+                                    }
+                                </style>
+                                <img class="" src="{{ item.image.url }}" alt="" style="" >
                                 <div class="overlay_for_product_slider">
                                     <a href="{% url 'product_detail' item.id %}" class="buy-btn">Buy Now</a>
                                 </div>
                             </div>
                             <div class="detail-box">
                                 <div class="type">
-                                    <a href="">{{ item.title }}</a>
-                                    <span>{{ item.category }}</span>                    
+                                    <a href="" class="" style="color: #dc3545">{{ item.title }}</a>
+                                    <span class="" style="color: #dc3545">{{ item.category }}</span>  
+                                    <div class="product-rating" style="color: gold;">
+                                        <small class="text-muted" style="color: gold;">
+                                            <i class="fa fa-star{% if product.rate < 1%}-o empty{% endif%}"></i> 
+                                            <i class="fa fa-star{% if product.rate < 2%}-o empty{% endif%}"></i> 
+                                            <i class="fa fa-star{% if product.rate < 3%}-o empty{% endif%}"></i> 
+                                            <i class="fa fa-star{% if product.rate < 4%}-o empty{% endif%}"></i> 
+                                            <i class="fa fa-star{% if product.rate < 5%}-o empty{% endif%}"></i>
+                                        </small>
+                                        {{ product.avaregereview |stringformat:".2f"}}
+                                    </div>                  
                                 </div>
-                                <a href="" class="price">{{ item.price }}</a>
+                                <a href="" class="price text-white" style="color: #dc3545">${{ item.price }}</a>
                             </div>                
                         </div>
                     </li>

@@ -42,7 +42,7 @@
     <hr>   
     <div class="product-container col-10 offset-1">
         <div class="row">
-            <div class="col-6 col-md-6 col-lg-4 offset-lg-2 p-4">
+            <div class="col-sm-6 col-md-6 col-lg-4 offset-lg-2 p-4">
                 {% include 'products/product_detail_includes/product_images.html' %}
             </div>
             <div class="col-12 col-md-6 col-lg-6">
@@ -109,7 +109,7 @@
                             </script>
                         </div>
                     </div>
-                    <div class="col-12 col-md-12 col-lg-12">    
+                    <div class="col-sm-12 col-md-12 col-lg-12">    
                         {% if product.variant == 'Size-Color' %}
                             {% include 'products/product_detail_includes/product_sizes_colors_detail.html' %}                        
                         {% elif product.variant == 'Size' %}
@@ -225,7 +225,7 @@
                         </div>
                     </div>
                     {% if user.id is not None %}
-                        <button class="primary-btn">Submit</button>
+                        <button class="btn btn-sm btn-black">Submit</button>
                     {% else %}
                         <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                     {% endif %}

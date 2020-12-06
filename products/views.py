@@ -273,6 +273,7 @@ def add_variant(request, product_id):
 
     context = {
         'form': form,
+        'product': product
     }
     template = 'products/add_product_variant.html'
     return render(request, template, context)
@@ -304,7 +305,7 @@ def product_management(request, product_id):
             'variant': variant,
             'images': images,
             'image_form': image_form,
-            'other_page': True
+            'on_other_page': True
             }
         return render(request, template, context)
 
@@ -395,6 +396,7 @@ def edit_variant(request, product_id, variant_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Variant updated succesfully.")
+            return redirect(reverse('product_management', args=[product_id]))
         else:
             messages.error(request, 'Failed to updated variant.')
     else:
@@ -416,7 +418,7 @@ def edit_variant(request, product_id, variant_id):
         'form': form,
         'variant': variant,
         'product': product,
-        'other_page': True
+        'on_other_page': True
     }
     return render(request, template, context)
 
@@ -430,7 +432,7 @@ def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted successfully!')
-    return redirect(reverse('product_management', args=[product_id]))
+    return redirect('all_products')
 
 
 @login_required
@@ -439,10 +441,12 @@ def delete_variant(request, variant_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
+
     variant = get_object_or_404(Variants, pk=variant_id)
+    product_id = variant.product_id
     variant.delete()
     messages.success(request, 'Variant deleted successfully!')
-    return redirect(reverse('product_management', args=[variant.product_id]))
+    return redirect(reverse('product_management', args=[product_id]))
 
 
 @login_required
@@ -452,9 +456,10 @@ def delete_image(request, image_id):
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
     image = get_object_or_404(Images, pk=image_id)
+    product_id = image.product_id
     image.delete()
     messages.success(request, 'Image deleted successfully!')
-    return redirect(reverse('product_management', args=[image.product_id]))
+    return redirect(reverse('product_management', args=[product_id]))
 
 
 def add_comment(request, product_id):
