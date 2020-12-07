@@ -384,43 +384,27 @@ def edit_variant(request, product_id, variant_id):
         return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     product = get_object_or_404(Product, pk=product_id)
-    images = Images.objects.filter(product = product_id)
+    images = Images.objects.filter(product=product_id)
+    sizes = Size.objects.all()
+    colors = Color.objects.all()
 
     if request.method == 'POST':
-        if product.variant == "Color":
-            form = ProductColorForm(request.POST, instance=variant)
-        elif product.variant == "Size":
-            form = ProductSizeForm(request.POST, instance=variant)
-        elif product.variant == "Size-Color":
-            form = ProductVariantForm(request.POST, instance=variant)
-
+        form = ProductVariantForm(request.POST, instance=variant)
         if form.is_valid():
             form.save()
             messages.success(request, "Variant updated succesfully.")
             return redirect(reverse('product_management', args=[product_id]))
         else:
-            messages.error(request, 'Failed to updated variant.')
-    else:
-        if product.variant == "Color":
-            form = ProductColorForm(instance=variant)
-            messages.info(request, f'You are editing {variant.title}')
-        elif product.variant == "Size":
-            form = ProductSizeForm(instance=variant)
-            messages.info(request, f'You are editing {variant.title}')
-        elif product.variant == "Size-Color":
-            form = ProductVariantForm(instance=variant)
-            messages.info(request, f'You are editing {variant.title}')
-        else:
-            messages.error(request, 'Failed to updated Product.')
+            return HttpResponse("form is not valid")
 
     template = 'products/edit_variant.html'
 
     context = {
-        'form': form,
         'variant': variant,
         'product': product,
-        'on_other_page': True,
-        'images': images
+        'images': images,
+        'sizes': sizes,
+        'colors': colors,
     }
     return render(request, template, context)
 

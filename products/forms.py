@@ -36,10 +36,12 @@ class ProductVariantForm(forms.ModelForm):
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
-            image_ids = Images.objects.filter(self.product.id)
-            images_ids = [(i.id) for i in image_ids]
+            # this is pseudo code but you should get all variants
+            # then get the product related to each variant
+            all_images = Images.objects.filter(product=self.product.id)
+            images = [(i.id, i.title) for i in all_images]
 
-            self.fields['image_id'].choices = images_ids
+            self.fields['image_id'].choices = images
 
 
 class ProductColorForm(forms.ModelForm):
