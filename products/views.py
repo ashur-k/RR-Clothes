@@ -47,7 +47,7 @@ def all_products(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
+            products = products.filter(category__name__in=categories, status=True)
             categories = Category.objects.filter(name__in=categories)
 
         if 'product' in request.GET:
@@ -297,28 +297,15 @@ def product_management(request, product_id):
             image_form.save()
             messages.success(request, 'Image added successfully')
 
-    if product.has_variant == 0:
-        variant = get_object_or_404(Variants, product_id=product_id)
-        template = 'products/product_management.html'
-        context = {
-            'product': product,
-            'variant': variant,
-            'images': images,
-            'image_form': image_form,
-            'on_other_page': True
-            }
-        return render(request, template, context)
-
-    else:
-        variants = Variants.objects.filter(product_id=product_id)
-        template = 'products/product_management.html'
-        context = {
-            'product': product,
-            'variants': variants,
-            'images': images,
-            'image_form': image_form,
-        }
-        return render(request, template, context)
+    variants = Variants.objects.filter(product_id=product_id, status=True)
+    template = 'products/product_management.html'
+    context = {
+        'product': product,
+        'variants': variants,
+        'images': images,
+        'image_form': image_form,
+    }
+    return render(request, template, context)
 
 
 @login_required
@@ -416,7 +403,14 @@ def delete_product(request, product_id):
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
-    product.delete()
+    variants = Variants.objects.filter(product=product_id)
+    for variant in variants:
+        variant = get_object_or_404(Variants, pk=variant.id)
+        variant.status = False
+        variant.save()
+
+    product.status = False
+    product.save()
     messages.success(request, 'Product deleted successfully!')
     return redirect('all_products')
 
@@ -430,7 +424,8 @@ def delete_variant(request, variant_id):
 
     variant = get_object_or_404(Variants, pk=variant_id)
     product_id = variant.product_id
-    variant.delete()
+    variant.status = False
+    variant.save()
     messages.success(request, 'Variant deleted successfully!')
     return redirect(reverse('product_management', args=[product_id]))
 

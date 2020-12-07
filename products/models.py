@@ -131,6 +131,12 @@ class Size(models.Model):
 
 
 class Variants(models.Model):
+
+    STATUS = (
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+
     title = models.CharField(max_length=100, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE, blank=True, null=True)
@@ -138,6 +144,7 @@ class Variants(models.Model):
     image_id = models.IntegerField(blank=True, null=True, default=0)
     quantity = models.IntegerField(default=1)
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    status = models.CharField(max_length=10, choices=STATUS, default=True)
 
     class Meta:
         verbose_name_plural = 'Variants'
