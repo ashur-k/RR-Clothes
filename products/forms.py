@@ -34,6 +34,13 @@ class ProductVariantForm(forms.ModelForm):
         model = Variants
         fields = ['title', 'color', 'size', 'image_id', 'quantity', 'price']
 
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            image_ids = Images.objects.filter(self.product.id)
+            images_ids = [(i.id) for i in image_ids]
+
+            self.fields['image_id'].choices = images_ids
+
 
 class ProductColorForm(forms.ModelForm):
 

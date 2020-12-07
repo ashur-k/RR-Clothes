@@ -104,7 +104,7 @@
                         <td><img class="rounded mx-auto d-block" height="100" src="{{ image.image.url }}" alt="Card image cap"></td>
                         <td>
                           
-                            <a class="btn btn-large btn-dark m-2" href="">Edit</a>
+                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_image' image.id %}">Edit</a>
                             
                             <button type="button" class="btn btn-large btn-danger m-2" data-toggle="modal" data-target="#delete_product{{image.id}}">
                                 Delete Image

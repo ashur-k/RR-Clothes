@@ -33,9 +33,7 @@
             <p><a class="btn btn-dark btn-sm" href="{% url 'product_management' product.id %}">Product/Variant Management</a></p>
             {% else %}
             <p><a class="btn btn-dark btn-sm" href="{% url 'product_management' product.id %}">Product Management</a></p>
-            {% endif %}
-            <p> <a class="btn btn-danger btn-sm" href="{% url 'delete_product' product.id %}">Delete</a></p>
-            
+            {% endif %}           
         {% endif %}
     </div>
     </div>

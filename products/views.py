@@ -384,6 +384,7 @@ def edit_variant(request, product_id, variant_id):
         return redirect(reverse('RR_home'))
     variant = get_object_or_404(Variants, pk=variant_id)
     product = get_object_or_404(Product, pk=product_id)
+    images = Images.objects.filter(product = product_id)
 
     if request.method == 'POST':
         if product.variant == "Color":
@@ -418,7 +419,8 @@ def edit_variant(request, product_id, variant_id):
         'form': form,
         'variant': variant,
         'product': product,
-        'on_other_page': True
+        'on_other_page': True,
+        'images': images
     }
     return render(request, template, context)
 
@@ -623,3 +625,32 @@ def ajax_delete_size(request):
         'deleted': True
     }
     return JsonResponse(data)
+
+
+@login_required
+def edit_image(request, image_id):
+    """ Edit a product in the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    image = get_object_or_404(Images, pk=image_id)
+    if request.method == 'POST':
+        form = ProductImageForm(request.POST, request.FILES, instance=image)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully changed image data!')
+            return redirect(reverse('product_management', args=[image.product.id]))
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form is valid')
+    else:
+        form = ProductImageForm(instance=image)
+        messages.info(request, f'You are editing {image.title}')
+
+    template = 'products/edit_image.html'
+    context = {
+        'form': form,
+        'image': image,
+    }
+
+    return render(request, template, context)

@@ -17,6 +17,8 @@ urlpatterns = [
     path('delete_image/<int:image_id>/', views.delete_image, name='delete_image'),
     path('add_comment/<int:product_id>/', views.add_comment, name='add_comment'),
 
+    path('edit_image/<int:image_id>/', views.edit_image, name='edit_image'),
+
     path('color_management/', views.color_management, name='color_management'),
     path('ajax_add_color',  views.ajax_add_color, name='ajax_add_color'),
     path('ajax_edit_color',  views.ajax_edit_color, name='ajax_edit_color'),
