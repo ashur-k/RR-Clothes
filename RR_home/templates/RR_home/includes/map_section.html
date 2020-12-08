@@ -4,27 +4,26 @@
     color:  #000;
 }
 .map-row{
-    margin-right: 0px;
-    margin-left: 0px;
-    background-color: #000;
+    
+    background-color: #0A1A24;
 }
 .map-col {
-    background-color: #000;
+    background-color: #0A1A24;
     color: #fff;
     
 }
 </style>
 <section id="happening-events-map" class="mb-5" style="">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row map-row">
             <div class="col-sm-12 map-col text-center">
-                <h1 class="mt-5">Map</h1>
+                <h1 class="mt-4">Map</h1>
                 <p>Following are the locations where our fashion events are happening</p>
                 <hr class="map-hr">
             </div>
         </div>
         <div class="row">            
-            <div class="col-sm-12">
+            <div class="col-sm-12 p-0 m-0">
                 <div id="map" style="height:50vh !important;"></div>
             </div>
         </div>
@@ -64,6 +63,8 @@
         }
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGYP5F_bOWAQp1hyjCA5kNKvYUU57fvw"></script>
-    
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGYP5F_bOWAQp1hyjCA5kNKvYUU57fvw&callback=initMap&key=AIzaSyDlaQZBO-WosqpnUVqkWyicmiW6rKSP1as">
+    </script>
 {% endblock %}

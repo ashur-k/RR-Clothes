@@ -4,9 +4,17 @@
         padding: 20px;
     }
 </style>
-    <div class="container image-gallery border-top border-bottom border-dark text-center mb-4">
+    <div class="container image-gallery mb-4">
+    <div class="row">
+        <div class="col-sm-12 explore-new-trends-heading-and-paragraph">
+            <hr class="home-page-heading-hr-top">      
+            <h3 class="text-center" style="background-color: #0A1A24; color:#F4FFFD; margin:0px; padding: 0px;">EPLORE NEW TRENDS </h3>
+            <hr class="home-page-heading-hr-bottom"> 
+        </div>
+    </div>
         <div class="row" style="margin-bottom: 10px">
-            <div class="col-sm-8">                
+        
+            <div class="col-sm-8">        
                 <ul id="imageGallery">
                 {% for image in images %}
                     <li data-thumb="{{ image.image.url }}" data-src="{{ image.image.url }}">

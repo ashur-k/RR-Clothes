@@ -40,7 +40,7 @@
         color: transparent;               
     }
     .hero-section-button{        
-        background-color: #006657; 
+        background-color: #0A1A24;
         width: 250px;
         height: 60px;
         color: #F4FFFD;
@@ -54,9 +54,146 @@
     }
     .hero-input:focus {        
         font-size: 24px;
-        color: #006657;
+        color: #F4FFFD;
     }
     .hero-input:focus:hover{
         background-color:transparent;
     }
     
+/* explore-new-trend-section-css/ index.html from line 31 */
+/* this code is from https://www.goingtointernet.com/2020/08/responsive-e-commerce-product-slider.html */
+
+a{
+	text-decoration:none;
+}
+.box{
+	width:320px; /*Late need to give media query here to make display better*/
+	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+	border-radius: 10px;
+	overflow: hidden;
+	margin: 25px;
+
+}
+.slide-img{
+	height: 450px;
+	position:relative;
+}
+.slide-img img{
+	width:100%;
+	height: 100%;
+	object-fit: cover;
+	box-sizing: border-box;
+}
+.detail-box{
+	width: 100%;
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	box-sizing: border-box;
+    background:#0A1A24;
+    border: 3px solid #006657; !important; 
+    color: #F4FFFD;
+}
+.type{
+	display: flex;
+	flex-direction: column;
+}
+.type a{
+	color:#222222;
+	margin: 5px 0px;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	padding-right: 8px;
+}
+.type span{
+	color:rgba(26,26,26,0.5);
+}
+.price{
+	color: #333333;
+	font-weight: 600;
+	font-size: 1.1rem;
+	font-family: poppins;
+	letter-spacing: 0.5px;
+}
+.overlay_for_product_slider{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	width:100%;
+	height: 100%;
+	background-color: rgba(92,95,236,0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.buy-btn{
+	width:160px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFFFF;
+	color:#252525;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-family: calibri;
+	border-radius: 20px;
+	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+}
+.buy-btn:hover{
+	color:#FFFFFF;
+	background-color: #f15fa3;
+	transition: all ease 0.3s;
+}
+.overlay_for_product_slider{
+	visibility: hidden;
+}
+.slide-img:hover .overlay_for_product_slider{
+	visibility: visible;
+	animation:fade 0.5s;
+}
+.product-slider-text-box{
+  background-color: #0A1A24;
+  color: #F4FFFD;
+}
+.explore-new-trends-heading-and-paragraph{
+    color: #0A1A24; 
+    padding: 12px;
+}
+.explore-new-trends-heading-and-paragraph h2{
+    color: #0A1A24;
+    font-size: 36px;
+    letter-spacing: 3px;
+}
+
+/* discount jumbotron */
+
+.discount-background{
+    background-image: url('/media/beautiful-1869208_1920.jpg');
+    height: 85vh;
+    /*width: 100%;*/
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    border-radius: 0px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    margin: 50px;
+    border: 10px solid #006657;
+}
+
+.home-page-heading-hr-top{
+    height: 2px; 
+    background-color: #006657; 
+    margin-bottom:2px; 
+    padding: 0px;
+}
+.home-page-heading-hr-bottom{
+    height: 2px;
+    background-color: #006657; 
+    margin-top:2px; 
+    padding: 0px;
+}

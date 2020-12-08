@@ -1,8 +1,10 @@
 <section id="explore-new-trend-section" class="slider mt-5">
     <div class="container center-styling"> 
         <div class="row center-styling-row justify-content-center">
-            <div class="col-sm-12">
-                <h2 class="text-center">EPLORE NEW TRENDS </h2>
+            <div class="col-sm-12 explore-new-trends-heading-and-paragraph">
+                <hr class="home-page-heading-hr-top">      
+                <h3 class="text-center" style="background-color: #0A1A24; color:#F4FFFD; margin:0px; padding: 0px;">NEW TRENDS </h3>
+                <hr class="home-page-heading-hr-bottom"> 
                 <p class="mt-1 p-3 text-center">The lastest women's street style fashion trends 
                 from Paris, Milan, New York, London and Pitti ... Here are the top accessories trends we'll wear in 2020. ... 
                 dressing, find out here which 2016 fashion trends are "in" and "out" for the new year. top winter fashion trends
@@ -10,23 +12,18 @@
                 to fresh tailoring, these are the coolest fashion trends
                 </p>
             </div>
-            <div class="col-sm-12" style="padding: 0px;">
+            <div class="col-sm-12">
                 <ul id="autoWidth" class="cs-hidden">
                 {% for item in products_slider %}
                     <li class="item-a">
-                        <div class="box  blah">            
+                        <div class="box">            
                             <div class="slide-img">
-                                <style>
-                                    .blah{
-                                        background: #000;                                        
-                                    }
-                                </style>
-                                <img class="" src="{{ item.image.url }}" alt="" style="" >
+                                <img class="" src="{{ item.image.url }}" alt="">
                                 <div class="overlay_for_product_slider">
                                     <a href="{% url 'product_detail' item.id %}" class="buy-btn">Buy Now</a>
                                 </div>
                             </div>
-                            <div class="detail-box">
+                            <div class="detail-box" style="">
                                 <div class="type">
                                     <a href="" class="text-white">{{ item.title }}</a>
                                     <span class="text-white">{{ item.category }}</span>  
@@ -41,7 +38,7 @@
                                         {{ product.avaregereview |stringformat:".2f"}}
                                     </div>                  
                                 </div>
-                                <a href="" class="price text-white" style="color: #dc3545">${{ item.price }}</a>
+                                <a href="" class="price text-white">${{ item.price }}</a>
                             </div>                
                         </div>
                     </li>
