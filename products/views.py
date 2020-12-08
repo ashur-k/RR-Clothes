@@ -297,15 +297,27 @@ def product_management(request, product_id):
             image_form.save()
             messages.success(request, 'Image added successfully')
 
-    variants = Variants.objects.filter(product_id=product_id, status=True)
-    template = 'products/product_management.html'
-    context = {
-        'product': product,
-        'variants': variants,
-        'images': images,
-        'image_form': image_form,
-    }
-    return render(request, template, context)
+    if product.has_variant == 0:
+        variant = get_object_or_404(Variants, product_id=product_id)
+        template = 'products/product_management.html'
+        context = {
+            'product': product,
+            'variant': variant,
+            'images': images,
+            'image_form': image_form,
+            'on_other_page': True
+            }
+        return render(request, template, context)
+    else:
+        variants = Variants.objects.filter(product_id=product_id, status=True)
+        template = 'products/product_management.html'
+        context = {
+            'product': product,
+            'variants': variants,
+            'images': images,
+            'image_form': image_form,
+        }
+        return render(request, template, context)
 
 
 @login_required

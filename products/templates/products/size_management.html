@@ -173,7 +173,7 @@ function editToSizeTabel(size){
       });
 }
 function deleteSize(id) {
-  var action = confirm("Are you sure you want to delete this user?");
+  var action = confirm("Are you sure you want to delete this size?");
   if (action != false) {
     $.ajax({
         url: '{% url "ajax_delete_size" %}',

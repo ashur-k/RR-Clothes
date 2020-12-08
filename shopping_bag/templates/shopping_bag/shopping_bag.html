@@ -38,11 +38,14 @@
                             {% for item in bag_items %}
                                 <tr>
                                     <td class="p-3 w-25">
-                                    {% if item.variant.product.image.url %}
-                                        <img class="img-thumbnail rounded" src="{{ item.variant.product.image.url }}" style="">
-                                    {% else %}
-                                        <p>No image</p>
-                                    {% endif %}
+                                    {% if item.variant.image %}
+                                    <img class="w-100" src="{{ item.variant.image }}" alt="{{ variant.title }}">
+                                {% else %}                                   
+                                    <img class="w-100" src="{{ item.variant.product.image.url }}" alt="{{ variant.title }}">
+                                {% endif %}
+                            {% if not item.variant.image and not item.variant.product.image.url %}   
+                                <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ variant.title  }}"> 
+                            {% endif %}
                                     </td>
 
                                     <td class="py-3">

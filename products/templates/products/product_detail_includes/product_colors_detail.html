@@ -1,28 +1,32 @@
 <form method="post" action="?q=selectvariant" id="post-color">
 {% csrf_token %}
+
     <div id="appendHere">
         <input type="hidden" name="size" id="size" value="{{ size_id }}">
         <ul class="color-option" >
+                
                 <li><span class="text-uppercase">Color:</span></li>
+
                 {% if colors %}
                     {% for rs in colors %}
                     <li>
-                             <input type="radio" 
-                            {% if variant.id == rs.id %} 
-                                checked {% endif %} 
-                                name="variantid" 
-                                id="variantid" 
-                                value="{{ rs.id }}" 
-                                onchange="this.form.submit();">
-                        <!--Input close here-->
-</li>
+                        <input type="radio" 
+                    {% if variant.id == rs.id %} 
+                        checked {% endif %} 
+                        name="variantid" 
+                        id="variantid" 
+                        value="{{ rs.id }}" 
+                        onchange="this.form.submit();">
+                <!--Input close here-->
+                    </li>
                         <li  
                             {% if variant.id == rs.id %} 
                             class="active" {% endif %}>
-                            <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width: 90px">
-                                {{ rs.price }} {{ rs.color }}
+                            <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width:auto; max-width:110px; ">
+                             <p><small style="margin:5px;">  ${{ rs.price }} {{ rs.color }}</small></p> 
                             </a>
-                            <img src="{{ rs.image }}" style="height: 70px">
+                            
+                            <img class="img-thumbnail mt-1" src="{{ rs.image }}" style="height: 100px">
                         </li>
                           
                     {% endfor %}
@@ -38,6 +42,6 @@
 
         </ul>
     </div>
-    
+   </div> 
     <input form="trial" type="hidden" name="price" value="{{ rs.price }}">
 </form>
