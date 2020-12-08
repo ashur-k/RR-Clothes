@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+ <!--This code is from http://sachinchoolur.github.io/lightslider/examples.html-->
+    <link rel="stylesheet" href="{% static 'css/lightslider.css' %}">
+    <link rel="stylesheet" href="{% static 'RR_home/css/RR_home.css' %}">
+{% endblock %}
+
+{% block page_header %}
+   
+{% endblock %}
+
+{% block content %}
+
+
+{% include 'RR_home/includes/hero_section.html' %}
+{% include 'RR_home/includes/new_trends.html' %}
+{% include 'RR_home/includes/discount_jumbotron.html' %}
+{% include 'RR_home/includes/happening_events.html' %}
+{% include 'RR_home/includes/explore_categories.html' %}
+{% include 'RR_home/includes/product_image_gallery.html' %}
+{% include 'RR_home/includes/map_section.html' %}
+
+   {% endblock %}     
+        
+    
+    {% block extra_js %}  
+  <!--This code is from http://sachinchoolur.github.io/lightslider/examples.html-->
+    <script type="text/javascript" src="{% static 'js/lightslider.js' %}"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#autoWidth').lightSlider({
+                autoWidth:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#autoWidth').removeClass('cS-hidden');
+                } 
+            });
+            $('#imageGallery').lightSlider({
+                gallery:true,
+                item:1,
+                loop:true,
+                thumbItem:9,
+                slideMargin:0,
+                enableDrag: false,
+                currentPagerPosition:'left',
+                onSliderLoad: function(el) {
+                    el.lightGallery({
+                        selector: '#imageGallery .lslide'
+                    });
+                }   
+            });  
+        });
+  </script>
+
+  <!-- Image gallery Image Change Function-->
+{% endblock %}

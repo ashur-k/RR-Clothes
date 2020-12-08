@@ -53,12 +53,12 @@ def all_products(request):
         if 'product' in request.GET:
             categories = request.GET['product'].split(',')
             products = products.filter(category__name__in=categories)
-            products = products.filter(new_edition=True)
+            products = products.filter(new_edition=True, status=True)
 
         if 'discount_30_percent' in request.GET:
             categories = request.GET['discount_30_percent'].split(',')
             products = products.filter(category__name__in=categories)
-            products = products.filter(discount_30_percent=True)
+            products = products.filter(discount_30_percent=True, status=True)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -67,7 +67,7 @@ def all_products(request):
                 return redirect(reverse('RR_home'))
 
             queries = Q(title__icontains=query) | Q(description__icontains=query)
-            products = products.filter(queries)
+            products = products.filter(queries, status=True)
             messages.success(request, f'{products.count()} results found.')
     current_sorting = f'{sort}_{direction}'
     context = {

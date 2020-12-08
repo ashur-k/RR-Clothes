@@ -11,27 +11,7 @@ html {
     height: 100%;
 }
 
-#hero-section{
-    
-}
 
-.hero-section{
-    background: url('/media/fashion-1866574_1920.jpg') no-repeat center top;
-    background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-    font-family: 'Lato';
-    
-    
-}
-
-.search-box{
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%)
-
-}
 
 /* from Bulma */
 .icon {
@@ -308,6 +288,13 @@ a{
 .product-rating > small i {
     color: gold;
      }
+.free-deliver-banner{
+    color:#F4FFFD !important; 
+    border-bottom: 3px solid #006657; !important; 
+    border-top: 3px solid #006657; !important; 
+    background-color: #0A1A24;
+
+}
 @keyframes fade{
 	0%{
 		opacity: 0;

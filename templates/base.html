@@ -19,7 +19,7 @@
 		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'css/base.css' %}">
-
+    
 	{% endblock %}
 
 	{% block extra_css %}
@@ -51,7 +51,8 @@
 </head>
 
 <body onload="initMap();">
-	<section style="height: 15vh;">
+
+	<section style="height: 17vh;">
 		<header class="container-fluid fixed-top">
 			<div id="topnav" class="row bg-white pt-lg-2  d-lg-flex">
 				<div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
@@ -118,7 +119,7 @@
 				</div>
 			</div>
 			<div id="delivery-banner" class="row text-center" style="">
-				<div class="col-12 text-white" style="color:white !important; border-bottom: 5px solid #000; !important; border-top: 5px solid #000; !important; background-color:#dc3545;">
+				<div class="col-sm-12 col-md-12 col-lg-12 free-deliver-banner">
 					<h4 class="logo-font my-1">
 						Free Delivery on Orders over ${{ free_delivery_threshold }}
 					</h4>

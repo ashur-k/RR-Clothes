@@ -1,0 +1,62 @@
+/* Hero section */
+#hero-section{
+    
+}
+.hero-section{
+    background: url('/media/fashion-1866574_1920.jpg') no-repeat center top;
+    background-size: cover;
+    height: calc(100vh - 164px);
+    color: #F4FFFD;
+    font-family: 'Lato';
+}
+
+.search-box{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%)
+
+}
+.hero-h1{
+
+    -webkit-text-stroke: 1px #0A1A24;
+    -webkit-text-fill-color: #006657;
+    letter-spacing: 2px;
+}
+  .hero-input[type="text"]
+    {
+        background: transparent;
+        line-height: 5px;
+        height: 60px;
+        border: 1px solid #F4FFFD;
+    }
+    .hero-input::placeholder {
+        color: #F4FFFD;
+        font-size: 24px;
+        background-color:rgba(0,0,0,0.1);
+        height: 30px;
+    }
+    .hero-input::placeholder:hover {
+        color: transparent;               
+    }
+    .hero-section-button{        
+        background-color: #006657; 
+        width: 250px;
+        height: 60px;
+        color: #F4FFFD;
+        font-size: 16px;
+        border: 1px solid #F4FFFD;
+    
+                            }
+    .hero-section-button:hover{
+        background-color: #006657;
+        color: #F4FFFD;
+    }
+    .hero-input:focus {        
+        font-size: 24px;
+        color: #006657;
+    }
+    .hero-input:focus:hover{
+        background-color:transparent;
+    }
+    

@@ -42,4 +42,4 @@ def index(request):
         'category_3': category_3,
         }
 
-    return render(request, 'home/index.html', context)
+    return render(request, 'RR_home/index.html', context)
