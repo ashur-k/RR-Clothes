@@ -3,7 +3,7 @@ from .models import Category, Product, Variants, Images, Comment, Color, Size
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, HTML
 from django.forms import ModelForm
-
+from .widgets import CustomClearableFileInput
 
 class CategoryForm(forms.ModelForm):
 
@@ -17,6 +17,8 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
