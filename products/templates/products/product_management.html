@@ -37,10 +37,10 @@
                         <td>{{product.title}}</td>
                         <td>
                             {% if product.has_variant == 1 %}
-                                <a class="btn btn-large btn-dark m-2" href="{% url 'edit_product_with_variant' product.id  %}">Edit{{variant.id}}</a>
+                                <a class="btn btn-large btn-dark m-2" href="{% url 'edit_product_with_variant' product.id  %}">Edit</a>
                             {% else %}
                            
-                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_product_without_variant' product.id variant.id %}">Edit{{variant.id}}</a>
+                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_product_without_variant' product.id variant.id %}">Edit</a>
                             {% endif %}
                             
                             <button type="button" class="btn btn-large btn-danger m-2" data-toggle="modal" data-target="#delete_product{{product.id}}">

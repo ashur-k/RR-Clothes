@@ -203,12 +203,18 @@ textarea.input {
   border-color: #000;
 }
 
-.color-option>li {
+.color-option >  li
+ {
   display: inline-block;
   margin-right: 6px;
   margin-bottom: 6px;
   vertical-align: top;
+  
 }
+.product-color-detail{
+list-style-type: none;
+}
+
 
 .color-option>li:last-child {
   margin-right: 0px;
@@ -218,6 +224,9 @@ textarea.input {
   display: block;
   width: 20px;
   height: 20px;
+  width:auto;
+  margin: 5px;
+  max-width:120px;
 }
 
 .color-option>li.active a {

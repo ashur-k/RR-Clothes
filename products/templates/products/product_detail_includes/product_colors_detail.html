@@ -4,44 +4,44 @@
     <div id="appendHere">
         <input type="hidden" name="size" id="size" value="{{ size_id }}">
         <ul class="color-option" >
-                
-                <li><span class="text-uppercase">Color:</span></li>
+             <div>
+                <li class="product-color-detail">
+                    <span class="text-uppercase">Color:</span>
+                </li>
+              </div>
 
+       
                 {% if colors %}
                     {% for rs in colors %}
                     <li>
                         <input type="radio" 
-                    {% if variant.id == rs.id %} 
+                        {% if variant.id == rs.id %} 
                         checked {% endif %} 
                         name="variantid" 
                         id="variantid" 
                         value="{{ rs.id }}" 
                         onchange="this.form.submit();">
-                <!--Input close here-->
                     </li>
-                        <li  
-                            {% if variant.id == rs.id %} 
-                            class="active" {% endif %}>
-                            <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; width:auto; max-width:110px; ">
-                             <p><small style="margin:5px;">  ${{ rs.price }} {{ rs.color }}</small></p> 
-                            </a>
-                            
-                            <img class="img-thumbnail mt-1" src="{{ rs.image }}" style="height: 100px">
-                        </li>
-                          
-                    {% endfor %}
-                    {%else%}
-                    <p>something went wrong</p>
-                    
-                    {% endif %}
-                    {% if product.discount_30_percent == 1  %}              
-                       <p class="lead mb-2 text-left">
-                           30% Discount<strong>Product price: ${{ variant.percent_30_discount|floatformat:2 }}</strong>                  
-                        </p>                 
+                    <li  
+                        {% if variant.id == rs.id %} 
+                        class="active" {% endif %}>
+                        <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; ">
+                            <p><small style="margin:5px;">  ${{ rs.price }} {{ rs.color }}</small></p> 
+                        </a>                        
+                        <img class="img-thumbnail mt-1" src="{{ rs.image }}" style="height: 100px">
+                    </li>
+                   {% endfor %}
+                {%else%}
+                <p>something went wrong</p>                
+                {% endif %}
+                   
+                {% if product.discount_30_percent == 1  %}              
+                    <p class="lead mb-2 text-left">
+                        30% Discount<strong>Product price: ${{ variant.percent_30_discount|floatformat:2 }}</strong>                  
+                    </p>                 
                 {% endif %}
 
         </ul>
     </div>
-   </div> 
     <input form="trial" type="hidden" name="price" value="{{ rs.price }}">
 </form>
