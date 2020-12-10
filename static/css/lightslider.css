@@ -152,22 +152,28 @@
 
 /* slider actions */
 .lSAction > a {
-    width: 32px;
+    width: 36px;
     display: block;
     top: 50%;
-    height: 32px;
+    height: 35px;
     background-image: url('/media/controls.png');
     cursor: pointer;
     position: absolute;
     z-index: 99;
-    margin-top: -16px;
-    opacity: 0.5;
+    margin-top: -20px;
+    opacity: 1;
     -webkit-transition: opacity 0.35s linear 0s;
     transition: opacity 0.35s linear 0s;
-    background-color: #000 !important;
+    background-color: #0A1A24 !important;
+    border: 2px solid #006657;
+   
 }
 .lSAction > a:hover {
-    opacity: 1;
+    opacity: 9;
+    background-color:#006657 !important;
+    color: #F4FFFD;
+    border: 2px solid #0A1A24;
+    
 }
 .lSAction > .lSPrev {
     background-position: 0 0;

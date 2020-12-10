@@ -14,19 +14,19 @@
             </div>
             <div class="col-sm-12">
                 <ul id="autoWidth" class="cs-hidden">
-                {% for item in products_slider %}
+                {% for product in products_slider %}
                     <li class="item-a">
                         <div class="box">            
                             <div class="slide-img">
-                                <img class="" src="{{ item.image.url }}" alt="">
+                                <img class="" src="{{ product.image.url }}" alt="">
                                 <div class="overlay_for_product_slider">
-                                    <a href="{% url 'product_detail' item.id %}" class="buy-btn">Buy Now</a>
+                                    <a href="{% url 'product_detail' product.id %}" class="buy-btn">Buy Now</a>
                                 </div>
                             </div>
-                            <div class="detail-box" style="">
+                            <div class="detail-box">
                                 <div class="type">
-                                    <a href="" class="text-white">{{ item.title }}</a>
-                                    <span class="text-white">{{ item.category }}</span>  
+                                    <p class="text-white">{{ product.title }}</p>
+                                    <span class="text-white">{{ product.category.get_friendly_name }}</span>  
                                     <div class="product-rating">
                                         <small class="text-muted">
                                             <i class="fa fa-star{% if product.rate < 1%}-o empty{% endif%}"></i> 
@@ -38,7 +38,7 @@
                                         {{ product.avaregereview |stringformat:".2f"}}
                                     </div>                  
                                 </div>
-                                <a href="" class="price text-white">${{ item.price }}</a>
+                                <p class="price text-white">${{ product.price }}</p>
                             </div>                
                         </div>
                     </li>

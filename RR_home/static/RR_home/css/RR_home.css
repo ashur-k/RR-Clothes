@@ -213,6 +213,14 @@ a{
     margin-top:2px; 
     padding: 0px;
 }
+.discount-font-div{
+        
+        margin-left: 25px;
+    }
+ .discount-font {
+            color: white;
+    }
+    
 /* Image Gallery Section */
 
 /* For drawing colour circles */
