@@ -1,3 +1,6 @@
+/* h1 to h6 Headings */
+
+
 /* Hero section */
 #hero-section{
     
@@ -197,3 +200,20 @@ a{
     margin-top:2px; 
     padding: 0px;
 }
+/* Image Gallery Section */
+
+/* For drawing colour circles */
+.color-div{
+    background-color: rgba(211,211,211,.9); 
+    padding: 5px;
+}
+#circle {                            
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: left !important;
+    }
+.image-gallery{
+            padding: 20px;
+        }

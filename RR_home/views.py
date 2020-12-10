@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404
-from products.models import Product, Images, Category
+from products.models import Product, Images, Category, Variants
 from random import choice
 
 
@@ -28,9 +28,12 @@ def index(request):
     # images getting them from images model
     random_pks = Product.objects.values_list('pk', flat=True)
     random_pk = choice(random_pks)
-    random_product = Product.objects.get(pk=random_pk)
+    print(random_pk)
+    random_product = Product.objects.get(pk=49)
     product_id = random_product.id
-    images = Images.objects.filter(product_id=product_id)
+    print(product_id)
+    images = Images.objects.filter(product_id=49)
+    variants = Variants.objects.filter(product_id=49)
 
     context = {
         'products_slider': products_slider,
@@ -40,6 +43,7 @@ def index(request):
         'category_1': category_1,
         'category_2': category_2,
         'category_3': category_3,
+        'variants': variants,
         }
 
     return render(request, 'RR_home/index.html', context)

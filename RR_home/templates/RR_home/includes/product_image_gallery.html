@@ -1,49 +1,55 @@
-<section id="image-gallery" class="p-4 mt-4 text-center mb-4 pb-4">
-<style>
-    .image-gallery{
-        padding: 20px;
-    }
-</style>
+<section id="image-gallery" class="p-4 mt-4  mb-4 pb-4">
     <div class="container image-gallery mb-4">
-    <div class="row">
-        <div class="col-sm-12 explore-new-trends-heading-and-paragraph">
-            <hr class="home-page-heading-hr-top">      
-            <h3 class="text-center" style="background-color: #0A1A24; color:#F4FFFD; margin:0px; padding: 0px;">SELECTED ITEMS</h3>
-            <hr class="home-page-heading-hr-bottom"> 
+        <div class="row">
+            <div class="col-sm-12 explore-new-trends-heading-and-paragraph">
+                <hr class="home-page-heading-hr-top">      
+                <h3 class="text-center" style="background-color: #0A1A24; color:#F4FFFD; margin:0px; padding: 0px;">SELECTED ITEMS</h3>
+                <hr class="home-page-heading-hr-bottom"> 
+            </div>
         </div>
-    </div>
-        <div class="row" style="margin-bottom: 10px">
-        
-            <div class="col-sm-8">        
-                <ul id="imageGallery">
+    <div class="row" style="margin-bottom: 10px">    
+        <div class="col-sm-8 text-center">        
+            <ul id="imageGallery">
                 {% for image in images %}
                     <li data-thumb="{{ image.image.url }}" data-src="{{ image.image.url }}">
                         <img src="{{ image.image.url }}" height="200px"/>
                     </li>
                 {% endfor %}
-                </ul>
-            </div>            
-            <div class="col-sm-4">
-                <div class="row" style="max-width: 300px;">
-                    <div class="col-sm-12 mt-2 col-centered">
-                        <h3>{{ product.title }}</h3>
-                        <p>{{ product.description }}</p>
-                    </div>
-                    <div class="col-sm-12 col-centered">
-                        <h3>${{ product.price }}</h3>
-                        {% if product.variant == 'Size' %}
+            </ul>
+        </div>            
+        <div class="col-sm-4">
+            <div class="row" style="max-width: 300px;">
+                <div class="col-sm-12 mt-2 col-centered">
+                    <h6><i class="fas fa-tag mr-1"></i> {{ product.category.friendly_name }}</h6>
+                    <h6><i class="fas fa-tshirt"></i> {{ product.title }}</h6>                    
+                    <span class="lead"><i class="material-icons">description</i>{{ product.description }}</span>
+                </div>
+                <div class="col-sm-12 col-centered">                  
+                    {% if product.variant == 'Size' %}
                         <p>Sizes are aviliable</p>
-                        {% elif product.variant == 'Size-Color' %}
+                    {% endif %}
+
+                    {% if product.variant == 'Size-Color' %}
                         <p>Diffrent Size and colours are aviliable</p>
-                         {% elif product.variant == 'Color' %}
-                         <p>Diffrent colours are aviliable</p>
-                        {% endif %}
+                    {% endif %}
+
+                    {% if product.variant == 'Color' %}
+                        <h6><i class="fas fa-palette"></i> Colours are available:</h6>
+                 
+                    <div class="color-div">
+                        {% for variant in variants %}
+                            <div id="circle" class="" style="background: {{ variant.color.code }};"></div>
+                        {% endfor %}
                     </div>
-                    <div class="col-sm-12 col-centered">                        
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Product details</a>
+                    {% endif %}
+                    <h4>${{ product.price }}</h4>
                     </div>
+                    
+                <div class="col-sm-12 col-centered mt-2">                        
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Product details</a>
                 </div>
             </div>
-        </div>        
+        </div>
+    </div>        
     </div>
 </section>
