@@ -1,5 +1,16 @@
 /* h1 to h6 Headings */
+.main-title-h3{
+    background-color: #0A1A24; 
+    color:#F4FFFD; margin:0px;
+    padding: 0px;
+}
 
+.icons{
+     Color:#0A1A24;
+}
+.icons:hover{
+    Color:#006657;
+}
 
 /* Hero section */
 #hero-section{
@@ -71,8 +82,8 @@ a{
 }
 .box{
 	width:320px; /*Late need to give media query here to make display better*/
-	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
-	border-radius: 10px;
+	padding: 20px;
+	border-radius: 0px;
 	overflow: hidden;
 	margin: 25px;
 
@@ -137,18 +148,20 @@ a{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #FFFFFF;
-	color:#252525;
+	background-color:#0A1A24;
+	color:#F4FFFD;
+    border: 2px solid #006657;
 	font-weight: 700;
 	letter-spacing: 1px;
 	font-family: calibri;
-	border-radius: 20px;
 	box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
 }
 .buy-btn:hover{
-	color:#FFFFFF;
-	background-color: #f15fa3;
+	color:#F4FFFD;
+	background-color: #006657;
+    border: 2px solid #0A1A24;
 	transition: all ease 0.3s;
+
 }
 .overlay_for_product_slider{
 	visibility: hidden;
@@ -204,7 +217,6 @@ a{
 
 /* For drawing colour circles */
 .color-div{
-    background-color: rgba(211,211,211,.9); 
     padding: 5px;
 }
 #circle {                            
@@ -213,7 +225,33 @@ a{
         height: 25px;
         display: inline-block;
         text-align: left !important;
+        border: 2px solid #0A1A24;
     }
+
+    #circle:hover{
+        border: 2px solid#006657;
+  
+}
 .image-gallery{
             padding: 20px;
         }
+.product-small-img img
+{
+    height: 92px;
+    margin: 10px 0;
+    cursor: pointer;
+    display: block;
+    opacity: 0.6;
+}
+.product-small-img img:hover
+{
+    opacity: 9;
+}
+.product-small-img
+{
+    float: left;
+}
+
+#full-image{    
+    height: 500px;
+}

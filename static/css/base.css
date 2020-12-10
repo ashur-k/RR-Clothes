@@ -1,4 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+/* Main Buttons */
+.primary-button{
+    background:#0A1A24;
+    color: #F4FFFD;
+    border: 2px solid #006657;
+}
+.primary-button:hover{
+    background:#006657;
+    color: #F4FFFD;
+    border: 2px solid #0A1A24;
+}
+
+
+
 .bg-black{
     background-color: black;
 }
@@ -229,41 +244,6 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-/* Image Gallery  */
-.product-small-img img
-{
-    height: 92px;
-    margin: 10px 0;
-    cursor: pointer;
-    display: block;
-    opacity: 0.6;
-}
-.product-small-img img:hover
-{
-    opacity: 1;
-}
-.product-small-img
-{
-    float: left;
-}
-
-.product {
-
-}
-
-.img-container img {
- 
-}
-.img-container{
-  
-    
-}
-#full-image{
-    
-    height: 500px;
-
 }
 
 
