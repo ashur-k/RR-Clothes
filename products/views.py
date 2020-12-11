@@ -100,7 +100,7 @@ def product_detail(request, product_id):
 
     if variant_id_value is None:
         if product.has_variant is True or product.variant != 'None':
-            messages.success(request, 'Product variant information is required to update by adminstrator.')
+            messages.success(request, 'Product variant information is required to update by adminstrator')
         else:
             form_data = {
                 'title': product.title,
