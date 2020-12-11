@@ -12,20 +12,21 @@
 }
 </style>
 
-<section style="padding: 100px;">
-    <div class="container-fluid">
+<section class="mb-5" style="padding-left: 100px; padding-right: 100px;">
+    <div class="container-fluid" style="padding-left:200px; padding-right:200px; padding-bottom:50px; padding-top:15px; background-color:#0A1A24;">
         <div class="row">
-            <div class="col-sm-12">
-                <hr class="home-page-heading-hr-top">      
-                <h3 class="text-center main-title-h3">LADIES SELECTIONS</h3>
-                <hr class="home-page-heading-hr-bottom">
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="row">
-                        <div class="category-card card bg-dark text-black">
-                            <img src="{{ category_1.image.url }}" class="card-img" alt="..." height="800px">
+            
+         
+            <div class="row h-100" style="background-color:#0A1A24;">
+                <div class="col-sm-12">
+                     
+                    <h3 class="main-title-h3 mb-1">LADIES SELECTIONS</h3>
+                    <hr class="home-page-heading-hr-bottom">
+                </div>
+                <div class="col-sm-5 my-auto" >
+                    <div class="row" style="padding:25px;">
+                        <div class="category-card card bg-dark text-black" style="vertical-align: middle;">
+                            <img src="{{ category_1.image.url }}" class="card-img img-fluid" alt="..." style=" vertical-align: middle;">
                             <div class="card-img-overlay">                     
                                 <h3 class="card-title category-card-title" >{{ category_1.get_friendly_name }}</h3>                                                      
                                 <a href="{% url 'all_products' %}?category={{ category_1.name }}" class="btn btn-sm primary-button">Explore Category</a>
@@ -33,11 +34,11 @@
                         </div>   
                     </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-7">
                     <div class="row">                       
                             <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                 <div class="category-card card bg-dark text-black">
-                                    <img src="{{ category_2.image.url }}" class="card-img" alt="..." width="auto" height="400px" style="max-height:640px" >
+                                    <img src="{{ category_2.image.url }}" class="card-img img-fluid" alt="..." width="auto" height="300px" style="max-height:640px" >
                                     <div class="card-img-overlay">
                                         <h3 class="card-title category-card-title">{{ category_2.get_friendly_name }}</h3>                                                                        
                                         <a href="{% url 'all_products' %}?category={{ category_2.name }}" class="btn btn-sm primary-button">Explore Category</a>
@@ -46,7 +47,7 @@
                             </div>
                             <div class="col-sm-5 col-md-5 col-lg-5 col-xl-6">
                                 <div class="category-card card bg-dark text-black mt-1">
-                                    <img src="{{ category_3.image.url }}" class="card-img" alt="..." height="400px">
+                                    <img src="{{ category_3.image.url }}" class="card-img img-fluid"  alt="..." width="auto" height="300px">
                                     <div class="card-img-overlay">
                                         <h3 class="card-title category-card-title">{{ category_3.get_friendly_name }}</h3>                                                              
                                         <a href="{% url 'all_products' %}?category={{ category_3.name }}" class="btn btn-sm primary-button">Explore Category</a>
@@ -57,19 +58,19 @@
                     <div class="row">   
                             <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                 <div class="category-card card bg-dark text-black">
-                                    <img src="{{ category_2.image.url }}" class="card-img" alt="..."  height="400px">
+                                    <img src="{{ category_4.image.url }}" class="card-img img-fluid" alt="..." width="auto" height="300px">
                                     <div class="card-img-overlay">
-                                        <h3 class="card-title category-card-title">{{ category_2.get_friendly_name }}</h3>                                                                        
-                                        <a href="{% url 'all_products' %}?category={{ category_2.name }}" class="btn btn-sm primary-button">Explore Category</a>
+                                        <h3 class="card-title category-card-title">{{ category_4.get_friendly_name }}</h3>                                                                        
+                                        <a href="{% url 'all_products' %}?category={{ category_4.name }}" class="btn btn-sm primary-button">Explore Category</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6col-lg-6 col-xl-6">
                                 <div class="category-card card bg-dark text-black mt-1">
-                                    <img src="{{ category_3.image.url }}" class="card-img" alt="..." height="400px" >
+                                    <img src="{{ category_5.image.url }}" class="card-img img-fluid" alt="..." width="auto" height="300px" >
                                     <div class="card-img-overlay">
-                                        <h3 class="card-title category-card-title">{{ category_3.get_friendly_name }}</h3>                                                              
-                                        <a href="{% url 'all_products' %}?category={{ category_3.name }}" class="btn btn-sm primary-button">Explore Category</a>
+                                        <h3 class="card-title category-card-title">{{ category_5.get_friendly_name }}</h3>                                                              
+                                        <a href="{% url 'all_products' %}?category={{ category_5.name }}" class="btn btn-sm primary-button">Explore Category</a>
                                     </div>
                                 </div>
                             </div>

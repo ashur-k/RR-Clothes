@@ -19,9 +19,11 @@ def index(request):
     category_ids = []
     for category in categories:
         category_ids.append(category.id)
-    category_1 = get_object_or_404(Category, id=13)
+    category_1 = get_object_or_404(Category, id=5)
     category_2 = get_object_or_404(Category, id=27)
-    category_3 = get_object_or_404(Category, id=4)
+    category_3 = get_object_or_404(Category, id=15)
+    category_4 = get_object_or_404(Category, id=9)
+    category_5 = get_object_or_404(Category, id=6)
 
 
     # Getting random id to display random products on home page with its
@@ -43,6 +45,8 @@ def index(request):
         'category_1': category_1,
         'category_2': category_2,
         'category_3': category_3,
+        'category_4': category_4,
+        'category_5': category_5,
         'variants': variants,
         }
 

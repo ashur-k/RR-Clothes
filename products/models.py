@@ -13,7 +13,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
-    image = models.ImageField(blank=True, upload_to='meida/')
+    image = models.ImageField(blank=True, upload_to='media/')
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
@@ -42,7 +42,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=255)
-    image = models.ImageField(blank=False, upload_to='meida/')
+    image = models.ImageField(blank=False, upload_to='media/')
     price = models.FloatField()
     rate = models.IntegerField(default=1)
     quantity = models.IntegerField()

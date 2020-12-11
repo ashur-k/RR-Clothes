@@ -72,7 +72,6 @@ def checkout(request):
                         quantity=quantity,
                     )
                     order_line_item.save()
-                    print(order_line_item.variant.title)
                 except variant.DoesNotExist:
                     messages.error(request, (
                         "Product not exist"
@@ -104,7 +103,6 @@ def checkout(request):
     if request.user.is_authenticated:
         try:
             profile = UserProfile.objects.get(user=request.user)
-            print(profile.default_phone_number)
             order_form = OrderForm(initial={
                 'full_name': profile.user.get_full_name(),
                 'email': profile.user.email,
