@@ -1,2 +1,2 @@
-web: gunicorn RR_Clothes:wsgi:application
+web: gunicorn rr-cloth:wsgi:application
  
