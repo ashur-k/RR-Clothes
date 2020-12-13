@@ -4,12 +4,7 @@
     color:#F4FFFD; margin:0px;
     padding: 0px;
 }
-.primary-icons{
-    Color:#006657;
-    font-size: 20px;
-    -webkit-text-stroke: 1px #0A1A24;
-    -webkit-text-fill-color: #006657;
-}
+
 .icons{
      Color:#0A1A24;
 }
@@ -231,12 +226,7 @@ a{
     border: 10px solid #006657;
 }
 
-.home-page-heading-hr-top{
-    height: 2px; 
-    background-color: #006657; 
-    margin-bottom:2px; 
-    padding: 0px;
-}
+
 .home-page-heading-hr-bottom{
     height: 2px;
     background-color: #006657; 
