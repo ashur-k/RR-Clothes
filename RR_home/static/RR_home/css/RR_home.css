@@ -4,18 +4,22 @@
     color:#F4FFFD; margin:0px;
     padding: 0px;
 }
-
+.primary-icons{
+    Color:#006657;
+    font-size: 20px;
+    -webkit-text-stroke: 1px #0A1A24;
+    -webkit-text-fill-color: #006657;
+}
 .icons{
      Color:#0A1A24;
 }
 .icons:hover{
     Color:#006657;
 }
-
-/* Hero section */
-#hero-section{
-    
+.priamry-text-color{
+    color:#0A1A24; 
 }
+/* Hero section */
 .hero-section{
     background: url('/media/fashion-1866574_1920.jpg') no-repeat center top;
     background-size: cover;
@@ -23,13 +27,11 @@
     color: #F4FFFD;
     font-family: 'Lato';
 }
-
 .search-box{
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%)
-
 }
 .hero-h1{
 
@@ -58,13 +60,16 @@
         width: 250px;
         height: 60px;
         color: #F4FFFD;
-        font-size: 16px;
+        font-size: 18px;
         border: 1px solid #F4FFFD;
     
                             }
     .hero-section-button:hover{
         background-color: #006657;
         color: #F4FFFD;
+    }
+    .hero-section-button:hover{
+    Color:#0A1A24;
     }
     .hero-input:focus {        
         font-size: 24px;
@@ -106,7 +111,7 @@ a{
 	padding: 10px 20px;
 	box-sizing: border-box;
     background:#0A1A24;
-    border: 3px solid #006657; !important; 
+    border: 3px solid #006657 !important; 
     color: #F4FFFD;
 }
 .type{

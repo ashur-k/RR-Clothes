@@ -26,6 +26,7 @@ class Category(models.Model):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
 
 
+
 class Product(models.Model):
     STATUS = (
         ('True', 'True'),

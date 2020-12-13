@@ -16,14 +16,17 @@ def index(request):
 
     # Adding product ids to list to use for
     # displaying each product on home page template.
-    category_ids = []
-    for category in categories:
-        category_ids.append(category.id)
+
     category_1 = get_object_or_404(Category, id=5)
+    category_1_products = Product.objects.filter(category_id=5)
     category_2 = get_object_or_404(Category, id=27)
+    category_2_products = Product.objects.filter(category_id=27)
     category_3 = get_object_or_404(Category, id=15)
+    category_3_products = Product.objects.filter(category_id=15)
     category_4 = get_object_or_404(Category, id=9)
+    category_4_products = Product.objects.filter(category_id=9)
     category_5 = get_object_or_404(Category, id=6)
+    category_5_products = Product.objects.filter(category_id=6)
 
 
     # Getting random id to display random products on home page with its
@@ -48,6 +51,11 @@ def index(request):
         'category_4': category_4,
         'category_5': category_5,
         'variants': variants,
+        'category_1_products': category_1_products,
+        'category_2_products': category_2_products,
+        'category_3_products': category_3_products,
+        'category_4_products': category_4_products,
+        'category_5_products': category_5_products,
         }
 
     return render(request, 'RR_home/index.html', context)
