@@ -5,7 +5,6 @@ from django.contrib import messages
 
 # Create your views here.
 def view_bag(request):
-    # print(request.session.get('bag')
 
     return render(request, 'shopping_bag/shopping_bag.html')
 

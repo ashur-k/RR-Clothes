@@ -33,10 +33,8 @@ def index(request):
     # images getting them from images model
     random_pks = Product.objects.values_list('pk', flat=True)
     random_pk = choice(random_pks)
-    print(random_pk)
     random_product = Product.objects.get(pk=49)
     product_id = random_product.id
-    print(product_id)
     images = Images.objects.filter(product_id=49)
     variants = Variants.objects.filter(product_id=49)
 
