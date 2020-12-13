@@ -197,8 +197,8 @@ html {
      }
 .free-deliver-banner{
     color:#F4FFFD !important; 
-    border-bottom: 3px solid #006657; !important; 
-    border-top: 3px solid #006657; !important; 
+    border-bottom: 3px solid #006657 !important; 
+    border-top: 3px solid #006657 !important; 
     background-color: #0A1A24;
 
 }
@@ -261,7 +261,13 @@ html {
 	.details p{
 		font-size: 16px;
 		width: 250px;
-	}
+    }
+    .font-size-on-mobile{
+        font-size: large;
+    }
+    #header-section{
+        
+    }
 	
 }
 

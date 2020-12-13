@@ -57,8 +57,8 @@
 
 <body>
 
-	<section style="height: 17vh;">
-		<header class="container-fluid fixed-top">
+	<section id="header-section" style="height: 17vh;">
+		<header class="container-fluid fixed-top" style="padding-left: 0px; padding-right: 0px;">
 			<div id="topnav" class="row bg-white pt-lg-2  d-lg-flex">
 				<div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
 					<a href="" class="nav-link main-logo-link">
@@ -112,7 +112,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="bg-white col-12 col-lg-12 my-auto py-1 py-lg-0 custom">
+				<div class="bg-white col-12 col-lg-12 my-auto py-1 py-lg-0 custom" style="padding-right:0px;">
 					<nav class="navbar navbar-expand-lg navbar-light w-100">
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -121,13 +121,6 @@
 						{% include 'includes/main-nav.html' %}
 
 					</nav>
-				</div>
-			</div>
-			<div id="delivery-banner" class="row text-center" style="">
-				<div class="col-sm-12 col-md-12 col-lg-12 free-deliver-banner">
-					<h4 class="logo-font my-1">
-						Free Delivery on Orders over ${{ free_delivery_threshold }}
-					</h4>
 				</div>
 			</div>
 		</header>

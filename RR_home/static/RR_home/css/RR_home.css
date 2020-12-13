@@ -34,7 +34,6 @@
     transform: translate(-50%, -50%)
 }
 .hero-h1{
-
     -webkit-text-stroke: 1px #0A1A24;
     -webkit-text-fill-color: #006657;
     letter-spacing: 2px;
@@ -219,7 +218,7 @@ a{
 
 .discount-background{
     background-image: url('/media/beautiful-1869208_1920.jpg');
-    height: 85vh;
+    height: 100%;
     /*width: 100%;*/
     background-repeat: no-repeat, repeat;
     background-position: center;
@@ -244,10 +243,6 @@ a{
     margin-top:2px; 
     padding: 0px;
 }
-.discount-font-div{
-        
-        margin-left: 25px;
-    }
  .discount-font {
             color: white;
     }
@@ -307,4 +302,70 @@ a{
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
       
+    .hero-h1{
+        font-size: 42px;
+        -webkit-text-fill-color: #f4fffd;        
+    }
+    .hero-input[type="text"]{
+       width: auto;
+       height: 50px;
+    }
+    .hero-section-button{
+        height: 50px;
+        margin: auto;
+        margin-top: 12px;
+    }
+    #hero-section{
+        margin-top:45px;
+    }
+    .hero-section{
+    height: calc(100vh - 350px);
+    }
+    
+}
+/*Mobiles-landscape*/
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+    #header-section{
+        height: 39vh;
+    }
+    .hero-section{
+    height: calc(100vh - 100px);
+    background-repeat: repeat;
+    background-size: 130%;
+    }
+    .search-box{
+    top: 71%;
+    left: 31%;
+}
+.hero-input[type="text"]{
+       width: auto;
+       height: 40px;
+    }
+    .hero-section-button{
+        height: 40px;
+        margin: auto;
+        margin-top: 6px;
+    }
+.hero-h1{
+    font-size: 30px;
+    margin-bottom: 0px !important;
+    text-align: center;
+}
+.form-contianer{
+    margin-top: 0px !important;
+}
+.hero-input::placeholder {
+    font-size: medium;
+}
+/* Ipads and tablets */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
 }
