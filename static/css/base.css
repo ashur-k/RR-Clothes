@@ -269,7 +269,7 @@
 @media(max-width:720px){
 	.box{
 		width: 50%;
-		height: 500px;
+		height: 100%;
 	}
 	.model{
 		height:250px;

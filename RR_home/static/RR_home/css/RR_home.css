@@ -208,7 +208,10 @@ a{
        -webkit-text-stroke: 1px #0A1A24;
         -webkit-text-fill-color: #006657;
     }
-
+.categories-container{
+    height: fit-content; 
+    padding: 100px;
+}
 /* discount jumbotron */
 
 .discount-background{
@@ -309,7 +312,10 @@ a{
     .hero-section{
     height: calc(100vh - 350px);
     }
-   
+   .categories-container{
+    
+    padding: 0px;
+}
     
 }
 /*Mobiles-landscape*/
@@ -355,6 +361,10 @@ a{
 .hero-input::placeholder {
     font-size: medium;
 }
+ .categories-container{
+    
+    padding: 0px;
+}
   }
 
   /* General mobile sizes */
@@ -383,6 +393,10 @@ a{
     .hero-section{
     height: calc(100vh - 162px);
     }
+     .categories-container{
+    
+    padding: 0px;
+}
   }
 /* Ipads and tablets */
 /* Portrait and Landscape */

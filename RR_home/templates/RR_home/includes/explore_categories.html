@@ -1,6 +1,6 @@
-<section class="mb-5 mt-5" >
+<section class="mb-5 mt-5">
     <div class="container-fluid div-categories-cotainer-fluid mt-5">
-        <div class="container">
+        <div class="container categories-container" >
             <div class="row">           
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">                        
@@ -11,11 +11,12 @@
                         <hr class="home-page-heading-hr-bottom">
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-5 mb-1 my-auto">
-                        <div class="row">                           
+                        <div class="row">       
+                               
                             <div class="category-card card bg-dark text-black">                                
                                     <div id="carousel{{ category_1.id }}id" class="carousel slide" data-interval="false">
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
+                                            <div class="carousel-item active w-100">
                                                 <img src="{{ category_1.image.url }}" class="d-block w-100" alt="...">
                                             </div>
                                             {% for product in category_1_products %}
