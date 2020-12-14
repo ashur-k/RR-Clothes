@@ -1,17 +1,20 @@
 <section id="hero-section">    
     <div class="hero-section">
-        <div class="col-sm-12 col-md-6 col-lg-6 col-11 mx-auto my-auto search-box">
+        <div class="col-sm-6 col-md-6 col-lg-6 mx-auto my-auto search-box">
             <h1 class="hero-h1 display-1 logo-font  mb-5">
                 R-Ryan <br class="d-block d-none d-sm-block d-md-none"> Cloth
             </h1>    
             <form method="GET" action="{% url 'all_products' %}">
-                <div class="input-group form-contianer mt-5">
-                    <input type="text" id="q" name="q" class="form-control search-input hero-input p-2" placeholder="search" autofocus autocomplete="off">
-                    <button class="btn hero-section-button"><i class="fas fa-search primary-icons"></i> Search</button>
+                <div class="input-group form-contianer mt-3">
+                    <div class="col-sm-6 col-md-12 col-lg-12 m-0 p-0 mb-3 media-hero-input-col">
+                        <input type="text" id="q" name="q" class="form-control search-input hero-input p-2" placeholder="search" autofocus autocomplete="off">
+                    </div>
+                    <div class="col-sm-6 col-md-12 col-lg-12 m-0 p-0 mt-3 media-hero-input-col">
+                        <button class="btn hero-section-button"><i class="fas fa-search primary-icons"></i> Search</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-    <div>
 </section>
 

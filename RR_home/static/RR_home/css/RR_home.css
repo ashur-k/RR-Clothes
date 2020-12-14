@@ -37,7 +37,7 @@
     {
         background: transparent;
         line-height: 5px;
-        height: 60px;
+        height: 160%;
         border: 1px solid #F4FFFD;
     }
     .hero-input::placeholder {
@@ -227,12 +227,7 @@ a{
 }
 
 
-.home-page-heading-hr-bottom{
-    height: 2px;
-    background-color: #006657; 
-    margin-top:2px; 
-    padding: 0px;
-}
+
  .discount-font {
             color: white;
     }
@@ -291,7 +286,12 @@ a{
   and (min-device-width: 375px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
-      
+      #header-section {
+        height: 17vh !important;
+    }
+    .search-box{
+          top:43%;
+      }
     .hero-h1{
         font-size: 42px;
         -webkit-text-fill-color: #f4fffd;        
@@ -305,12 +305,11 @@ a{
         margin: auto;
         margin-top: 12px;
     }
-    #hero-section{
-        margin-top:45px;
-    }
+   
     .hero-section{
     height: calc(100vh - 350px);
     }
+   
     
 }
 /*Mobiles-landscape*/
@@ -322,11 +321,16 @@ a{
     #header-section{
         height: 39vh;
     }
+
     .hero-section{
-    height: calc(100vh - 100px);
+    height: calc(100vh - 67px);
     background-repeat: repeat;
     background-size: 130%;
     }
+    .media-hero-input-col{
+          margin-top: 0px !important;
+          margin-bottom: 0px !important;
+      }
     .search-box{
     top: 71%;
     left: 31%;
@@ -343,7 +347,7 @@ a{
 .hero-h1{
     font-size: 30px;
     margin-bottom: 0px !important;
-    text-align: center;
+    
 }
 .form-contianer{
     margin-top: 0px !important;
@@ -352,20 +356,99 @@ a{
     font-size: medium;
 }
   }
+
+  /* General mobile sizes */
+  @media (max-width: 767px){
+      .media-hero-input-col{
+          margin-top: 0px !important;
+          margin-bottom: 0px !important;
+      }
+      .hero-h1{
+        font-size: 32px;
+        -webkit-text-fill-color: #f4fffd;
+        margin-bottom: 0px !important;  
+    }
+    .hero-input[type="text"]{
+       width: 100%;
+       height: 40px;
+    }
+    .hero-section-button{
+        height: 40px;
+        margin: auto;
+        margin-top: 12px;
+    }
+    #hero-section{
+       
+    }
+    .hero-section{
+    height: calc(100vh - 162px);
+    }
+  }
 /* Ipads and tablets */
 /* Portrait and Landscape */
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 2) {
+    
+    .hero-section{
+        height: calc(100vh - 93px);
+    }
+    .search-box{
+        left: 33%;
+    }
+    #header-section{
+        height: 12vh !important;
+    }
+
     .hero-input[type="text"]{
-       width: auto;
-       height: 80px;
+       width: 100% !important;
+    
     }
     .hero-section-button{
-        height: 70px;
+       
         margin: auto;
         margin-top: 6px;
     }
 
 }
+
+/* ----------- iPad Pro 10.5" ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 1112px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+     
+/* ----------- iPad Pro 12.9" ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #header-section{
+            height: 12vh !important;
+        }
+}
+}
+/* Landscape */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen 
+  and (min-device-width: 1366px) 
+  and (max-device-width: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+     #header-section{
+            height: 12vh !important;
+        }
+}
+
+@include media-breakpoint-up(md) { 
+    
+ }
+ @include media-breakpoint-up(lg) { 
+     
+  }

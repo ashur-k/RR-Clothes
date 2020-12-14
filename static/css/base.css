@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
 /* Main Buttons */
 .primary-button{
     background:#0A1A24;
@@ -28,11 +34,13 @@
     -webkit-text-stroke: 1px #0A1A24;
     -webkit-text-fill-color: #006657;
 }
-* {
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto';
+.home-page-heading-hr-bottom{
+    height: 2px;
+    background-color: #006657; 
+    margin-top:2px; 
+    padding: 0px;
 }
+
 
 /* from Bulma */
 .icon {
@@ -303,18 +311,38 @@
         padding-top: 0px;
     }
 }
+
+/* General mobile sizes */
+  @media (max-width: 767px){
+      #header-section{
+          height: 20vh !important;
+      }
+      .media-smaller-screen-sizes{
+            font-size: 10px;
+      }
+  }
 @media only screen 
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 2) {
    .header-media-css{
         padding-left: 0px !important;
-        padding-right: 39px !important;
+        padding-right: 0px !important;
 }
-   }
-    .media-css{
+     .media-css{
         padding-right: 40px;
         padding-left: 25px;
     }
+
+}
+/* Ipads and tablets */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+   #header-section{
+       height: 20vh !important;
+   }
 
 }
