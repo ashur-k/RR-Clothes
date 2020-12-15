@@ -130,7 +130,7 @@ WSGI_APPLICATION = 'RR_Clothes.wsgi.application'
 
 if 'DATABASE_URL_RR_CLOTH' in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL_RR_CLOTHL'))
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL_RR_CLOTH'))
     }
 else:
     DATABASES = {
