@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 def all_products(request):
     """ A view to show all products """
 
-    products = Product.objects.all()
+    products = Product.objects.filter(status=True)
 
     query = None
     categories = None
@@ -69,6 +69,7 @@ def all_products(request):
             queries = Q(title__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries, status=True)
             messages.success(request, f'{products.count()} results found.')
+
     current_sorting = f'{sort}_{direction}'
     context = {
         'products': products,
@@ -96,7 +97,6 @@ def product_detail(request, product_id):
     # saving in variant_id_value
     for items in no_variants:
         variant_id_value = items.id
-
 
     if variant_id_value is None:
         if product.has_variant is True or product.variant != 'None':
@@ -128,9 +128,11 @@ def product_detail(request, product_id):
             query += variant.title + ' Size:' + str(variant.size) + ' Color: ' + str(variant.color)
         else:
             variants = Variants.objects.filter(product_id=product_id)
-            colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id)
-            sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
+            colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id )
+
+            sizes = Variants.objects.raw('SELECT * FROM  products_variants WHERE product_id=%s GROUP BY size_id', [product_id])
             variant = Variants.objects.get(id=variants[0].id)
+            #return HttpResponse ("stopping at products.vew line 134")
 
         context.update({
             'sizes': sizes,
@@ -308,6 +310,7 @@ def product_management(request, product_id):
             'on_other_page': True
             }
         return render(request, template, context)
+
     else:
         variants = Variants.objects.filter(product_id=product_id, status=True)
         template = 'products/product_management.html'
