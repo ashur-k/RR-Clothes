@@ -134,7 +134,7 @@ if 'DATABASE_URL_RR_CLOTH' in os.environ:
         'default': {
             'default': dj_database_url.parse(os.environ.get('DATABASE_URL_RR_CLOTH')),
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'Heroku Postgres',
+            'NAME': 'Heroku Postgres',
         }
     }
     connected_to_postgres = "Connected to Postgres"
