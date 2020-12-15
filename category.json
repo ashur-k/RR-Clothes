@@ -1,0 +1,245 @@
+[
+   {
+      "model":"products.category",
+      "pk":1,
+      "fields":{
+         "name":"girls_hudi",
+         "image":"media/girls_hudi_wnTol0K.jpg",
+         "friendly_name":"Girls Hudis"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":2,
+      "fields":{
+         "name":"girls_shirts",
+         "image":"media/15633583401127575454_thumbnail_600x799_zEJbOk1.jpg",
+         "friendly_name":"Girls Shirt"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":3,
+      "fields":{
+         "name":"girls_dresses",
+         "image":"media/girls_dress_CkmyOyX.jpg",
+         "friendly_name":"Girls Dresses"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":4,
+      "fields":{
+         "name":"girls_coats_jackets",
+         "image":"media/portrait-3083402_1920.jpg",
+         "friendly_name":"Girls Coats & Jackets"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":5,
+      "fields":{
+         "name":"girls_tops",
+         "image":"media/4282_-_Copy.jpg",
+         "friendly_name":"Girls Tops"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":6,
+      "fields":{
+         "name":"girls_damage_jeans_and_trousers",
+         "image":"media/12159_cBX9JPb.jpg",
+         "friendly_name":"Girls Damage Jeans and Trousers"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":7,
+      "fields":{
+         "name":"girls_jeans",
+         "image":"media/girls_Jeans-Girls_KcAMFJq.jpg",
+         "friendly_name":"Girls Jeans"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":8,
+      "fields":{
+         "name":"boys_hudi",
+         "image":"media/boys_okdX9WZ.jpg",
+         "friendly_name":"Boys Hudis"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":9,
+      "fields":{
+         "name":"boys_shirts",
+         "image":"media/8800_-_Copy_-_Copy_2.jpg",
+         "friendly_name":"Boys Shirt"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":10,
+      "fields":{
+         "name":"ladies_tops",
+         "image":"media/tyler-nix-PogwemZ5esQ-unsplash.jpg",
+         "friendly_name":"Ladies tops"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":12,
+      "fields":{
+         "name":"ladies_suits",
+         "image":"media/maria-lupan-i28e-IXnJmA-unsplash.jpg",
+         "friendly_name":"Ladies Suits"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":13,
+      "fields":{
+         "name":"coats_jackets",
+         "image":"media/6891_-_Copy_-_Copy.jpg",
+         "friendly_name":"Ladies Coats and Jackets"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":14,
+      "fields":{
+         "name":"sweaters_cardigans",
+         "image":"media/15032.jpg",
+         "friendly_name":"Ladies sweaters & cardigans"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":15,
+      "fields":{
+         "name":"ladies_shirts",
+         "image":"media/5623_5CrL3Uk.jpg",
+         "friendly_name":"Ladies Shirts"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":16,
+      "fields":{
+         "name":"ladies_lingeries",
+         "image":"media/59754.jpg",
+         "friendly_name":"Lingeries"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":17,
+      "fields":{
+         "name":"ladies_jeans",
+         "image":"media/karsten-winegeart-g14V7_SQyrw-unsplash.jpg",
+         "friendly_name":"Ladies jeans"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":18,
+      "fields":{
+         "name":"boys_coats_jackets",
+         "image":"media/boys_coats_IAFW8uZ.jpg",
+         "friendly_name":"Boys Coats & Jackets"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":19,
+      "fields":{
+         "name":"boys_tshirts",
+         "image":"media/boys_tshirts_Yt6bnH9.jpg",
+         "friendly_name":"Boys T-Shirts"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":20,
+      "fields":{
+         "name":"boys_damage_jeans_and_trousers",
+         "image":"media/boys_damage_SVKUOoX.jpg",
+         "friendly_name":"Boys Damage Jeans"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":21,
+      "fields":{
+         "name":"boys_jeans",
+         "image":"media/boys_jeans_HadNxbB.jpg",
+         "friendly_name":"Boys Jeans"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":22,
+      "fields":{
+         "name":"men_sweaters_cardiganss",
+         "image":"media/men_swaterandcardigan_PV5uamj.jpg",
+         "friendly_name":"Men Sweaters & Cardigans"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":23,
+      "fields":{
+         "name":"men_tshirts",
+         "image":"media/Mens-t-shirts-_ybEPEbd.jpg",
+         "friendly_name":"Men T-Shirts"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":24,
+      "fields":{
+         "name":"men_suits",
+         "image":"media/men_suit_9rYPkPR.jpg",
+         "friendly_name":"Men Suits"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":25,
+      "fields":{
+         "name":"men_jeans",
+         "image":"media/mens-jeanius-model-high-res-1_UcZBIOn.jpg",
+         "friendly_name":"Men Jeans"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":26,
+      "fields":{
+         "name":"men_shirts",
+         "image":"media/men_shirt_sJFGxJN.jpg",
+         "friendly_name":"Men Shirts"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":27,
+      "fields":{
+         "name":"ladies_dresses",
+         "image":"media/11345.jpg",
+         "friendly_name":"Ladies Dresses"
+      }
+   },
+   {
+      "model":"products.category",
+      "pk":29,
+      "fields":{
+         "name":"men_coats_jackets",
+         "image":"media/stone-check-print-mac-coat_395686_main.jpg",
+         "friendly_name":"Men Coats & Jackets"
+      }
+   }
+]

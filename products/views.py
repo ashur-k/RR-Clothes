@@ -10,6 +10,7 @@ from .forms import ProductForm, ProductVariantForm, CategoryForm
 from .forms import ProductColorForm, ProductSizeForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
 # Create your views here.
@@ -75,7 +76,7 @@ def all_products(request):
         'products': products,
         'search_term': query,
         'current_categories': categories,
-        'current_sorting': current_sorting
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
@@ -129,7 +130,6 @@ def product_detail(request, product_id):
         else:
             variants = Variants.objects.filter(product_id=product_id)
             colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id )
-
             sizes = Variants.objects.raw('SELECT * FROM  products_variants WHERE product_id=%s GROUP BY size_id', [product_id])
             variant = Variants.objects.get(id=variants[0].id)
             #return HttpResponse ("stopping at products.vew line 134")

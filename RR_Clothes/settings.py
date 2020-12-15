@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import connection_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -128,10 +129,17 @@ WSGI_APPLICATION = 'RR_Clothes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
 if 'DATABASE_URL_RR_CLOTH' in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL_RR_CLOTH'))
+        'default': {
+            'default': dj_database_url.parse(os.environ.get('DATABASE_URL_RR_CLOTH')),
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'Heroku Postgres',
+        }
     }
+    connected_to_postgres = "Connected to Postgres"
+    print(connected_to_postgres)
 else:
     DATABASES = {
         'default': {
@@ -139,6 +147,7 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    print("Connected to MySQL3")
 
 
 # Password validation
@@ -205,10 +214,12 @@ if 'USE_AWS' in os.environ:
     # Override static media URLS in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    print("AWS MEDIA and STATIC file")
 
 ####################################
 # # STRIPE ##
 ####################################
+
 
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10

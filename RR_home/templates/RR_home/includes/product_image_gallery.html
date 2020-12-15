@@ -46,8 +46,10 @@
                     <h4>${{ product.price }}</h4>
                     </div>
                     
-                <div class="col-sm-12 col-centered mt-2">                        
+                <div class="col-sm-12 col-centered mt-2">       
+                    {% if product.id %}                 
                     <a href="{% url 'product_detail' product.id %}" class="btn primary-button">View Product details</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

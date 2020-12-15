@@ -31,17 +31,17 @@ def index(request):
 
     # Getting random id to display random products on home page with its
     # images getting them from images model
-    random_pks = Product.objects.values_list('pk', flat=True)
-    random_pk = choice(random_pks)
-    random_product = Product.objects.get(pk=49)
-    product_id = random_product.id
+    #random_pks = Product.objects.values_list('pk', flat=True)
+    #random_pk = choice(random_pks)
+    #random_product = Product.objects.get(pk=49)
+    #product_id = random_product.id
     images = Images.objects.filter(product_id=49)
     variants = Variants.objects.filter(product_id=49)
 
     context = {
         'products_slider': products_slider,
         'products_latest': products_latest,
-        'product': random_product,
+        #'product': random_product,
         'images': images,
         'category_1': category_1,
         'category_2': category_2,

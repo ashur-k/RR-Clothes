@@ -23,7 +23,11 @@ class Category(models.Model):
         return self.friendly_name
 
     def image_tag(self):
-        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+        if self.image.url:
+            return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+        else:
+            return mark_safe('<img src="" height="50"/> alt="no img"')
+
 
 
 
