@@ -147,7 +147,7 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-    print("Connected to MySQL3")
+    print("Connected to MySQL3s")
 
 
 # Password validation
