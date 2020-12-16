@@ -137,8 +137,7 @@ if 'DATABASE_URL_RR_CLOTH' in os.environ:
             'NAME': 'Heroku Postgres',
         }
     }
-    connected_to_postgres = "Connected to Postgress"
-    print(connected_to_postgres)
+    print("Connected to Postgress")
 else:
     DATABASES = {
         'default': {
