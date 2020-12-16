@@ -11,6 +11,7 @@ from .forms import ProductColorForm, ProductSizeForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.db.models import Count
 
 
 # Create your views here.
@@ -131,6 +132,9 @@ def product_detail(request, product_id):
             variants = Variants.objects.filter(product_id=product_id)
             colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id )
             sizes = Variants.objects.raw('SELECT * FROM  products_variants WHERE product_id=%s GROUP BY size_id', [product_id])
+            #sizes = Variants.objects.filter(product_id=product_id).order_by('size_id')
+            #sizes = Variants.objects.filter(product_id=product_id).annotate(Count('size_id')).order_by('size_id')
+            #sizes = Variants.objects.annotate(Count('size_id')).filter(product_id=product_id).order_by('size_id')
             variant = Variants.objects.get(id=variants[0].id)
             #return HttpResponse ("stopping at products.vew line 134")
 

@@ -2504,5 +2504,19 @@
          "price":"23.99",
          "status":"True"
       }
+   },
+   {
+      "model":"products.variants",
+      "pk":253,
+      "fields":{
+         "title":"Classic Boys Hudi pink",
+         "product":56,
+         "color":120,
+         "size":10,
+         "image_id":481,
+         "quantity":15,
+         "price":"23.99",
+         "status":"True"
+      }
    }
 ]

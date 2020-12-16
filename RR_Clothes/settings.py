@@ -129,13 +129,11 @@ WSGI_APPLICATION = 'RR_Clothes.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
-if 'DATABASE_URL_RR_CLOTH' in os.environ:
+if 'DATABASE_URL' in os.environ:
     DATABASES = {
-        'default': {
-            'default': dj_database_url.parse(os.environ.get('DATABASE_URL_RR_CLOTH')),
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'Heroku Postgres',
-        }
+       # 'default': {
+            'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+       # }
     }
     print("I am Connected to Postgress")
 else:
