@@ -62,6 +62,8 @@ class ProductSizeForm(forms.ModelForm):
 
 class ProductImageForm(forms.ModelForm):
 
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+
     class Meta:
         model = Images
         fields = ['title', 'image',]
