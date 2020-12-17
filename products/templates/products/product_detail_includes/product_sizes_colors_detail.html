@@ -4,7 +4,7 @@
             <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
             <span class="text-uppercase">Size :</span>
             {% csrf_token %}
-            <select name="size" id="size">
+            <select class="custom-css-product-size-select" name="size" id="size">
                 {% for rs in sizes %}
                     <option 
                         {% if variant.size_id == rs.size_id %} 

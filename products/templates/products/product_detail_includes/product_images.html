@@ -1,12 +1,12 @@
 <div id="product-main-view">
     <div class="product-view">				
         <div class="product-view">
-            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}" alt="" >
+            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}" alt="img-thumbnail" >
         </div>
     </div>
     {% for rs in images %}
     <div class="product-view">
-        <img class="img-thumbnail" src="{{rs.image.url}}" alt="">
+        <img class="img-thumbnail" src="{{rs.image.url}}" alt="img-thumbnail">
               
     </div>
     {% endfor %}							

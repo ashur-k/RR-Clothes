@@ -18,6 +18,17 @@
     border: 2px solid #0A1A24;
 }
 
+.secondary-button{
+    background:#006657;
+    color: #F4FFFD;
+    border: 2px solid #0A1A24;
+}
+.secondary-button:hover{
+    background:#0A1A24;
+    color: #F4FFFD;
+    border: 2px solid #006657;
+}
+
 .bg-black{
     background-color: black;
 }
@@ -39,6 +50,9 @@
     background-color: #006657; 
     margin-top:2px; 
     padding: 0px;
+}
+.image-thumbnail-border{
+    border: 2px solid #006657;
 }
 
 
@@ -218,6 +232,13 @@
     background-color: #0A1A24;
 
 }
+/* product detail */
+ .custom-css-product-size-select{
+        border: 2px solid #0A1A24;
+            height: 40px;
+            width: 450px;
+            font-size: 18px;
+    }
 /* Product Form */
 
 .btn-file {
