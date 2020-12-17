@@ -131,7 +131,7 @@ WSGI_APPLICATION = 'RR_Clothes.wsgi.application'
 
 
 if 'DATABASE_URL' in os.environ:
-    DATABASES = { 
+    DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
     }
     print("I am Connected to Postgress")
