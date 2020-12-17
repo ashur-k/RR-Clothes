@@ -154,6 +154,9 @@ class Variants(models.Model):
     class Meta:
         verbose_name_plural = 'Variants'
 
+    def get_size(self):
+        return "a"
+
     def __str__(self):
         return self.title
 
