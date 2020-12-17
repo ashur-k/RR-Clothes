@@ -7,6 +7,17 @@
 }
 
 /* Main Buttons */
+.primary-text-color{
+    color: #0A1A24;
+}
+.primary-border{
+    border: 2px solid #006657;
+}
+.badge-background-color-and-border{
+    background-color: #006657;
+    color: #FFF;
+    border: 2px solid #0A1A24;
+}
 .primary-button{
     background:#0A1A24;
     color: #F4FFFD;

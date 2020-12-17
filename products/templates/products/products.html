@@ -16,11 +16,11 @@
             <div class="col text-center mt-3">
                 <h2 class="logo-font">Products</h2>
                 {% for c in current_categories %}
-                    <a class="category-badge text-decoration-none" href="{% url 'all_products' %}?category={{ c.name }}">
-                        <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+                    <a class="category-badge text-decoration-none mb-2" href="{% url 'all_products' %}?category={{ c.name }}">
+                        <span class="p-2 mt-2 badge badge-white badge-background-color-and-border">{{ c.friendly_name }}</span>
                     </a>
                 {% endfor %}
-                <hr class="w-100 mb-1 home-page-heading-hr-bottom">
+                <hr class="w-100 mb-1 mt-4 home-page-heading-hr-bottom">
             </div>
         </div>
         <div class="row">

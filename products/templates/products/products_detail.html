@@ -68,7 +68,7 @@
                             {% else %}
                                 <small class="text-muted">No Rating</small>
                             {% endif %}
-                            <a href="#tab1"> {{ product.countreview }}  Review(s) / Add Review</a>
+                            <a class="primary-text-color" href="#reviews"> {{ product.countreview }}  Review(s) / Add Review</a>
                             {% if product.variant == 'None'  %}
                             <p class="lead mb-2 text-left">
                                 Price: ${{ product.price }}                     
@@ -113,8 +113,9 @@
                             {% include 'products/product_detail_includes/product_sizes_detail.html' %}
                         {% elif product.variant == 'Color' %}
                             {% include 'products/product_detail_includes/product_colors_detail.html' %}
+                            <hr>
                         {% endif %}  
-                        <hr>
+                        
                     </div>                 
                     <div class="col-12">                                      
                         {% if  product.variant == 'None'   %}
@@ -168,7 +169,7 @@
 <div class="container"> <hr class="home-page-heading-hr-top">
     <div class="row mt-4"> 
         <div class="col-md-6">
-            <div class="product-reviews">
+            <div class="product-reviews" id="reviews">
             <h4 class="text-uppercase">Reviews ( {{ product.counterview }} )</h4>
                 {% if product.product_reviews %}
                     {% for reviews in product.product_reviews %}
