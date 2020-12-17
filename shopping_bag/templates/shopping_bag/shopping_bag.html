@@ -7,10 +7,11 @@
 {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container mt-5">
-        <div class="row mt-2">
-            <div class="col mt-2">
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
                 <h1>Shopping Bag</h1>
+                <hr class="home-page-heading-hr-top mb-4">
             </div>
         </div>
     </div>
@@ -20,7 +21,7 @@
 
 <div class="container">
       <div class="row">
-            <div class="col">
+            <div class="col-sm-12 col-md-12 col-lg-12">
                 {% if bag_items %}
                     <div class="table-responsive rounded">
                         <table class="table table-sm table-borderless">
@@ -39,15 +40,14 @@
                                 <tr>
                                     <td class="p-3 w-25">
                                     {% if item.variant.image %}
-                                    <img class="w-100" src="{{ item.variant.image }}" alt="{{ variant.title }}">
+                                    <img class="w-100 img-fluid" src="{{ item.variant.image }}" alt="{{ variant.title }}">
                                 {% else %}                                   
-                                    <img class="w-100" src="{{ item.variant.product.image.url }}" alt="{{ variant.title }}">
+                                    <img class="w-100 img-fluid" src="{{ item.variant.product.image.url }}" alt="{{ variant.title }}">
                                 {% endif %}
                             {% if not item.variant.image and not item.variant.product.image.url %}   
-                                <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ variant.title  }}"> 
+                                <img class="w-100 img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ variant.title  }}"> 
                             {% endif %}
                                     </td>
-
                                     <td class="py-3">
                                         {% if item.product.title %}                                        
                                         <p class="my-0"><strong>{{ item.product.title }}</strong></p>
@@ -60,8 +60,7 @@
                                             {% if item.variant.size  %}
                                                 <p class="my-0"><strong>Size: {{ item.variant.size }}</strong></p>
                                             {% endif %}
-                                                <p class="my-0 small text-muted">{{ item.variant.id }} </p>                                       
-                                     
+                                                <p class="my-0 small text-muted">{{ item.variant.id }} </p>
                                         {% endif %}
                                     </td>
                                     <td class="py-3">
@@ -80,8 +79,12 @@
                                                     id="id_qty_{{ item.item_id }}">
                                                     
                                          </form>   
-                                         <a class="update-link text-info"><small>Update</small></a>                                        
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+                                        <a class="update-link text-info btn secondary-button btn-sm mt-1 p-1">
+                                            <small>Update</small>
+                                        </a>                                        
+                                        <a class="remove-item text-danger float-right btn secondary-button btn-sm mt-1 p-1" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">
+                                            <small>Remove</small>
+                                        </a>
                                     </td>
                                     
                                     <td class="py-3">
@@ -114,7 +117,7 @@
                                         </span>
                                         <span class="text-uppercase">Keep Shopping</span>
                                     </a>
-                                    <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
+                                    <a href="{% url 'checkout' %}" class="btn  primary-button rounded-0 btn-lg">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
@@ -136,8 +139,6 @@
             </div>
         </div>
     </div>
-</div>
-
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
