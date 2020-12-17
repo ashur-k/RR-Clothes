@@ -12,8 +12,9 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container">
+        <h1>Size Management</h1>
+        <hr class="home-page-heading-hr-bottom mt-1">   
     <div class="row m-3">
-         <h1>Size Management</h1>
     </div>
         <div class="row">
             <div class="col-md-4">
@@ -26,7 +27,7 @@
                     <div class="form-group">
                         <input class="form-control" type="text" name="code" placeholder="xxl" required>
                     </div>
-                    <button class="btn btn-primary form-control" type="submit">SUBMIT</button>
+                    <button class="btn primary-button form-control" type="submit">SUBMIT</button>
                     </form>
           
             </div>
@@ -44,10 +45,10 @@
                         <td class="sizeName sizeData" name="name">{{size.name}}</td>
                         <td class="sizeCode sizeData" name="code">{{ size.code }}</td>
                         <td align="center">
-                            <button class="btn btn-success form-control" onclick="editSize({{size.id}})" data-toggle="modal" data-target="#myModal">EDIT</button>
+                            <button class="btn btn-sm secondary-button form-control" onclick="editSize({{size.id}})" data-toggle="modal" data-target="#myModal">EDIT</button>
                         </td>
                         <td align="center">
-                            <button class="btn btn-danger form-control" onclick="deleteSize({{size.id}})">DELETE</button>
+                            <button class="btn btn-sm secondary-button form-control" onclick="deleteSize({{size.id}})">DELETE</button>
                         </td>
                     </tr>
                     {% endfor %}                                    

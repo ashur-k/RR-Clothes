@@ -12,14 +12,12 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container">
+     <h2 class="logo-font mb-4">Product Management</h2>
+     <hr class="home-page-heading-hr-bottom">   
     <div class="row">
         <div class="col-12 col-md-6">
-            <hr>
-            <h2 class="logo-font mb-4">Product Management</h2>
             <h5>Add a Product</h5>
-            <hr>
         </div>
     </div>
     <div class="row">
@@ -35,7 +33,7 @@
                     {% endfor %}
                 <div class="text-right">
                     <a class="btn btn-outline-black rounded-0" href="{% url 'all_products' %}">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Add Product</button>
+                    <button class="btn primary-button rounded-0" type="submit">Add Product</button>
                 </div>            
             </form>
         </div>   

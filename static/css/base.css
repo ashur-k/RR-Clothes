@@ -39,6 +39,18 @@
     color: #F4FFFD !important;
     border: 2px solid #006657;
 }
+.btn-black {
+   background:#006657;
+    color: #F4FFFD !important;
+    border: 2px solid #0A1A24;
+    
+}
+.btn-black:hover{
+    background:#006657;
+    color: #F4FFFD !important;
+    border: 2px solid #0A1A24;
+    
+}
 
 .bg-black{
     background-color: black;
@@ -63,7 +75,7 @@
     padding: 0px;
 }
 .image-thumbnail-border{
-    border: 2px solid #006657;
+    border: 1px solid #0A1A24;
 }
 
 
@@ -90,14 +102,7 @@
     min-width: 260px;
 }
 
-.btn-black {
-    background:black ;
-    color: white;
-    
-}
-.btn-black:hover{
-    border: 1px solid white;
-}
+
 
 .shop-now-button:hover,
 .shop-now-button:active,

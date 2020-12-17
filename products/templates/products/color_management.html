@@ -12,23 +12,23 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container">
+        <h2>Color Management</h2>
+        <hr class="home-page-heading-hr-bottom mt-1">   
     <div class="row m-3">
-         <h1>Color Management</h1>
+         
     </div>
         <div class="row">
             <div class="col-md-4">
-                    <h3>ADD Color</h3>
-                    <form id="addColor" action="">
-                    
+                <h3>Add Color</h3>
+                <form id="addColor" action="">                    
                     <div class="form-group">
                         <input class="form-control" type="text" name="name" placeholder="Name" required>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" name="code" placeholder="#000000" required>
                     </div>
-                    <button class="btn btn-primary form-control" type="submit">SUBMIT</button>
-                    </form>
-          
+                    <button class="btn primary-button form-control" type="submit">SUBMIT</button>
+                </form>          
             </div>
             <div class="col-md-8">
             <table id="color" class="table table-striped">
@@ -36,26 +36,24 @@
                     <tr>
                         <th scope="col">Color name</th>
                         <th scope="col">Color code</th>
-                    <th scope="col">Code sample</th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-            {% for color in colors %}
-                <tr id="color-{{color.id}}">
-            
-                    <td class="colorName colorData" name="name">{{color.name}}</td>
-                    <td class="colorCode colorData" name="code">{{ color.code }}</td>
-                    <td style="background-color:{{ color.code }};" name="code_background"></td>
-                    <td align="center">
-                        <button class="btn btn-success form-control" onclick="editColor({{color.id}})" data-toggle="modal" data-target="#myModal">EDIT</button>
-                    </td>
-                    <td align="center">
-                        <button class="btn btn-danger form-control" onclick="deleteColor({{color.id}})">DELETE</button>
-                    </td>
-                </tr>
-                {% endfor %}                                    
-            </tbody>
+                        <th scope="col">Code sample</th>                   
+                    </tr>
+                </thead>
+                <tbody>
+                {% for color in colors %}
+                    <tr id="color-{{color.id}}">                
+                        <td class="colorName colorData" name="name">{{color.name}}</td>
+                        <td class="colorCode colorData" name="code">{{ color.code }}</td>
+                        <td style="background-color:{{ color.code }};" name="code_background"></td>
+                        <td align="center">
+                            <button class="btn btn-sm secondary-button form-control" onclick="editColor({{color.id}})" data-toggle="modal" data-target="#myModal">EDIT</button>
+                        </td>
+                        <td align="center">
+                            <button class="btn btn-sm secondary-button form-control" onclick="deleteColor({{color.id}})">DELETE</button>
+                        </td>
+                    </tr>
+                    {% endfor %}                                    
+                </tbody>
             </table>
         </div>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

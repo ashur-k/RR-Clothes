@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container mt-5">
-        <div class="row mt-2">
-            <div class="col mt-2">
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
                 
             </div>
         </div>
@@ -16,10 +16,10 @@
     <div class="row">
         <!-- Product Management Section -->
          <div class="col-sm-12 col-md-12">
-            <h2 class="mb-4">Product Management</h2><hr>
-            <a class="btn btn-large btn-dark m-2" href="">Add New Product</a>
+            <h2 class="mb-4">Product Management</h2>
+            <hr class="home-page-heading-hr-top">            
         </div>
-         <div class="col-sm-12 col-md-12">
+         <div class="col-sm-12 col-md-12 mt-2">
             <h3>Product Information:</h3>
             <table class="table table-bordered">
                 <thead>
@@ -37,13 +37,12 @@
                         <td>{{product.title}}</td>
                         <td>
                             {% if product.has_variant == 1 %}
-                                <a class="btn btn-large btn-dark m-2" href="{% url 'edit_product_with_variant' product.id  %}">Edit</a>
-                            {% else %}
-                           
-                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_product_without_variant' product.id variant.id %}">Edit</a>
+                                <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_product_with_variant' product.id  %}">Edit Product</a>
+                            {% else %}                           
+                            <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_product_without_variant' product.id variant.id %}">Edit</a>
                             {% endif %}
                             
-                            <button type="button" class="btn btn-large btn-danger m-2" data-toggle="modal" data-target="#delete_product{{product.id}}">
+                            <button type="button" class="btn btn-sm secondary-button m-2" data-toggle="modal" data-target="#delete_product{{product.id}}">
                                 Delete Product
                             </button>
                             <div class="modal" tabindex="-1" id="delete_product{{product.id}}">
@@ -69,24 +68,25 @@
                     </tr>
 
                 </tbody>
-                </table>
+            </table>
         </div>
     </div>
     <div class="row">
          <div class="col-12 col-md-12">
-            <h2 class="mb-4">Image Management</h2><hr>            
+            <h3 class="mb-4">Product Image/Images:</h3><hr>            
         </div>
         <!-- Images Management  Section -->
         <div class="col-12 col-md-12 ">
-            <div class="col-12 col-md-6 pl-4 pt-2 bg-light mb-4">
-            <h5 class="bg-dark p-2" style="color:#fff;">Add new product image:</h5><hr>
-            <form method="POST" action="" class="form mb-2" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ image_form | crispy }}
-                   <button class="btn btn-dark" type="submit">Add Image</button>                
-            </form>
+            <div class="col-12 col-md-6 pl-4 pt-2 bg-light mb-5" >
+                <h5 class="bg-dark p-2" style="color:#fff;">Add new product image:</h5><hr>
+                <form method="POST" action="" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ image_form | crispy }}
+                    <button class="btn btn-xl primary-button" type="submit" style="float: right;">Add an Image</button><br>           
+                </form><br>
             </div>
-            <h3>Image Information:</h3>
+            <hr>
+            <h3>Image/Images Added to Product:</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -104,9 +104,9 @@
                         <td><img class="rounded mx-auto d-block" height="100" src="{{ image.image.url }}" alt="Card image cap"></td>
                         <td>
                           
-                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_image' image.id %}">Edit</a>
+                            <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_image' image.id %}">Edit Image</a>
                             
-                            <button type="button" class="btn btn-large btn-danger m-2" data-toggle="modal" data-target="#delete_product{{image.id}}">
+                            <button type="button" class="btn btn-sm secondary-button btn-danger m-2" data-toggle="modal" data-target="#delete_product{{image.id}}">
                                 Delete Image
                             </button>
                             <div class="modal" tabindex="-1" id="delete_product{{image.id}}">
@@ -142,9 +142,14 @@
         
         <div class="col-12 col-md-12">
             <hr>
-            <h2>Variant Management</h2>
-            <hr>
-            <a class="btn btn-dark m-2" href="{% url 'add_variant' product.id %}">Add Variant</a>
+         
+            <div class="col-6">
+                <h3>Product Variants</h3>
+            </div>
+            <div class="col-6">
+                <a class="btn btn-xl primary-button m-2" href="{% url 'add_variant' product.id %}" >Add a New Variant</a>
+            </div>           
+            <hr>            
         </div>
         <div class="col-12 col-md-12">
             <h3>Variant Information:</h3>
@@ -174,7 +179,7 @@
                             <td>{{v.title}}</td>
                             {% if v.image_id %} 
                             <td>
-                            <img class="rounded mx-auto d-block" height="100" src="{{ v.image }}" alt="Please check if image id is correct.">
+                            <img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ v.image }}" alt="Please check if image id is correct.">
                             </td>
                             {% else %}
                             <td>
@@ -191,8 +196,8 @@
                             <td>${{v.price}}</td>
                             <td>{{v.quantity}}</td>
                         <td>
-                            <a class="btn btn-large btn-dark m-2" href="{% url 'edit_variant' product.id v.id %}">Edit</a>
-                            <button type="button" class="btn btn-large btn-danger m-2" data-toggle="modal" data-target="#delete_variant{{ v.id }}">
+                            <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_variant' product.id v.id %}">Edit Varaint</a>
+                            <button type="button" class="btn btn-sm secondary-button m-2" data-toggle="modal" data-target="#delete_variant{{ v.id }}">
                                 Delete Variant
                             </button>
                             <div class="modal" tabindex="-1" id="delete_variant{{ v.id }}">
