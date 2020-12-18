@@ -30,8 +30,11 @@
 }
 .hero-h1{
     -webkit-text-stroke: 1px #0A1A24;
-    -webkit-text-fill-color: #006657;
-    letter-spacing: 2px;
+    -webkit-text-fill-color: #f4fffd;
+    letter-spacing: 1px;
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1.2;
 }
   .hero-input[type="text"]
     {
@@ -336,6 +339,10 @@ transition-delay:.2s;
  .discount-font {
             color: white;
     }
+    .discount-h1{
+        font-size:26px; 
+        color: #F4FFFD;
+    }
     
 /* Image Gallery Section */
 
@@ -436,7 +443,9 @@ transition-delay:.2s;
    .categories-container{    
     padding: 0px;
 }
-    
+.discount-h1{
+        font-size:18px;
+    }    
 }
 /*Mobiles-landscape*/
 @media only screen 
@@ -447,7 +456,6 @@ transition-delay:.2s;
     #header-section{
         height: 39vh;
     }
-
     .hero-section{
     height: calc(100vh - 67px);
     background-repeat: repeat;
@@ -472,19 +480,20 @@ transition-delay:.2s;
     }
 .hero-h1{
     font-size: 30px;
-    margin-bottom: 0px !important;
-    
-}
+    margin-bottom: 0px !important;    
+    }
 .form-contianer{
     margin-top: 0px !important;
-}
+    }
 .hero-input::placeholder {
     font-size: medium;
 }
- .categories-container{
-    
+ .categories-container{    
     padding: 0px;
 }
+ .discount-h1{
+        font-size:18px;
+    }
   }
 
   /* General mobile sizes */
@@ -526,7 +535,7 @@ transition-delay:.2s;
   and (-webkit-min-device-pixel-ratio: 2) {
     
     .hero-section{
-        height: calc(100vh - 93px);
+        height: calc(100vh - 49px);
     }
     .search-box{
         left: 33%;
