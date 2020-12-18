@@ -277,7 +277,26 @@ a{
 #full-image{    
     height: 500px;
 }
+/*Footer css and styling*/
+.footer-container-background{
+    background-color: #0A1A24;
+    color: #fff;
+}
+.footer{
+    background-color: #0A1A24;;
+    margin-right: 0px;
+    margin-left: 0px;
+    height: 50%;
+}
 
+.row-centered > div {
+    display: inline-block;
+    float: none;
+}
+.copy-rigth-sign{
+    color: #006657;
+    font-size: larger;
+}
 /*
 ##############################################################################
                         M E D I A  -  Q U E R I E S 
