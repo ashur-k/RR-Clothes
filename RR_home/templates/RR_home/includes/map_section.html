@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row map-row">
             <div class="col-sm-12 map-col text-center">
-                <h3 class="mt-3"><i class="fas fa-globe"></i> STORE LOCATIONS</h3>
+                <h3 class="mt-3"><i class="fas fa-map-pin"></i> STORE LOCATIONS</h3>
                 <p>Look out for store locations</p>
                 <hr class="home-page-heading-hr-bottom">
             </div>
@@ -38,16 +38,16 @@
             var map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 8,
                 center: {
-                    lat: 40.785091,
-                    lng: -73.974245
+                    lat:56.007120,
+                    lng:-3.709860
                 }
             });
 
             var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var locations = [
-                {lat: 40.785091, lng: -73.974285},
-                {lat: 40.785045, lng: -73.974245},
-                { lat: 40.785932, lng: -73.974016}
+                {lat:56.006481, lng:-3.713440},
+                {lat:56.007120, lng:-3.709860},
+                {lat:56.0094028, lng:-3.7107378}
             ];
 
             var markers = locations.map(function(location, i){
