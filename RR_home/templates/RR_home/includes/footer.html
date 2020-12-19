@@ -1,50 +1,54 @@
-<div class="row-centered text-center mt-4 mb-2 h-100">
-    <div class="col-sm-12 my-auto">
-        <p class="text-center text-uppercase">Thanks for visiting Ronal-Ryan Clothes i hope i have make your experince delightful.</p>
-    </div>
-</div>
-<div class="container-fluid pt-3 footer-container-background">
-    <div class="container p-1 mt-2">
-        <div class="row footer mb-2">
-            <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                <h4><i class="fas fa-user-cog"></i> About Me & Site</h4>
-                <p><small class="p-1">
-                    I am a student programmer and have developed this e-commerce Web application 
-                    for code-institute to submit final project.This is first release version and will be updated in future.
-                    If you have any suggestions to improve this project or for us to collaborate
-                    on another project please don't hesitate to contact me.
-                    </small>
-                </p>          
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 offset-md-1" >
-                <h4><i class="far fa-address-book"></i> Contact Details</h4>
-                <p>Mobile: +447379325523<small></small></p>
-                <p>Email: ashurkanwal@yahoo.com</p>                
-                <p>Address: Falkirk Scotland United Kingdom</p>            
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 ">
-                <div>
-                    <h4><i class="fas fa-edit"></i> Contact Me</h4>
-                    <p>Please fill this form</p>
-                </div>
-                <form>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="name" placeholder="name">
-                    </div>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="your_email@anymailservice.com" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">I'll never share your email with anyone else.</div>
-                    </div>
-                    
-                    <div class="mb-3 form-check pl-0">                   
-                        <textarea class="form-control" placeholder="Leave a message here" id="floatingTextarea"></textarea>                  
-                    </div>
-                    <button type="submit" class="btn btn-lg secondary-button">Submit</button>
-                    </form>        
-            </div>     
+<footer>
+    <div class="row-centered text-center mt-4 mb-2 h-100">
+        <div class="col-sm-12 my-auto">
+            <p class="text-center text-uppercase">Thanks for visiting Ronal-Ryan Clothes i hope i have make your experince delightful.</p>
         </div>
     </div>
-</div>
-<div class="row-centered text-center mt-3 mb-2">
-    <p class="text-center text-uppercase">R Ryan Clothes <strong class="copy-rigth-sign">©</strong> 2020 copy right protected</p>
-</div>
+    <div class="container-fluid pt-3 footer-container-background">
+        <div class="container p-1 mt-2">
+            <div class="row footer mb-2">
+                <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                    <h4><i class="fas fa-user-cog"></i> About Me & Site</h4>
+                    <p><small class="p-1">
+                        I am a student programmer and have developed this e-commerce Web application 
+                        for code-institute to submit final project.This is first release version and will be updated in future.
+                        If you have any suggestions to improve this project or for us to collaborate
+                        on another project please don't hesitate to contact me.
+                        </small>
+                    </p>          
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 offset-md-1" >
+                    <h4><i class="far fa-address-book"></i> Contact Details</h4>
+                    <p>Mobile: +447379325523<small></small></p>
+                    <p>Email: ashurkanwal@yahoo.com</p>                
+                    <p>Address: Falkirk Scotland United Kingdom</p>            
+                </div>
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 ">
+                    <div>
+                        <h4><i class="fas fa-edit"></i> Contact Me</h4>
+                        <p>Please fill this form</p>
+                    </div>
+                    <form onsubmit="return sendMail(this);">
+                        {% csrf_token %}
+                        <p id="sendEmailSuccess" class="text-success d-none">Message has send succesfully!</p>
+                        <p id="sendEmailFail" class="text-danger d-none">Message sending failed sorry for inconvenience!</p>
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-sm" name="name" placeholder="name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control form-control-sm" name="email" placeholder="your_email@anymailservice.com" aria-describedby="emailHelp">
+                            <div class="form-text">I'll never share your email with anyone else.</div>
+                        </div>                        
+                        <div class="mb-3 form-check pl-0">                   
+                            <textarea class="form-control form-control-sm" name="message" placeholder="Leave a message here" id="floatingTextarea"></textarea>                  
+                        </div>
+                        <button type="submit" class="btn btn-lg secondary-button">Submit</button>
+                    </form>        
+                </div>     
+            </div>
+        </div>
+    </div>
+    <div class="row-centered text-center mt-3 mb-2">
+        <p class="text-center text-uppercase">R Ryan Clothes <strong class="copy-rigth-sign">©</strong> 2020 copy right protected</p>
+    </div>
+</footer>
