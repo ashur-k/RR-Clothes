@@ -18,7 +18,6 @@ from django.db.models import Count
 
 def all_products(request):
     """ A view to show all products """
-
     products = Product.objects.filter(status=True)
 
     query = None
@@ -85,6 +84,7 @@ def all_products(request):
 
 def product_detail(request, product_id):
     """ A view to show product details """
+    POSTGRES_IN_USE = settings.POSTGRES_IN_USE
     query = request.GET.get('q')
     product = Product.objects.get(pk=product_id)
     images = Images.objects.filter(product_id=product_id)
@@ -126,12 +126,18 @@ def product_detail(request, product_id):
             variant_id = request.POST.get('variantid')
             variant = Variants.objects.get(id=variant_id)
             colors = Variants.objects.filter(product_id=product_id, size_id=variant.size_id)
-            sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
+            if POSTGRES_IN_USE is True:
+                sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
+            else:
+                sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
             query += variant.title + ' Size:' + str(variant.size) + ' Color: ' + str(variant.color)
         else:
             variants = Variants.objects.filter(product_id=product_id)
             colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id)
-            sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
+            if POSTGRES_IN_USE is True:
+                sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
+            else:
+                sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
             variant = Variants.objects.get(id=variants[0].id)
 
         context.update({

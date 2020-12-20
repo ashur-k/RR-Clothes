@@ -12,52 +12,29 @@
 
 {% block content %}
 
+    {% include 'RR_home/includes/hero_section.html' %}
+    {% include 'RR_home/includes/free_delivery.html' %}
+    {% include 'RR_home/includes/new_trends.html' %}     
+    {% include 'RR_home/includes/happening_events.html' %}
+    {% include 'RR_home/includes/explore_categories.html' %}
+    {% include 'RR_home/includes/discount_jumbotron.html' %}
+    {% include 'RR_home/includes/social_link.html' %}
+    {% include 'RR_home/includes/product_image_gallery.html' %}
+    {% include 'RR_home/includes/map_section.html' %}
+    {% include 'RR_home/includes/footer.html' %}
 
-{% include 'RR_home/includes/hero_section.html' %}
-<div id="delivery-banner" class="row text-center mr-0" style="">
-				<div class="col-sm-12 col-md-12 col-lg-12 free-deliver-banner">
-					<h4 class="logo-font font-size-on-mobile my-1">
-						<img src="https://rr-cloth.s3.eu-west-2.amazonaws.com/static/RR_home/css/free-shipping.svg" alt="Kiwi standing on oval" height="70px"> Free Delivery on Orders over ${{ free_delivery_threshold }}
-					</h4>
-				</div>
-			</div>
-{% include 'RR_home/includes/new_trends.html' %}     
-{% include 'RR_home/includes/happening_events.html' %}
-{% include 'RR_home/includes/explore_categories.html' %}
-{% include 'RR_home/includes/discount_jumbotron.html' %}
-{% include 'RR_home/includes/social_link.html' %}
-{% include 'RR_home/includes/product_image_gallery.html' %}
-{% include 'RR_home/includes/map_section.html' %}
-{% include 'RR_home/includes/footer.html' %}
-
-   {% endblock %}     
-        
+{% endblock %}        
     
-    {% block extra_js %}  
+{% block extra_js %}  
   <!--This code is from http://sachinchoolur.github.io/lightslider/examples.html-->
     <script type="text/javascript" src="{% static 'js/lightslider.js' %}"></script>
-    
-    <script>
-        $(document).ready(function() {
-            $('#autoWidth').lightSlider({
-                autoWidth:true,
-                loop:true,
-                onSliderLoad: function() {
-                    $('#autoWidth').removeClass('cS-hidden');
-                } 
-            });
-           $('#imageGallery').lightSlider({
-                gallery:true,
-                item:1,
-                loop:true,
-                thumbItem:9,
-                slideMargin:0,
-                enableDrag: false,
-                currentPagerPosition:'left',  
-            });  
-        });
-  </script>
-  <script src="{% static 'RR_home/js/sendEmail.js' %}"></script>
-
-  <!-- Image gallery Image Change Function-->
+    <script src="{% static 'RR_home/js/lightSlider.js' %}"></script>
+    <!-- Image gallery Image Change Function-->
+    <script src="{% static 'RR_home/js/map.js' %}"></script>
+    <!-- Map Javascript for rendering google maps-->
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGYP5F_bOWAQp1hyjCA5kNKvYUU57fvw&callback=initMap&key=AIzaSyDlaQZBO-WosqpnUVqkWyicmiW6rKSP1as">
+    </script>
+    <script src="{% static 'RR_home/js/sendEmail.js' %}"></script>
 {% endblock %}

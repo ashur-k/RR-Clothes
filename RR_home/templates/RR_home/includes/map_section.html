@@ -1,19 +1,4 @@
-<style>
-.map-hr{
-    height: 20px;
-    color:  #000;
-}
-.map-row{
-    
-    background-color: #0A1A24;
-}
-.map-col {
-    background-color: #0A1A24;
-    color: #fff;
-    
-}
-</style>
-<section id="happening-events-map" class="">
+<section id="happening-events-map">
     <div class="container-fluid">
         <div class="row map-row">
             <div class="col-sm-12 map-col text-center">
@@ -24,7 +9,7 @@
         </div>
         <div class="row">            
             <div class="col-sm-12 p-0 m-0">
-                <div id="map" style="height:50vh !important;"></div>
+                <div id="map"></div>
             </div>
         </div>
         <div class="row map-row" style="height: 20px">
@@ -34,37 +19,7 @@
 </section>
 {% block extra_js %}    
   <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 8,
-                center: {
-                    lat:56.007120,
-                    lng:-3.709860
-                }
-            });
-
-            var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            var locations = [
-                {lat:56.006481, lng:-3.713440},
-                {lat:56.007120, lng:-3.709860},
-                {lat:56.0094028, lng:-3.7107378}
-            ];
-
-            var markers = locations.map(function(location, i){
-                return new google.maps.Marker({
-                    position: location,
-                    label: labels[i % labels.length],
-                
-                });
-            });
-            var markerCluster = new MarkerClusterer(map, markers, {
-                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-            });
-        }
+        
     </script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdGYP5F_bOWAQp1hyjCA5kNKvYUU57fvw&callback=initMap&key=AIzaSyDlaQZBO-WosqpnUVqkWyicmiW6rKSP1as">
-    </script>
+    
 {% endblock %}

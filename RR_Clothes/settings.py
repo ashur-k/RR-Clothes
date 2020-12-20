@@ -114,7 +114,6 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 
-
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -131,11 +130,13 @@ WSGI_APPLICATION = 'RR_Clothes.wsgi.application'
 
 
 if 'DATABASE_URL' in os.environ:
+    POSTGRES_IN_USE = True
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
     }
     print("I am Connected to Postgress")
 else:
+    POSTGRES_IN_USE = False
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
