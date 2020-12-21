@@ -17,11 +17,11 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Girls Clothing
+            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="girls-clothing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Girls
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
-                <a href="{% url 'all_products' %}?category=girls_hudi" class="dropdown-item">Hudis</a>
+            <div class="dropdown-menu border-0" aria-labelledby="girls-clothing">
+                <a href="{% url 'all_products' %}?category=girls_hudi" class="dropdown-item">Hoodies</a>
                 <a href="{% url 'all_products' %}?category=girls_shirts" class="dropdown-item">Shirts</a>
                 <a href="{% url 'all_products' %}?category=girls_dresses" class="dropdown-item">Dresses</a>
                 <a href="{% url 'all_products' %}?category=girls_coats_jackets" class="dropdown-item ">Coats & Jackets</a>
@@ -33,11 +33,11 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Boys Clothing
+            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="boys-clothing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Boys
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
-                <a href="{% url 'all_products' %}?category=boys_hudi" class="dropdown-item">Hudis</a>
+            <div class="dropdown-menu border-0" aria-labelledby="boys-clothing">
+                <a href="{% url 'all_products' %}?category=boys_hudi" class="dropdown-item">Hoodies</a>
                 <a href="{% url 'all_products' %}?category=boys_jeans" class="dropdown-item">Jeans</a>
                 <a href="{% url 'all_products' %}?category=boys_damage_jeans_and_trousers" class="dropdown-item">Damage Jeans</a>      
                 <a href="{% url 'all_products' %}?category=boys_shirts" class="dropdown-item">Shirts</a>
@@ -47,10 +47,10 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Women Clothing
+            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="women-clothing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Women
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+            <div class="dropdown-menu border-0" aria-labelledby="women-clothing">
                 <a href="{% url 'all_products' %}?category=ladies_dresses" class="dropdown-item">Dresses</a>
                 <a href="{% url 'all_products' %}?category=ladies_suits" class="dropdown-item ">Suits</a>
                 <a href="{% url 'all_products' %}?category=coats_jackets" class="dropdown-item ">Coats & Jackets</a>
@@ -63,10 +63,10 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Men Clothing
+            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="men-clothing" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Men
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">     
+            <div class="dropdown-menu border-0" aria-labelledby="men-clothing">     
                 <a href="{% url 'all_products' %}?category=men_jeans" class="dropdown-item">Jeans</a>   
                 <a href="{% url 'all_products' %}?category=men_shirts" class="dropdown-item">Shirts</a>
                 <a href="{% url 'all_products' %}?category=men_tshirts" class="dropdown-item">T-Shirts</a>      
@@ -77,20 +77,20 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="clothing-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black mr-3" href="#" id="new-arrivals" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 New Arrivals
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
+            <div class="dropdown-menu border-0" aria-labelledby="new-arrivals">
                 <a href="{% url 'all_products' %}?product=ladies_tops" class="dropdown-item">Ladies Tops</a>
                 <a href="{% url 'all_products' %}?product=boys_damage_jeans_and_trousers,girls_damage_jeans_and_trousers" class="dropdown-item">Damage Jeans and Trousers</a>
                 <a href="{% url 'all_products' %}?product=men_shirts,ladies_shirts,boys_shirts,girls_shirts" class="dropdown-item">Shirts</a>
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="discount-offers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Discount Offers
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="specials-link">
+            <div class="dropdown-menu border-0" aria-labelledby="discount-offers">
                 <a href="{% url 'all_products' %}?discount_30_percent=girls_hudi,girls_shirts,girls_dresses,girls_coats_jackets,girls_tops,girls_damage_jeans,girls_jeans" class="dropdown-item">30% Off Product for Girls</a>
                 <a href="{% url 'all_products' %}?discount_30_percent=boys_hudi,boys_jeans,boys_damage_jeans,boys_shirts,boys_tshirts,boys_coats_jackets" class="dropdown-item">30% Off Product for Boys</a>
                 <a href="{% url 'all_products' %}?discount_30_percent=ladies_tops,ladies_dresses,ladies_jeans,ladies_suits,coats_jackets,sweaters_cardigans,ladies_shirts,ladies_scarfs,ladies_lingeries" class="dropdown-item">30% Off Product for Women</a>

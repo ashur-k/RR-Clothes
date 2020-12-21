@@ -221,7 +221,7 @@ list-style-type: none;
 }
 
 .color-option>li>a {
-  display: block;
+  display: contents;
   width: 20px;
   height: 20px;
   width:auto;
