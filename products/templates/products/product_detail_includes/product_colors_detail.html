@@ -1,20 +1,26 @@
+<style>
+.form-check-input {
+    position: absolute;
+    margin-top: .3rem;
+    margin-left: 0px !important;
+}
+
+</style>
 <form method="post" action="?q=selectvariant" id="post-color">
 {% csrf_token %}
 
-    <div id="appendHere">
+    <div id="appendHere form-check">
         <input type="hidden" name="size" id="size" value="{{ size_id }}">
         <ul class="color-option" >
              <div>
                 <li class="product-color-detail">
                     <span class="text-uppercase">Color:</span>
                 </li>
-              </div>
-
-       
+              </div>       
                 {% if colors %}
                     {% for rs in colors %}
                     <li>
-                        <input type="radio" 
+                        <input class="form-check-input" type="radio" 
                         {% if variant.id == rs.id %} 
                         checked {% endif %} 
                         name="variantid" 

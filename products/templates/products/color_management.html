@@ -46,7 +46,10 @@
                         <td class="colorCode colorData" name="code">{{ color.code }}</td>
                         <td style="background-color:{{ color.code }};" name="code_background"></td>
                         <td align="center">
-                            <button class="btn btn-sm secondary-button form-control" onclick="editColor({{color.id}})" data-toggle="modal" data-target="#myModal">EDIT</button>
+                            <button class="btn btn-sm secondary-button" 
+                            onclick="editColor({{color.id}})" 
+                            data-toggle="modal" 
+                            data-target="#editColorModal">EDIT</button>
                         </td>
                         <td align="center">
                             <button class="btn btn-sm secondary-button form-control" onclick="deleteColor({{color.id}})">DELETE</button>
@@ -56,12 +59,19 @@
                 </tbody>
             </table>
         </div>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" 
+            id="editColorModal" 
+            tabindex="-1" 
+            role="dialog" 
+            aria-labelledby="editColorModalLabel">
+
         <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <h4 class="modal-title" id="myModalLabel"></h4>
+             <div class="modal-header">
+                <h5 id="editColorModalLabel" class="modal-title">Edit Color</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <form id="editColor" action="">
             <div class="modal-body">
@@ -72,7 +82,7 @@
                 <input class="form-control" id="form-color-code" type="text" name="colorCode"/>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" >Save changes</button>
+                <button type="submit" class="btn secondary-button" >Save changes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             </form>
@@ -81,6 +91,11 @@
         </div>
         </div>       
     <script>
+        $( document ).ready(function() {
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
+        });
         $("form#addColor").submit(function() {
         var nameInput = $('input[name="name"]').val().trim();
         var codeInput = $('input[name="code"]').val().trim();
@@ -114,10 +129,10 @@ function appendToColorTable(color) {
             '<td class="colorCode colorData" name="code">${color.color.code}</td>
             '<td style="background-color:${color.color.code};"></td>
             '<td align="center">
-                <button class="btn btn-success form-control" onClick="editColor(${color.color.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
+                <button class="btn secondary-buttons" onClick="editColor(${color.color.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
             </td>
             <td align="center">
-                <button class="btn btn-danger form-control" onClick="deleteColor(${color.color.id})">DELETE</button>
+                <button class="btn secondary-button" onClick="deleteColor(${color.color.id})">DELETE</button>
             </td>
         </tr>
     `);
@@ -148,7 +163,7 @@ $("form#editColor").submit(function() {
         alert("All fields must have a valid value.");
     }
     $('form#editColor').trigger("reset");
-    $('#myModal').modal('hide');
+    $('#editColorModal').modal.attr('hide',"#editColorModal");
     return false;
 });
 // Update Django Ajax Call

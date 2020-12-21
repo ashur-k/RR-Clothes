@@ -9,8 +9,8 @@
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
-            <div class="col">
-                <h1>Shopping Bag</h1>
+            <div class="col-md-12 text-center m-3">
+                <h2>Shopping Bag</h2>
                 <hr class="home-page-heading-hr-top mb-4">
             </div>
         </div>
@@ -21,14 +21,14 @@
 
 <div class="container">
       <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="col-sm-12 col-md-12 col-lg-12"  style="height: auto; max-height: fit-content;">
                 {% if bag_items %}
                     <div class="table-responsive rounded">
                         <table class="table table-sm table-borderless">
                             <thead class="text-black">
                                 <tr>
-                                    <th scope="col">Product Info</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Title</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Qty</th>
                                     <th scope="col">Subtotal</th>
@@ -38,29 +38,28 @@
                             </style>
                             {% for item in bag_items %}
                                 <tr>
-                                    <td class="p-3 w-25">
+                                    <td class="w-25">
                                     {% if item.variant.image %}
-                                    <img class="w-100 img-fluid" src="{{ item.variant.image }}" alt="{{ variant.title }}">
-                                {% else %}                                   
-                                    <img class="w-100 img-fluid" src="{{ item.variant.product.image.url }}" alt="{{ variant.title }}">
-                                {% endif %}
-                            {% if not item.variant.image and not item.variant.product.image.url %}   
-                                <img class="w-100 img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ variant.title  }}"> 
+                                        <img class="w-100 img-thumbnail" src="{{ item.variant.image }}" alt="{{ variant.title }}">
+                                    {% else %}                                   
+                                        <img class="w-100 img-thumbnail" src="{{ item.variant.product.image.url }}" alt="{{ variant.title }}">
+                                    {% endif %}
+                                    {% if not item.variant.image and not item.variant.product.image.url %}   
+                                <img class="w-100 img-thumbnail" src="{{ MEDIA_URL }}noimage.png" alt="{{ variant.title  }}"> 
                             {% endif %}
                                     </td>
                                     <td class="py-3">
                                         {% if item.product.title %}                                        
-                                        <p class="my-0"><strong>{{ item.product.title }}</strong></p>
-                                        <p class="my-0 small text-muted">Product-id:{{ item.product.id }} </p>                                     
+                                        <small class="my-0"><strong>{{ item.product.title }}</strong></small>
+                                        <small class="my-0 small text-muted">Product-id:{{ item.product.id }} </small>                                     
                                         {% else %}
-                                        <p class="my-0"><strong>{{ item.variant.title }}</strong></p>
+                                        <small class="my-0"><strong>{{ item.variant.title }}</strong></small>
                                             {% if item.variant.color  %}
-                                                <p class="my-0"><strong>Color: {{ item.variant.color }}</strong></p> 
+                                                <small class="my-0"><strong>{{ item.variant.color }}</strong></small> 
                                             {% endif %}
                                             {% if item.variant.size  %}
-                                                <p class="my-0"><strong>Size: {{ item.variant.size }}</strong></p>
+                                                <small class="my-0"><strong>{{ item.variant.size }}</strong></small>
                                             {% endif %}
-                                                <p class="my-0 small text-muted">{{ item.variant.id }} </p>
                                         {% endif %}
                                     </td>
                                     <td class="py-3">
@@ -70,7 +69,7 @@
                                         <p class="my-0">${{ item.variant.price| floatformat:2 }}</p>
                                     {% endif %}
                                     </td>
-                                    <td class="py-3 w-25">
+                                    <td class="py-3">
                                      <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
                                          {% csrf_token %}
                                         <input class="form-control qty_input" type="number" 
@@ -85,8 +84,7 @@
                                         <a class="remove-item float-right btn secondary-button btn-sm mt-1 p-1" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">
                                             <small>Remove</small>
                                         </a>
-                                    </td>
-                                    
+                                    </td>                                    
                                     <td class="py-3">
                                     {% if item.product.price %}
                                         <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
@@ -98,10 +96,10 @@
                                 
                             {% endfor %}
                             <tr>
-                                <td colspan="5" class="pt-5 text-right">
+                                <td colspan="5" class="text-right">
                                     <h6><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
                                     <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
-                                    <h4 class="mt-4"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
+                                    <h4 class=""><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                                     {% if free_delivery_delta > 0 %}
                                         <p class="mb-1 text-danger">
                                             You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
