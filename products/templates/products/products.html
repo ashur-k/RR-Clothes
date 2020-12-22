@@ -12,7 +12,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col text-center mt-3">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-3">
                 <h2 class="logo-font">Products</h2>
                 {% for c in current_categories %}
                     <a class="category-badge text-decoration-none mb-2" href="{% url 'all_products' %}?category={{ c.name }}">
