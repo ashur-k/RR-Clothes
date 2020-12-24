@@ -82,7 +82,7 @@ def product_detail(request, product_id):
     """ A view to show product details """
     POSTGRES_IN_USE = settings.POSTGRES_IN_USE
     query = request.GET.get('q')
-    product = Product.objects.get(pk=product_id)
+    product = get_object_or_404(Product, id=product_id, status=True)
     images = Images.objects.filter(product_id=product_id)
 
     # I am giving variant ID from server side to product detail template
