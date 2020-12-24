@@ -205,8 +205,8 @@ textarea.input {
 
 .color-option >  li
  {
-  display: inline-block;
-  margin-right: 6px;
+  display: inline-grid;
+  margin-right: 0px !important;
   margin-bottom: 6px;
   vertical-align: top;
   
@@ -284,7 +284,7 @@ list-style-type: none;
 }
 
 .reviews-pages li.active {
-  color: #F8694A;
+  color: #0A1A24; 
 }
 
 /*-- review form --*/

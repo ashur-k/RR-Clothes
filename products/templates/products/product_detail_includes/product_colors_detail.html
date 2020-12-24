@@ -2,7 +2,7 @@
 .form-check-input {
     position: absolute;
     margin-top: .3rem;
-    margin-left: 0px !important;
+    margin-left:-4px !important;
 }
 
 </style>
@@ -22,7 +22,8 @@
                     <li>
                         <input class="form-check-input" type="radio" 
                         {% if variant.id == rs.id %} 
-                        checked {% endif %} 
+                            checked 
+                        {% endif %} 
                         name="variantid" 
                         id="variantid" 
                         value="{{ rs.id }}" 
@@ -30,11 +31,16 @@
                     </li>
                     <li  
                         {% if variant.id == rs.id %} 
-                        class="active" {% endif %}>
+                            class="active" 
+                        {% endif %}>
                         <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; ">
                             <p><small style="margin:5px;">  ${{ rs.price }} {{ rs.color }}</small></p> 
-                        </a>                        
+                        </a>
+                        {% if rs.image %}                  
                         <img class="img-thumbnail mt-1" src="{{ rs.image }}" style="height: 100px">
+                        {% else %}
+                        <img class="img-thumbnail mt-1" src="{{ rs.product.image.url }}" style="height: 100px">
+                        {% endif %}
                     </li>
                    {% endfor %}
                 {%else%}

@@ -34,6 +34,7 @@
                         </div>
                         <div class="col-9">
                             <p class="my-0"><strong>{{ item.variant.product.title }}</strong></p>
+                            <p class="my-0"><strong>${{ item.variant.price | floatformat:2 }}</strong></p>
 
                             <p class="my-0 small">
                                 {% if item.variant.product.variant  == "Color" %}
@@ -45,6 +46,7 @@
                                     Color: {{item.variant.color}}                                
                                 {% endif %}
                             </p>
+                            
                             
                             <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                         </div>
