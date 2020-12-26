@@ -29,6 +29,7 @@ urlpatterns = [
     path('shopping_bag/', include('shopping_bag.urls')),
     path('checkout/', include('checkout.urls')),
     path('user_profiles/', include('user_profiles.urls')),
+    path('size_info/', include('size_info.urls')),
 
     # Allauth urls
     path('accounts/', include('allauth.urls')),

@@ -1,6 +1,7 @@
 <div class="product-options" >
     <div class="size-option">
         <form method="POST" id="post-form">
+            
             <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
             <span class="text-uppercase">Size :</span>
             {% csrf_token %}
@@ -21,6 +22,7 @@
     <form method="post" action="?q=selectvariant" id="post-color">
         {% csrf_token %}
         <div id="appendHere">
+            
             <input type="hidden" name="size" id="size" value="{{ size_id }}">
             <ul class="color-option" >
                 <li><span class="text-uppercase">Color:</span></li>
@@ -30,11 +32,18 @@
                         <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; min-width: 100px; width:auto; max-width:140px;">
                            <span>${{ rs.price }} <small>{{ rs.color }}</small></span>
                         </a>
-                      <p class="mt-2"> <img src="{{ rs.image }}" style="height: 100px" class="img-thumbnail">   </p>
-                        
+                        {% if rs.image %}
+                        <img src="{{ rs.image }}" style="height: 100px" class="img-thumbnail">
+                        {% else %}
+                        <img src="{{ rs.product.image.url }}" style="height: 100px" class="img-thumbnail">
+                        {% endif %}
                     </li>
+                   
+                {% endfor %} 
+                <br>
+                     <a href=""><small>Size Guide</small>
+                </a>
                     
-                {% endfor %}
                 {% if product.discount_30_percent == 1  %}              
                        <p class="lead mb-2 text-left">
                            30% Discount<strong>Product price: ${{ variant.percent_30_discount|floatformat:2 }}</strong>                  

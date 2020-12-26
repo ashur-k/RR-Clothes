@@ -2,12 +2,19 @@
 <ul class="color-option" >
     <li><span class="text-uppercase">Color:</span></li>
     {% for rs in colors %}
-        <input type="radio" name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+      
+            <input type="radio" name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+ 
+        
         <li >
             <a href="#" style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; min-width: 100px; width:auto; max-width:140px;" >
                 {{ rs.color }} ${{ rs.price }}
-            </a>
-            <img src="{{ rs.image }}" style="height: 100px">
+            </a>            
+            {% if rs.image %}
+                <img src="{{ rs.image }}" style="height: 100px" class="img-thumbnail">
+            {% else %}
+                <img src="{{ rs.product.image.url }}" style="height: 100px" class="img-thumbnail">
+            {% endif %}
         </li>
     {% endfor %}
 </ul>
