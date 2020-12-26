@@ -229,6 +229,8 @@
      
     </div>
     {% endif %}
+    <a href="{% url 'product_detail' product.id %}" class="btn primary-button btn-lg mb-5 float-right m-2"><i class="far fa-arrow-alt-circle-left"></i> Back to Product Detail Page</a>
+    <a href="{% url 'all_products' %}" class="btn primary-button btn-lg mb-5 float-right m-2">View All Products</a>
 </div>
 
 {% endblock %}
