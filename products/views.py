@@ -399,7 +399,8 @@ def edit_variant(request, product_id, variant_id):
             messages.success(request, "Variant updated succesfully.")
             return redirect(reverse('product_management', args=[product_id]))
         else:
-            return HttpResponse("form is not valid")
+            messages.error(request, "Invalid data variant updating failed.")
+            return redirect(reverse('product_management', args=[product_id]))
 
     template = 'products/edit_variant.html'
 

@@ -24,7 +24,6 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Product Id</th>
                         <th scope="col">Product Image</th>
                         <th scope="col">Product Title</th>
                         <th scope="col"></th>
@@ -32,7 +31,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">{{product.id}}</th>
                         <td><img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ product.image.url }}" alt="Card image cap"></td>
                         <td>{{product.title}}</td>
                         <td>
@@ -89,8 +87,7 @@
             <h3>Image/Images Added to Product:</h3>
             <table class="table table-bordered">
                 <thead>
-                    <tr>
-                        <th scope="col">Image Id</th>                        
+                    <tr>                        
                         <th scope="col">Image Title</th>
                         <th scope="col">Product Images</th>
                         <th scope="col"></th>
@@ -98,8 +95,7 @@
                 </thead>
                 <tbody>
                 {% for image in images %}
-                    <tr>
-                        <th scope="row">{{ image.id }}</th>                        
+                    <tr>                    
                         <td>{{image.title}}</td>
                         <td><img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ image.image.url }}" alt="Card image cap"></td>
                         <td>
@@ -156,7 +152,6 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                    <th scope="col">Variant Id</th>
                     <th scope="col">Variant Name</th>
                     <th scope="col">Variant Image Id</th>
                     {% if product.variant == "Size" %}
@@ -174,27 +169,26 @@
                 </thead>
                 <tbody>
                 {% for v in variants %}
-                    <tr>                        
-                            <th scope="row">{{v.id}}</th>
-                            <td>{{v.title}}</td>
-                            {% if v.image_id %} 
-                            <td>
-                            <img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ v.image }}" alt="Please check if image id is correct.">
-                            </td>
-                            {% else %}
-                            <td>
-                            <small>Please give an image id to variant, <br> to dispaly image with varaint.</small>
-                            </td>
-                            {% endif %}
-                            {% if product.variant == "Size" %}
-                                <td>{{ v.size }}</td>
-                            {% elif product.variant == "Color" %}
-                                <td>{{ v.color }}</td>
-                            {% elif product.variant == "Size-Color" %}
-                                <td>{{ v.size }}-{{ v.color }}</td>
-                            {% endif %}
-                            <td>${{v.price}}</td>
-                            <td>{{v.quantity}}</td>
+                    <tr>
+                        <td>{{v.title}}</td>
+                        {% if v.image_id %} 
+                        <td>
+                        <img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ v.image }}" alt="Please check if image id is correct.">
+                        </td>
+                        {% else %}
+                        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;">
+                        <small>Please add an image to variant, currently there is no image added to this variant.</small>
+                        </td>
+                        {% endif %}
+                        {% if product.variant == "Size" %}
+                            <td>{{ v.size }}</td>
+                        {% elif product.variant == "Color" %}
+                            <td>{{ v.color }}</td>
+                        {% elif product.variant == "Size-Color" %}
+                            <td>{{ v.size }}-{{ v.color }}</td>
+                        {% endif %}
+                        <td>${{v.price}}</td>
+                        <td>{{v.quantity}}</td>
                         <td>
                             <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_variant' product.id v.id %}">Edit Varaint</a>
                             <button type="button" class="btn btn-sm secondary-button m-2" data-toggle="modal" data-target="#delete_variant{{ v.id }}">
@@ -229,8 +223,8 @@
      
     </div>
     {% endif %}
-    <a href="{% url 'product_detail' product.id %}" class="btn primary-button btn-lg mb-5 float-right m-2"><i class="far fa-arrow-alt-circle-left"></i> Back to Product Detail Page</a>
-    <a href="{% url 'all_products' %}" class="btn primary-button btn-lg mb-5 float-right m-2">View All Products</a>
+    <a href="{% url 'product_detail' product.id %}" class="btn primary-button btn-md mb-5 float-right m-2"><i class="far fa-arrow-alt-circle-left"></i> Back to Product Detail Page</a>
+    <a href="{% url 'all_products' %}" class="btn primary-button btn-mdmb-5 float-right m-2">View All Products</a>
 </div>
 
 {% endblock %}
