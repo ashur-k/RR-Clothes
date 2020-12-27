@@ -52,7 +52,15 @@
     <script type="text/javascript"
         src="https://cdn.emailjs.com/sdk/2.2.4/email.min.js">
     </script>
+    <script>
+        $(document).ready(function() {
+            $("input[name=rate]").attr({
+            "max" : 5,        // substitute your own
+            "min" : 1          // values (or variables) here
+            });
 
+});
+</script>
         
 	{% endblock %}
 
