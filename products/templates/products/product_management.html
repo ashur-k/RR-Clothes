@@ -23,7 +23,7 @@
             <h3>Product Information:</h3>
             <table class="table table-striped table-bordered">
                 <thead>
-                    <tr>
+                    <tr class="align-middle text-center">
                         <th scope="col">Image</th>
                         <th scope="col">Title</th>
                         <th scope="col">Price</th>
@@ -38,38 +38,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
+                    <tr class="text-center">
+                        <td class="align-middle">
                             <img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ product.image.url }}" alt="Card image cap">
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.title}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.price}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.rate}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.quantity}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.has_variant}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.new_edition}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.discount_30_percent}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.variant}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{product.status}}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {% if product.has_variant == 1 %}
                                 <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_product_with_variant' product.id  %}">Edit</a>
                             {% else %}                           
@@ -129,7 +129,7 @@
             {% if images %}
                 <table class="table table-striped table-bordered">
                     <thead>
-                        <tr>                        
+                        <tr class="text-center">                        
                             <th scope="col">Image Title</th>
                             <th scope="col">Product Images</th>
                             <th scope="col"></th>
@@ -137,14 +137,14 @@
                     </thead>
                     <tbody>                
                         {% for image in images %}
-                            <tr>                    
-                                <td>
+                            <tr class="text-center">                    
+                                <td class="align-middle">
                                     {{image.title}}
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ image.image.url }}" alt="Card image cap">
                                 </td>
-                                <td>                          
+                                <td class="align-middle">                          
                                     <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_image' image.id %}">Edit Image</a>                            
                                     <button type="button" class="btn btn-sm secondary-button btn-danger m-2" data-toggle="modal" data-target="#delete_product{{image.id}}">
                                         Delete Image
@@ -205,7 +205,7 @@
                 {% if variants %}
                     <table class="table table-striped table-bordered">
                         <thead>
-                            <tr>
+                            <tr class="align-middle text-center">
                                 <th scope="col">Variant Name</th>
                                 <th scope="col">Variant Image Id</th>
                                 {% if product.variant == "Size" %}
@@ -222,33 +222,33 @@
                         </thead>
                         <tbody>
                         {% for v in variants %}
-                            <tr>
-                                <td>
+                            <tr class="text-center">
+                                <td class="align-middle">
                                     {{v.title}}
                                 </td>
                                     {% if v.image_id %} 
-                                        <td>
+                                        <td class="align-middle">
                                             <img class="rounded mx-auto d-block image-thumbnail-border" height="100" src="{{ v.image }}" alt="Please check if image id is correct.">
                                         </td>
                                     {% else %}
-                                        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;">
+                                        <td class="align-middle" style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;">
                                             <small>Please add an image to variant, currently there is no image added to this variant.</small>
                                         </td>
                                     {% endif %}
                                     {% if product.variant == "Size" %}
-                                        <td>{{ v.size }}</td>
+                                        <td class="align-middle">{{ v.size }}</td>
                                     {% elif product.variant == "Color" %}
-                                        <td>{{ v.color }}</td>
+                                        <td class="align-middle">{{ v.color }}</td>
                                     {% elif product.variant == "Size-Color" %}
-                                        <td>{{ v.size }}-{{ v.color }}</td>
+                                        <td class="align-middle">{{ v.size }}-{{ v.color }}</td>
                                     {% endif %}
-                                <td>
+                                <td class="align-middle">
                                     ${{v.price}}
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     {{v.quantity}}
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_variant' product.id v.id %}">Edit Varaint</a>
                                     <button type="button" class="btn btn-sm secondary-button m-2" data-toggle="modal" data-target="#delete_variant{{ v.id }}">
                                         Delete Variant
