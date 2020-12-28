@@ -359,6 +359,7 @@ def edit_product_without_variant(request, product_id, variant_id):
             else:
                 messages.success(request, f'You have succesfully updated product. {product.title}')
                 return redirect(reverse('product_management', args=[product_id]))
+                # above else block is added to redirect if product has variant
 
     form = ProductForm(instance=product)
     messages.info(request, f'You are editing {product.title}')

@@ -19,13 +19,20 @@
             <h2 class="mb-4">Product Management</h2>
             <hr class="home-page-heading-hr-top">            
         </div>
-         <div class="col-sm-12 col-md-12 mt-2">
+         <div class="col-sm-12 col-md-12 mt-2 table-responsive">
             <h3>Product Information:</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Product Image</th>
-                        <th scope="col">Product Title</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Quantitiy</th>
+                        <th scope="col">New Edition</th>
+                        <th scope="col">Discount Offer</th>
+                        <th scope="col">Variant</th>
+                        <th scope="col">Status</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -38,13 +45,34 @@
                             {{product.title}}
                         </td>
                         <td>
+                            {{product.price}}
+                        </td>
+                        <td>
+                            {{product.rate}}
+                        </td>
+                        <td>
+                            {{product.quantity}}
+                        </td>
+                        <td>
+                            {{product.new_edition}}
+                        </td>
+                        <td>
+                            {{product.discount_30_percent}}
+                        </td>
+                        <td>
+                            {{product.variant}}
+                        </td>
+                        <td>
+                            {{product.status}}
+                        </td>
+                        <td>
                             {% if product.has_variant == 1 %}
-                                <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_product_with_variant' product.id  %}">Edit Product</a>
+                                <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_product_with_variant' product.id  %}">Edit</a>
                             {% else %}                           
                                 <a class="btn btn-sm btn-dark m-2" href="{% url 'edit_product_without_variant' product.id variant.id %}">Edit</a>
                             {% endif %}                            
                             <button type="button" class="btn btn-sm secondary-button m-2" data-toggle="modal" data-target="#delete_product{{product.id}}">
-                                Delete Product
+                                Delete
                             </button>
                             <div class="modal" tabindex="-1" id="delete_product{{product.id}}">
                                 <div class="modal-dialog">
