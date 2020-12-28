@@ -129,10 +129,10 @@ function appendToColorTable(color) {
             '<td class="colorCode colorData" name="code">${color.color.code}</td>
             '<td style="background-color:${color.color.code};"></td>
             '<td align="center">
-                <button class="btn secondary-buttons" onClick="editColor(${color.color.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
+                <button class="btn btn-sm secondary-button" onClick="editColor(${color.color.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
             </td>
             <td align="center">
-                <button class="btn secondary-button" onClick="deleteColor(${color.color.id})">DELETE</button>
+                <button class="btn btn-sm secondary-button" onClick="deleteColor(${color.color.id})">DELETE</button>
             </td>
         </tr>
     `);

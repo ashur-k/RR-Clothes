@@ -89,6 +89,7 @@ def product_detail(request, product_id):
     # to feed variant id to form when item is only product
     variant_id_value = None
     no_variants = Variants.objects.filter(product_id=product_id)
+    print(no_variants.count())
 
     # products which have no variant will always have
     # one variant by default and we are getting its id
@@ -96,9 +97,16 @@ def product_detail(request, product_id):
     for items in no_variants:
         variant_id_value = items.id
 
+    #return HttpResponse('stop here')
+
     if variant_id_value is None:
-        if product.has_variant is True or product.variant != 'None':
-            messages.success(request, 'Product variant information is required to update by adminstrator')
+        if product.has_variant == 1:
+            if request.user.is_superuser:
+                messages.error(request, 'Please add vairant information it has cause inconvenience to site user.')
+                return redirect(reverse('product_management', args=[product_id]))
+            else:
+                messages.error(request, 'Sorry for inconvenience request site administrator to update product information.')
+                return redirect('all_products')
         else:
             form_data = {
                 'title': product.title,
@@ -284,7 +292,11 @@ def product_management(request, product_id):
             messages.success(request, 'Image added successfully')
 
     if product.has_variant == 0:
-        variant = get_object_or_404(Variants, product_id=product_id)
+        variants = Variants.objects.filter(product_id=product_id)
+        # logic to control if user update product has variant from yes to no
+        # only taking first variant infomation
+        variant = variants[0]
+        variant = get_object_or_404(Variants, pk=variant.id)
         template = 'products/product_management.html'
         context = {
             'product': product,

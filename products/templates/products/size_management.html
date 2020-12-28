@@ -111,10 +111,10 @@ function appendToSizeTable(size) {
             <td class="sizeName sizeData" name="name">${size.size.size}</td>
             '<td class="sizeCode sizeData" code="code">${size.size.code}</td>
             '<td align="center">
-                <button class="btn secondary-button" onClick="editSize(${size.size.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
+                <button class="btn btn-sm secondary-button" onClick="editSize(${size.size.id})" data-toggle="modal" data-target="#myModal")">EDIT</button>
             </td>
             <td align="center">
-                <button class="btn secondary-button" onClick="deleteSize(${size.size.id})">DELETE</button>
+                <button class="btn btn-sm secondary-button" onClick="deleteSize(${size.size.id})">DELETE</button>
             </td>
         </tr>
     `);
