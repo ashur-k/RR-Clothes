@@ -89,15 +89,12 @@ def product_detail(request, product_id):
     # to feed variant id to form when item is only product
     variant_id_value = None
     no_variants = Variants.objects.filter(product_id=product_id)
-    print(no_variants.count())
 
     # products which have no variant will always have
     # one variant by default and we are getting its id
     # saving in variant_id_value
     for items in no_variants:
         variant_id_value = items.id
-
-    #return HttpResponse('stop here')
 
     if variant_id_value is None:
         if product.has_variant == 1:
@@ -369,7 +366,8 @@ def edit_product_without_variant(request, product_id, variant_id):
                 else:
                     messages.error(request, f'Updating product failed. {product.title}')
             else:
-                messages.success(request, f'You have succesfully updated product. {product.title}')
+                messages.success(request, f'You have succesfully updated product to has variant. {product.title}')
+                messages.info(request, f'Please do not forget to add variant information. {product.title}')
                 return redirect(reverse('product_management', args=[product_id]))
                 # above else block is added to redirect if product has variant
 
