@@ -25,7 +25,7 @@
 <div class="container">      
         <div class="row mt-1">
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
-                <form class="form mb-2" action="" method="POST" enctype="multipart/form-data">
+                <form class="form mb-2" action="" method="POST" onsubmit="return validateForm()" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="title">Variant Title</label>
@@ -55,7 +55,8 @@
                                 {% if forloop.first %}
                                     <h6 class="mt-2"><label for="size">Choose from following images to change variant image.</label></h6>   
                                 {% endif %}  
-                                <div class="form-check form-check-inline">                                                
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="hidden" name="image_id"  value="0">                                            
                                     <input class="form-check-input" type="radio" name="image_id" id="{{ image.id }}" value="{{ image.id }}">
                                     <label class="form-check-label" for="image_id">
                                         <img src="{{ image.image.url }}" class="img-thumbnail rounded float-left" style="height:90px;">
@@ -83,6 +84,5 @@
             </div>      
         </div>
     </div>
-
 {% endblock %}
 

@@ -252,15 +252,7 @@ def add_variant(request, product_id):
         else:
             messages.error(request, "Invalid data add new variant failed.")
 
-    if product.variant == "Color":
-        form = ProductColorForm
-    elif product.variant == "Size":
-        form = ProductSizeForm
-    else:
-        form = ProductVariantForm
-
     context = {
-        'form': form,
         'product': product,
         'sizes': sizes,
         'colors': colors,
