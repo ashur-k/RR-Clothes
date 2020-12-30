@@ -68,6 +68,7 @@
 3.	There is JavaScript error on product detail page which has no visible impact on functioning of product detail page. I am aware of that error and suppose to correct in update release of software.
 4.	Favicon error is still not resolved, I have decided to resolve it in future release of RR-Cloth.
 5.	I want to write JavaScript/jQuery code where first item in product variant is selected automatically when its size changes on product details, I didn’t have enough time to write and test code. For current use, a message has been added for the users to ensure that the product is selected. 
+6.  Size guide is last minute addition to RR-Clothes this part of site is in development. In future update sizes guides are going to be displayed more dynamically and appropriately with updated styling.
 
 # Technologies used
 
@@ -107,7 +108,7 @@ Following is the list of crucial errors that were discovered while testing appli
 8.	Site is tested on different machines and browsers; it was discovered that page headings were hiding behind navbar on full screen size. To fix error different media queries are given and margin tops are added to page title div to give extra spacing. 
 9.	There is no inventory system to track available quantity of products. In future update I am planning to implement inventory system for products. Quantity of products in order is going to subtracted from total quantity of products – currently, the website has the capacity to 
 
-## Instructions to Use Site
+### Instructions to Use Site
 
 1.	Site is tested on different scenarios and it works well. There are errors that can be made by site admin, which can cause the site to behave abnormally. I have added cautioning code for those errors to make sure that the site doesn’t break and give server error. But there are some, I have discovered when I was adding product information and making obvious mistake to check if the site breaks. Following are the results of impact that site can have with due to admin mistakes.
 
