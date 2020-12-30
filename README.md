@@ -60,6 +60,9 @@
 11.	Website is provided with ability where user can add reviews to product and rate product, so other user can know what they are buying. 
 12.	Website is provided with admin site, where store owner can view, add, update and delete product and its variant.
 13.	Store owner are provided with AJAX form to view, add, delete, update product colours and sizes.
+14. RR-Cloth has capacity to show all kind of product variants, site can dispaly product which has no variant, has color variant, has size variant and both
+    size-color variant. Because it is RR-cloth is clothing site and I am not displaying products without size and colours. But site has full capacity to turn into ecommerce
+    store, that can sale all kinds of products.
 
 # Features Left to Implement
 

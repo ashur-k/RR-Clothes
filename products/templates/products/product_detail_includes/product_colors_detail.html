@@ -2,7 +2,7 @@
 .form-check-input {
     position: absolute;
     margin-top: .3rem;
-    margin-left:-10px !important;
+    margin-left:-5px !important;
 }
 
 </style>
@@ -18,7 +18,7 @@
               </div>       
                 {% if colors %}
                     {% for rs in colors %}
-                    <li>
+                    <li style="padding: 2px; margin-left: auto;">
                         <input class="form-check-input" type="radio" 
                         {% if variant.id == rs.id %} 
                             checked 
@@ -31,9 +31,9 @@
                     <li  
                         {% if variant.id == rs.id %} 
                             class="active" 
-                        {% endif %}>
+                        {% endif %} class="margin:1px;">
                         <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; ">
-                            <p><small style="margin:5px;">  ${{ rs.price }} {{ rs.color }}</small></p> 
+                            <p><small style="margin:5px;">${{ rs.price }} {{ rs.color }}</small></p> 
                         </a>
                         {% if rs.image %}                  
                         <img class="img-thumbnail mt-1" src="{{ rs.image }}" style="height: 100px">

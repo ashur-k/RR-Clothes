@@ -206,7 +206,7 @@ textarea.input {
 .color-option >  li
  {
   display: inline-grid;
-  margin-right: 0px !important;
+  margin-right: 6px !important;
   margin-bottom: 6px;
   vertical-align: top;
   

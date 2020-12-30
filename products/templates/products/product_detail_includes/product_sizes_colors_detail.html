@@ -21,15 +21,14 @@
 
     <form method="post" action="?q=selectvariant" id="post-color">
         {% csrf_token %}
-        <div id="appendHere">
-            
+        <div id="appendHere">            
             <input type="hidden" name="size" id="size" value="{{ size_id }}">
             <ul class="color-option" >
                 <li><span class="text-uppercase">Color:</span></li>
                 {% for rs in colors %}
                     <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
                     <li  {% if variant.id == rs.id %} class="active" {% endif %}>
-                        <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; min-width: 100px; width:auto; max-width:140px;">
+                        <a style="background-color:{{ rs.color.code }}; color: #D9D9D9; text-shadow: 1px 1px #000000; min-width:100px; width:auto; max-width:140px;">
                            <span>${{ rs.price }} <small>{{ rs.color }}</small></span>
                         </a>
                         {% if rs.image %}
