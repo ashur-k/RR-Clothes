@@ -126,7 +126,7 @@ def product_detail(request, product_id):
         if request.method == 'POST':  # if we select color
             variant_id = request.POST.get('variantid')
             variant = Variants.objects.get(id=variant_id)
-            colors = Variants.objects.filter(product_id=product_id, size_id=variant.size_id, status=True)
+            colors = Variants.objects.filter(product_id=product_id, size_id=variant.size_id)
             if POSTGRES_IN_USE is True:
                 sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
             else:
@@ -134,7 +134,8 @@ def product_detail(request, product_id):
             query += variant.title + ' Size:' + str(variant.size) + ' Color: ' + str(variant.color)
         else:
             variants = Variants.objects.filter(product_id=product_id, status=True)
-            colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id, status=True)
+            colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id)
+            print(colors.count())
             if POSTGRES_IN_USE is True:
                 sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
             else:
@@ -156,7 +157,7 @@ def ajaxcolor(request):
     if request.POST.get('action') == 'post':
         size_id = request.POST.get('size')
         productid = request.POST.get('productid')
-        colors = Variants.objects.filter(product_id=productid, size_id=size_id, status=True)
+        colors = Variants.objects.filter(product_id=productid, size_id=size_id)
         context = {
             'size_id': size_id,
             'productid': productid,
@@ -322,6 +323,7 @@ def edit_product_with_variant(request, product_id):
         messages.error(request, 'Sorry only store owners can do that')
         return redirect(reverse('RR_home'))
     product = get_object_or_404(Product, pk=product_id)
+
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
