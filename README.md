@@ -129,6 +129,7 @@ Following is the list of crucial errors that were discovered while testing appli
    * Admin add varaint information correctly so there will be no inconvinence to shopper and site owners. 
    * As a programmer I have made sure that none of these mistakes break site and show server error. In future update I am going to force these rules.   
 
+
 # Deployment
 
 ###### Important Note:
@@ -208,11 +209,8 @@ After downloading project files from GitHub repository following steps are requi
 
 # Acknowledgements and Crediting to other developers
 
-1.	It’s my first ecommerce project, to obtain coding knowledge, skills and experience to develop RR-Clothes,
-    I have followed video tutorials series of following mentioned projects. 
-    Some of codes (HTML, CSS, JavaScript, jQuery, AJAX, libraries) were directly fitting to my needs and 
-    I have used these codes. I want to acknowledge and credit that without help of following mention 
-    projects I won’t be able to make RR-Cloth ready to submit for a Milestone 4 to code institute.   
+1.	To learn more about programming and get additional knowledge, I have followed along following video tutorials and coded these projects. 
+    Coding that I learnt from below mention projects, has helped me to design and program RR-Clothes.   
     •	Boutique ado (Code Institute).
     •	YouTube videos made by channel called Professional Cipher ([https://www.youtube.com/watch?v=uQtIqh9mEgM&t=660s]). 
     •	YouTube videos from “Yuksel CELIK, PhD” ([https://www.youtube.com/watch?v=UByiPW2zRy4&list=PLIUezwWmVtFXaHcJ63ZM6uOJdhMrnZFFk]).
