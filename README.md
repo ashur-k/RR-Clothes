@@ -51,11 +51,11 @@
 2.	Website is fully responsive on both mobile and tablets (common models and screen sizes) with changing its design and orientation on screen rotation.
 3.	Website displays products and its variants for users to choose from – offering different sizes and colours.
 4.	Website is provided with simple form to message store owners.
-5.	 Website is provided with google maps to find store locations.
+5.	Website is provided with google maps to find store locations.
 6.	Website is provided search box where user can search product they want to buy.
 7.	Website is provided with different sorting criteria’s so user can set their preferences.
 8.	Website is provided with functionality where user can register user-account/profile, maintain it and view his order history.
-9.	 Website is provided with functionality to update user password in case if user forget it.
+9.	Website is provided with functionality to update user password in case if user forget it.
 10.	Website is provided with bootstrap toasts to notify user with ‘success, error, warning and info’ pop-up messages.
 11.	Website is provided with ability where user can add reviews to product and rate product, so other user can know what they are buying. 
 12.	Website is provided with admin site, where store owner can view, add, update and delete product and its variant.
@@ -69,6 +69,8 @@
 4.	Favicon error is still not resolved, I have decided to resolve it in future release of RR-Cloth.
 5.	I want to write JavaScript/jQuery code where first item in product variant is selected automatically when its size changes on product details, I didn’t have enough time to write and test code. For current use, a message has been added for the users to ensure that the product is selected. 
 6.  Size guide is last minute addition to RR-Clothes this part of site is in development. In future update sizes guides are going to be displayed more dynamically and appropriately with updated styling.
+7.  At the adding product catergory has no impact on site. If new category is added by site admin, it will not visible on site, unless it is progrmatically added to code. In future I am update, I am 
+    planning to update in a way, that when admin adds new category to site, there will be a choice for admin to that what heading of navigation bar that category belongs.
 
 # Technologies used
 

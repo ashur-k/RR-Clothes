@@ -135,7 +135,6 @@ def product_detail(request, product_id):
         else:
             variants = Variants.objects.filter(product_id=product_id, status=True)
             colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id)
-            print(colors.count())
             if POSTGRES_IN_USE is True:
                 sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
             else:
