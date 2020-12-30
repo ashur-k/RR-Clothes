@@ -5,20 +5,21 @@
 
 {% block page_header %}
    <div class="container header-container">
-        <div class="row">
-            <div class="col-md-12 text-center m-3">
-                <h2>Girls Size Guide</h2>
-                <hr class="home-page-heading-hr-top mb-4">
-            </div>
-        </div>
+      
     </div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <table class="table table-responsive-sm">
+      <div class="row">
+            <div class="col-md-12 text-center m-3">
+                <h2>Girls Size Guide</h2>
+                <hr class="home-page-heading-hr-top mb-4">
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 table-responsive-sm">
+        <table class="table table-success table-striped">
         <thead>
             <tr>
             <th class="text-center" scope="col">
@@ -82,12 +83,14 @@
             </tr>
         </tbody>
         </table>
+        </div>
     </div>
-    <div class="col-sm-4">
-        <a href="" class="btn primary-button btn-lg">Back <--</a>
+    <div class="row">
+        <div class="col-sm-12">  
+            <a href="{% url 'product_detail' product_id %}" class="btn primary-button btn-md m-1 float-right"> <i class="fas fa-long-arrow-alt-left"></i> Back to view product</a>
+            <a href="{% url 'all_products' %}" class="btn primary-button btn-md float-right m-1">View All Products</a>
+        </div>
     </div>
-</div>
-
 </div>
 
 <div class="container header-container">
@@ -98,8 +101,8 @@
     </div>
 </div>
 <div class="row">
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-    <table class="table table-responsive-sm">
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12  table-responsive-sm">
+    <table class="table table-success table-striped">
     <thead>
         <tr>
         <th class="text-center" scope="col">
@@ -114,12 +117,12 @@
     </thead>
     <tbody>
         <tr>
-            <th class="text-center text-uppercase" scope="row">Dress<br>Length</th>
-            <td>22"</td>
-            <td>24"</td>
-            <td>26"</td>
+            <th class="text-center text-uppercase" scope="row">Shirt<br>Length</th>
+            <td>21"</td>
+            <td>23"</td>
+            <td>25"</td>
+            <td>27"</td>
             <td>28"</td>
-            <td>30"</td>
         </tr>
         <tr>
         <th class="text-center text-uppercase" scope="row">Chest</th>
@@ -165,6 +168,12 @@
     </table>
 </div>
 </div>
+ <div class="row">
+        <div class="col-sm-12">  
+            <a href="{% url 'product_detail' product_id %}" class="btn primary-button btn-md m-1 float-right"> <i class="fas fa-long-arrow-alt-left"></i> Back to view product</a>
+            <a href="{% url 'all_products' %}" class="btn primary-button btn-md float-right m-1">View All Products</a>
+        </div>
+    </div>
 </div>
 
 <div class="container header-container">
@@ -175,8 +184,8 @@
     </div>
 </div>
 <div class="row">
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-    <table class="table table-responsive-sm">
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 table-responsive-sm">
+    <table class="table table-success table-striped">
     <thead>
         <tr>
         <th class="text-center" scope="col">
@@ -191,60 +200,66 @@
     </thead>
     <tbody>
         <tr>
-            <th class="text-center text-uppercase" scope="row">Dress<br>Length</th>
-            <td>22"</td>
-            <td>24"</td>
+            <th class="text-center text-uppercase" scope="row">Shirt<br>Length</th>
+            <td>25"</td>
             <td>26"</td>
+            <td>27"</td>
             <td>28"</td>
             <td>30"</td>
         </tr>
         <tr>
         <th class="text-center text-uppercase" scope="row">Chest</th>
-        <td>20"</td>
-        <td>22"</td>
-        <td>24"</td>
-        <td>26"</td>
-        <td>28"</td>
+        <td>32"</td>
+        <td>36"</td>
+        <td>38"</td>
+        <td>40"</td>
+        <td>46"</td>
         </tr>
         <tr >
         <th class="text-center text-uppercase" scope="row">Waist</th>
-        <td>18"</td>
-        <td>20"</td>
-        <td>24"</td>
-        <td>26"</td>
-        <td>32"</td>
-        </tr>
-        <tr>
-            <th class="text-center text-uppercase" scope="row">Trousers<br>Length</th>
-            <td>35"</td>
-            <td>37"</td>
-            <td>39"</td>
-            <td>40"</td>
-            <td>42"</td>
-        </tr>
-            <tr >
-        <th class="text-center text-uppercase" scope="row">Hip</th>
+        <td>30"</td>
         <td>32"</td>
         <td>34"</td>
         <td>36"</td>
         <td>38"</td>
+        </tr>
+        <tr>
+            <th class="text-center text-uppercase" scope="row">Trousers<br>Length</th>
+            <td>37"</td>
+            <td>39"</td>
+            <td>40"</td>
+            <td>42"</td>
+            <td>44"</td>
+        </tr>
+            <tr >
+        <th class="text-center text-uppercase" scope="row">Hip</th>
+        <td>36"</td>
+        <td>38"</td>
         <td>40"</td>
+        <td>42"</td>
+        <td>44"</td>
         </tr>
             <tr >
         <th class="text-center text-uppercase" scope="row">Inseam</th>
-        <td>20"</td>
-        <td>22"</td>
-        <td>24"</td>
-        <td>26"</td>
-        <td>28"</td>
+        <td>30"</td>
+        <td>32"</td>
+        <td>34"</td>
+        <td>36"</td>
+        <td>38"</td>
         </tr>
     </tbody>
     </table>
 </div>
 </div>
+ <div class="row">
+        <div class="col-sm-12">  
+            <a href="{% url 'product_detail' product_id %}" class="btn primary-button btn-md m-1 float-right"> <i class="fas fa-long-arrow-alt-left"></i> Back to view product</a>
+            <a href="{% url 'all_products' %}" class="btn primary-button btn-md float-right m-1">View All Products</a>
+        </div>
+    </div>
 </div>
 
-<div class="container header-container">
+<div class="container header-container mb-5">
 <div class="row">
     <div class="col-md-12 text-center m-3">
         <h2>Women Size Guide</h2>
@@ -252,8 +267,8 @@
     </div>
 </div>
     <div class="row">
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-    <table class="table table-responsive-sm">
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12  table-responsive-sm">
+    <table class="table table-success table-striped">
     <thead>
         <tr>
         <th class="text-center" scope="col">
@@ -269,26 +284,26 @@
     <tbody>
         <tr>
             <th class="text-center text-uppercase" scope="row">Dress<br>Length</th>
-            <td>22"</td>
-            <td>24"</td>
-            <td>26"</td>
             <td>28"</td>
             <td>30"</td>
+            <td>32"</td>
+            <td>36"</td>
+            <td>38"</td>
         </tr>
         <tr>
         <th class="text-center text-uppercase" scope="row">Chest</th>
-        <td>20"</td>
-        <td>22"</td>
-        <td>24"</td>
-        <td>26"</td>
-        <td>28"</td>
+        <td>32"</td>
+        <td>34"</td>
+        <td>36"</td>
+        <td>38"</td>
+        <td>40"</td>
         </tr>
         <tr >
         <th class="text-center text-uppercase" scope="row">Waist</th>
-        <td>18"</td>
-        <td>20"</td>
         <td>24"</td>
         <td>26"</td>
+        <td>28"</td>
+        <td>30"</td>
         <td>32"</td>
         </tr>
         <tr>
@@ -301,24 +316,30 @@
         </tr>
             <tr >
         <th class="text-center text-uppercase" scope="row">Hip</th>
+        <td>28"</td>
         <td>32"</td>
-        <td>34"</td>
         <td>36"</td>
         <td>38"</td>
         <td>40"</td>
         </tr>
             <tr >
         <th class="text-center text-uppercase" scope="row">Inseam</th>
-        <td>20"</td>
         <td>22"</td>
         <td>24"</td>
         <td>26"</td>
         <td>28"</td>
+        <td>30"</td>
         </tr>
     </tbody>
     </table>
 </div>
 </div>
+ <div class="row">
+        <div class="col-sm-12">  
+            <a href="{% url 'product_detail' product_id %}" class="btn primary-button btn-md m-1 float-right"> <i class="fas fa-long-arrow-alt-left"></i> Back to view product</a>
+            <a href="{% url 'all_products' %}" class="btn primary-button btn-md float-right m-1">View All Products</a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}        

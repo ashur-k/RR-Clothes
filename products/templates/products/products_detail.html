@@ -129,7 +129,13 @@
                             <hr>
                         {% endif %}  
                         
-                    </div>                 
+                    </div>   
+                    <div class="col-sm-12">
+                         <br>
+                            <a href="{% url 'size_info' product.id %}"><small>Size Guide</small>
+                        </a>
+                    </div>
+                    
                     <div class="col-sm-12 col-md-12 col-lg-12">                                      
                         {% if  product.variant == 'None'   %}
                                 {% if variant_id_value %}

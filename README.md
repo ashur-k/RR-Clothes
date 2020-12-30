@@ -110,12 +110,22 @@ Following is the list of crucial errors that were discovered while testing appli
 
 ### Instructions to Use Site
 
-1.	Site is tested on different scenarios and it works well. There are errors that can be made by site admin, which can cause the site to behave abnormally. I have added cautioning code for those errors to make sure that the site doesn’t break and give server error. But there are some, I have discovered when I was adding product information and making obvious mistake to check if the site breaks. Following are the results of impact that site can have with due to admin mistakes.
+1.	Site is tested on different scenarios and it works well. There are errors that can be made by site admin, which can cause the site to behave abnormally. I have added cautioning code for those errors to make sure that the site doesn’t break and give server error. 
+    But there are some, I have discovered when I was adding product information and making obvious mistake to check if the site breaks. 
+    Following are the results of impact that site can have with due to admin mistakes.
 
 * If admin adds a new product and then set it to ‘has variants’ and then forgets to add variant information to product. This was causing site to break and show server error on product detail page. To solve error, I have added if-else logic to check if product has variants and if there is no variant information then site will inform user that its an admin error and contact the admin. And if admin logins with superuser and click same product to view, admin will be directed to product management page with instructions that add variant information and it has cause user inconvenience. 
 * For testing I changed ‘product has variant’ value to false from true. This particular product has 9 different variants with information about different size and colour. I have checked its impact on product detail and product management pages. There was no impact on either of the pages, only variant information was not available any more.
 * In second attempt I have changed same product variant from size-colour to only colour and set ‘has variant’ value to true. It has no impact on product management page all information was displayed but on product detail page there was only one colour visible. To solve that error, site admin has to delete size information manually from all variants. In future update I am planning to add caution for this sort of errors.
 * In future upgrade I am planning to add cautioning for all these scenarios where site admin can make mistakes. When I was developing site, I was only testing for coding errors, I never assumed what when site admin is going to make mistakes. I don’t have enough time to add all cautioning’s and then go thorough testing. 
+
+2. In earlier version of evolving site I was not giving user full cotrol on updating variant information. There were different django forms for add and edit variant information, 
+   for example. variant-color form, size-color-form and form where all size-color information can be added. My mentor suggested me to give user ability to choose variant image in add/edit 
+   forms. Now in variant form admin user has ablity to choose from product image gallery that belongs to the variant. Since these new forms are updated admin user is required to follow 
+   below given rules:
+   * If product "has-Size is true" then admin should not leave product "varaints" to None. In future update I am adding code to force this rule.
+   * Admin add varaint information correctly so there will be no inconvinence to shopper and site owners. 
+   * As a programmer I have made sure that none of these mistakes break site and show server error. In future update I am going to force these rules.   
 
 # Deployment
 
