@@ -133,7 +133,7 @@ def product_detail(request, product_id):
                 sizes = Variants.objects.raw('SELECT * FROM  products_variants  WHERE product_id=%s GROUP BY size_id', [product_id])
             query += variant.title + ' Size:' + str(variant.size) + ' Color: ' + str(variant.color)
         else:
-            variants = Variants.objects.filter(product_id=product_id, status=True)
+            variants = Variants.objects.filter(product_id=product_id)
             colors = Variants.objects.filter(product_id=product_id, size_id=variants[0].size_id)
             if POSTGRES_IN_USE is True:
                 sizes = Variants.objects.order_by('size_id').distinct('size_id').filter(product_id=product_id)
@@ -443,8 +443,7 @@ def delete_variant(request, variant_id):
 
     variant = get_object_or_404(Variants, pk=variant_id)
     product_id = variant.product_id
-    variant.status = False
-    variant.save()
+    variant.delete()
     messages.success(request, 'Variant deleted successfully!')
     return redirect(reverse('product_management', args=[product_id]))
 
@@ -557,7 +556,12 @@ def ajax_delete_color(request):
     return JsonResponse(data)
 
 
+@login_required
 def size_management(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry only store owners can do that')
+        return redirect(reverse('RR_home'))
+
     sizes = Size.objects.all()
     template = 'products/size_management.html'
 

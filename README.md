@@ -71,6 +71,7 @@
 6.  Size guide is last minute addition to RR-Clothes this part of site is in development. In future update sizes guides are going to be displayed more dynamically and appropriately with updated styling.
 7.  At the adding product catergory has no impact on site. If new category is added by site admin, it will not visible on site, unless it is progrmatically added to code. In future I am update, I am 
     planning to update in a way, that when admin adds new category to site, there will be a choice for admin to that what heading of navigation bar that category belongs.
+8.  If image is delted it does not physically remove file from server. I have to add signals code to implement this feature so images are physically deleted from server.
 
 # Technologies used
 

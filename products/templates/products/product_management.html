@@ -32,8 +32,8 @@
                         <th scope="col">Has-Variant</th>
                         <th scope="col">New Edition</th>
                         <th scope="col">Discount Offer</th>
-                        <th scope="col">Variant</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Variant Name</th>
+                        <th scope="col">User Visibilty Status</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -55,19 +55,36 @@
                             {{product.quantity}}
                         </td>
                         <td class="align-middle">
-                            {{product.has_variant}}
+                            {% if product.has_variant%}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
                         </td>
                         <td class="align-middle">
-                            {{product.new_edition}}
+                            {% if product.new_edition %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
                         </td>
                         <td class="align-middle">
-                            {{product.discount_30_percent}}
+                            {% if product.discount_30_percent %}
+                                Yes
+                            {% else %}
+                                No offer given
+                            {% endif %}
+                        
                         </td>
                         <td class="align-middle">
                             {{product.variant}}
                         </td>
                         <td class="align-middle">
-                            {{product.status}}
+                            {% if product.status %}
+                                Show
+                            {% else %}
+                                Not show
+                            {% endif %}
                         </td>
                         <td class="align-middle">
                             {% if product.has_variant == 1 %}
